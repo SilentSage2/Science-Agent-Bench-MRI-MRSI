@@ -86,36 +86,42 @@ def _framework_svg() -> str:
         (
             80,
             270,
-            280,
+            360,
             "MRI / MRSI tasks",
             "Versioned public inputs\nPrivate evaluator reference",
             "blue",
         ),
         (
-            410,
+            490,
             270,
-            360,
+            410,
             "Controller intervention",
             "Direct · Reactive · Self-debug\nPlan and recovery paths",
             "magenta",
         ),
         (
-            820,
+            950,
             270,
-            300,
+            340,
             "Bounded execution",
             "Allowlisted MR tools\nDigest-pinned Docker",
             "orange",
         ),
-        (1170, 270, 260, "Public observation", "Method + diagnostics\nNo hidden scores", "green"),
-        (1480, 270, 240, "Hidden grading", "Physics · fidelity\nretention", "blue"),
+        (
+            1340,
+            270,
+            380,
+            "Independent grading",
+            "Public observations\nHidden physics + fidelity",
+            "green",
+        ),
     ]
     elements = [
         _svg_header("Failure-aware MR agent evaluation", "IMPLEMENTED DESIGN · PRIMARY STUDY NO-GO")
     ]
     for index, (x, y, width, title, body, color) in enumerate(boxes):
         elements.append(
-            f'<rect x="{x}" y="{y}" width="{width}" height="220" rx="24" fill="{PALETTE["panel"]}" stroke="{PALETTE[color]}" stroke-width="6"/>'
+            f'<rect x="{x}" y="{y}" width="{width}" height="230" rx="24" fill="{PALETTE["panel"]}" stroke="{PALETTE[color]}" stroke-width="6"/>'
         )
         elements.append(_svg_text(x + 24, y + 60, title, 30, PALETTE["ink"], "700"))
         for line_index, line in enumerate(body.split("\n")):
