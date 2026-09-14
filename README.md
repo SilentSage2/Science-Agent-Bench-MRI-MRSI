@@ -1,8 +1,8 @@
-# Science Agent Bench
+# Science Agent Bench MRI/MRSI
 
 Science Agent Bench is a provider-neutral research harness for testing which control-loop components improve MRI and MR spectroscopic imaging (MRSI) experiments under fixed budgets.
 
-> **Status:** A0 benchmark contract is complete. The A1 core and four deterministic task families are implemented and tested. The 12/12 scripted smoke result validates the harness only; no real-model research result is claimed yet.
+> **Status:** A0 benchmark contract is complete. The A1 core, four deterministic task families, and first replaceable real-model adapter are implemented and tested. The 12/12 scripted smoke result validates the harness only; no real-model research result is claimed yet.
 
 ## Research question
 
@@ -26,6 +26,7 @@ The frozen A1 comparison will evaluate three conditions:
 - immutable JSONL trajectory creation with monotonic event sequences;
 - SHA-256 artifact hashing;
 - synthetic MRS basis-model selection, MRSI nuisance removal, MRI/MRSI split-leakage, and undersampled MRI reconstruction tasks;
+- a provider-neutral model protocol and fail-closed OpenAI Responses API adapter;
 - independent deterministic graders with positive and adversarial fixtures;
 - a 12-run smoke across all three controller conditions;
 - offline standard-library test suite.
@@ -34,7 +35,7 @@ The frozen A1 comparison will evaluate three conditions:
 
 Seven generated task families cover MRS basis fitting, MRSI nuisance removal, undersampled MRI reconstruction, reconstruction quality control, spectral/metabolite quantification, subject-level leakage detection, and dynamic MR model comparison. Each family will have public development instances and evaluator-isolated held-out instances with deterministic graders.
 
-Three task families, the replaceable model adapter, and isolated task execution remain planned. Model-authored code must eventually run in a disposable, network-disabled, non-root container with read-only inputs, a run-scoped output mount, and hard resource limits. A Python subprocess alone is not considered a security boundary.
+Three task families, live policy orchestration, and isolated task execution remain planned. The first adapter is offline-tested, but no paid model request or control-loop comparison has been run. Model-authored code must eventually run in a disposable, network-disabled, non-root container with read-only inputs, a run-scoped output mount, and hard resource limits. A Python subprocess alone is not considered a security boundary.
 
 ## Current smoke result
 
@@ -76,6 +77,9 @@ pytest
 - `tests/`: unit, integration, and later security-boundary tests
 - `experiments/`: committed configs and compact summaries only
 - `docs/`: architecture, benchmark protocol, threat model, and decisions
+
+See [model adapters](docs/MODEL_ADAPTERS.md) for the provider boundary, credential rules, and live-run requirements.
+The [ISMRM 2027 abstract plan](docs/ISMRM_2027_PLAN.md) defines a time-bounded 72-run experiment and explicit submission gates; it does not claim acceptance or completed research results.
 
 Generated runs, datasets, provider responses, credentials, private evaluator fixtures, and model artifacts are ignored and must not be committed.
 

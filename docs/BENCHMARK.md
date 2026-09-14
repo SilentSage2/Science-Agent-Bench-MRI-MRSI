@@ -32,7 +32,7 @@ Seven generated CPU-only families cover MRS basis fitting, MRSI nuisance removal
 
 Tasks evaluate computational research behavior only. They do not request diagnosis, prognosis, treatment selection, or patient-facing interpretation.
 
-The deterministic mock policy is the CI oracle. At least one replaceable real-model adapter must complete all three experimental conditions before A1 makes a result claim. Provider comparison is not an A1 hypothesis.
+The deterministic mock policy is the CI oracle. The first replaceable real-model adapter is implemented and offline-tested, but it must complete all three experimental conditions before A1 makes a result claim. Provider comparison is not an A1 hypothesis.
 
 ## Run record
 
