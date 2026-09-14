@@ -118,6 +118,7 @@ SAB_RUN_DOCKER_TESTS=1 PYTHONPATH=src pytest tests/test_container_executor.py
 See [model adapters](docs/MODEL_ADAPTERS.md) for the provider boundary, credential rules, and live-run requirements.
 See the [credential-gated pilot runbook](docs/LIVE_PILOT_RUNBOOK.md) for the safe key workflow, current cost ceiling, and reproducible launch command.
 See the [agent runtime](docs/AGENT_RUNTIME.md) for controller semantics, accounting invariants, and the current isolation boundary.
+The [independent expert-review packet](review/README.md) turns the MRI, MRSI, statistical, and controller pre-freeze checks into versioned forms, an issue log, and a fail-closed signoff. Its current status is `NO-GO` until the documented control-design and sample-size issues are resolved and independently approved.
 The [ISMRM 2027 abstract plan](docs/ISMRM_2027_PLAN.md) defines sensitivity-justified experiment and submission gates; the earlier 72-run schedule is only a pilot floor and no completed research result is claimed.
 The [conference figure specification](docs/ISMRM_2027_FIGURES.md) defines five review figures, a separate preview image, immutable plotting inputs, and visual/scientific QA gates.
 The [complete abstract package](abstract/README.md) provides the 2026-format working draft, evidence contract, cross-artifact fact lock, five captions, and an automated length validator. It remains explicitly `PLANNED` until frozen real-model results exist.

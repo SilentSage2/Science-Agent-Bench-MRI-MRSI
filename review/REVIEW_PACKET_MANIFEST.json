@@ -1,0 +1,35 @@
+{
+  "packet_version": "1",
+  "packet_status": "no-go-unreviewed",
+  "prepared_from_revision": "b027b537d807dd7df24b3caca6c64f02e1bc9c32",
+  "freeze_revision": null,
+  "required_roles": [
+    "mri_reconstruction_expert",
+    "mrs_mrsi_expert",
+    "statistician_or_evaluation_methodologist"
+  ],
+  "recommended_roles": ["agent_evaluation_reviewer"],
+  "forms": [
+    "review/MRI_REVIEW_FORM.md",
+    "review/MRSI_REVIEW_FORM.md",
+    "review/STATISTICAL_REVIEW_FORM.md",
+    "review/AGENT_CONTROL_REVIEW_FORM.md",
+    "review/ISSUE_LOG.md",
+    "review/SIGNOFF.md"
+  ],
+  "source_material": [
+    "protocol/five_condition_protocol_v1.json",
+    "protocol/frozen_development_instances_v1.json",
+    "protocol/figure_data_contract_v1.json",
+    "docs/ARCHITECTURE.md",
+    "docs/ISMRM_2027_PLAN.md",
+    "docs/ISMRM_2027_FIGURES.md",
+    "experiments/mri-multicoil-baseline-pilot-v1/README.md",
+    "experiments/mri-silent-invalidity-endpoint-v1/README.md",
+    "experiments/mrsi-complex-nuisance-baseline-pilot-v1/README.md",
+    "experiments/mrsi-silent-invalidity-endpoint-v1/README.md",
+    "experiments/real-model-development-pilot-v4/README.md"
+  ],
+  "known_blocking_issues": ["CTRL-001", "CTRL-002", "STAT-001"],
+  "primary_run_authorized": false
+}

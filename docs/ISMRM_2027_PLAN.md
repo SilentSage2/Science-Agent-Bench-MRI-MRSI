@@ -50,6 +50,8 @@ Submit a standard abstract only if all of the following are true:
 
 If gates 1–4 fail, do not force a standard abstract. Reassess whether the 2027 call offers a registered-abstract track with rules comparable to the prior year; do not assume eligibility until the current call is public.
 
+The pre-freeze review is operationalized in the [independent expert-review packet](../review/README.md). MRI reconstruction, MRS/MRSI, and statistical reviewers must sign against one frozen revision; the packet remains fail-closed while any critical or major issue is unresolved. A separate post-result review verifies representative failures, figures, numbers, and claims.
+
 ## Schedule
 
 | Date | Deliverable |
