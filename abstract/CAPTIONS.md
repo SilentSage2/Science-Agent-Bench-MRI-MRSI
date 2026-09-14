@@ -11,7 +11,7 @@ Four generated MR workflow families and independent grading evidence: MRS basis 
 <!-- ISMRM:CAPTION:END -->
 
 <!-- ISMRM:CAPTION:START -->
-PLANNED—Paired scientific-validity outcomes for direct, self-debug, reactive, plan-only, and bounded-replan conditions across the sensitivity-justified frozen MRI/MRSI set. [Insert estimand, eligible n, repetitions, exclusions, interval method, and frozen result fact IDs.]
+PLANNED—Paired silent-invalidity prevention and recognition for direct, self-debug, reactive, plan-only, and bounded-replan conditions. Technical completion, hidden MR physics/fidelity validity, and final agent assessment remain separate. [Insert eligible n, repetitions, effects, 95% interval method, exclusions, and frozen fact IDs.]
 <!-- ISMRM:CAPTION:END -->
 
 <!-- ISMRM:CAPTION:START -->

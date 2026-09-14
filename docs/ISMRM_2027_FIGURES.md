@@ -76,19 +76,19 @@ Global rules:
 **Panels**
 
 - **A:** MRS basis-model selection: observed spectrum, candidate fits, and residual region;
-- **B:** MRSI nuisance removal: contaminated and corrected voxel spectra with water/lipid bands;
-- **C:** undersampled MRI reconstruction: mask, zero-filled image, reconstruction, and error map;
+- **B:** MRSI nuisance removal: frequency/phase drift and template mismatch, contaminated/corrected spectra, water/lipid bands, and retained metabolite region;
+- **C:** noisy multi-coil MRI reconstruction: coil/mask inputs, zero-filled and SENSE-CG outputs, shared-scale error maps, and sampled-k-space residual;
 - **D:** subject-level split audit: compact subject/session-to-split diagram with detected violations.
 
 **Data dependency:** one frozen public development instance per family. Images and spectra come directly from generator outputs and independent grader recomputation.
 
 **Draft caption:** Four deterministic MR workflow families. Tasks cover MRS model selection, MRSI nuisance suppression, Cartesian MRI reconstruction, and subject-level leakage auditing. Each task produces machine-readable artifacts and MR-specific evidence; graders independently recompute conclusions using evaluator-isolated parameters where required.
 
-## Figure 3 — Primary paired scientific-validity result
+## Figure 3 — Silent-invalidity prevention and recognition
 
 **Status:** `PLANNED — EMPTY TEMPLATE`; it must contain no plausible placeholder values.
 
-**Primary claim under test:** structured planning, with or without one bounded recovery step, changes paired scientific-validity completion relative to reactive execution under identical budgets.
+**Primary MR claim under test:** controller strategy changes how often technically completed MRI/MRSI outputs pass hidden physics/fidelity checks and how often an invalid output is explicitly recognized rather than endorsed.
 
 **Support/refutation rule:** support requires a positive paired effect with its 95% interval and task-family consistency shown. An interval spanning zero is reported as inconclusive; a negative estimate supports harm. No wording of “improves” is allowed solely from a higher aggregate pass count.
 
@@ -98,19 +98,19 @@ Global rules:
 
 **Panels**
 
-- **A:** task-instance matrix for scientific validity by controller and repetition;
-- **B:** paired effect estimates for plan-only and retry/replan versus reactive, with 95% intervals;
-- **C:** family-stratified effects and denominators.
+- **A:** task-instance matrix separating technical completion, hidden MR validity, and final agent recognition by condition and repetition;
+- **B:** paired effects for invalidity prevention and detection versus reactive, direct, and self-debug baselines, with 95% intervals;
+- **C:** MRI/MRSI family-stratified effects, continuous fidelity metrics, and exact denominators.
 
 **Data dependency:** sensitivity-justified frozen primary comparison plus versioned paired analysis. Intervals and resampling unit must match the analysis plan.
 
-**Draft caption template:** Paired scientific-validity outcomes across four MRI/MRSI task families. The matrix shows every frozen instance and repetition; effect estimates compare each structured controller with reactive execution using task-instance pairing. Points denote [ESTIMAND] and intervals denote [METHOD]. Values are inserted only by the frozen analysis command.
+**Draft caption template:** Paired silent-invalidity outcomes across frozen MRI/MRSI tasks. The matrix separates error-free technical completion from hidden physics/fidelity validity and agent recognition. Effects compare controller strategies with reactive, direct, and self-debug baselines using task-instance pairing. Points denote [ESTIMAND]; intervals denote [METHOD]. Values come only from the frozen analysis.
 
 ## Figure 4 — Efficiency and failure recovery
 
 **Status:** `PLANNED — EMPTY TEMPLATE`; it must contain no plausible placeholder values.
 
-**Secondary claims under test:** any validity change is accompanied by a measurable token, cost, and wall-time tradeoff; the retry/replan mechanism changes recovery specifically after prespecified recoverable failures.
+**Secondary claims under test:** any reduction in silently endorsed MR-invalid outputs is accompanied by a measurable token, cost, and wall-time tradeoff; the retry/replan mechanism changes recovery specifically after prespecified acquisition/processing failures.
 
 **Would weaken/refute the claims:** overlapping paired uncertainty, worse cost per valid completion, incomplete provider usage, or no improvement over plan-only in the injected-failure subset. Null and adverse results remain in the figure.
 
@@ -118,8 +118,8 @@ Global rules:
 
 **Panels**
 
-- **A:** scientific validity versus median provider-reported token use;
-- **B:** cost and wall time per valid completion with intervals;
+- **A:** prevented or recognized silent invalidity versus provider-reported token use;
+- **B:** cost and wall time per hidden-valid or correctly flagged completion with intervals;
 - **C:** outcomes after injected recoverable failures, separated into recovered, repeated, stopped, and invalid completion.
 
 **Data dependency:** complete provider usage, dated pricing snapshot, wall-clock records, and the preregistered injected-failure subset. If provider usage is incomplete, omit cost-normalized claims rather than imputing zero.

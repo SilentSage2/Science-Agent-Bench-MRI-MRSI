@@ -22,9 +22,9 @@ Conditions share frozen task instances, task prompts, model settings, tool schem
 
 ## Outcomes
 
-Primary outcomes are task success, scientific validity, and reproducibility. Secondary outcomes are valid-artifact rate, policy-violation rate, failure recovery, and tokens, estimated cost, tool calls, retries, and wall time per successful task.
+Co-primary MR outcomes are silent-invalidity prevention and recognition among technically completed runs. Prevention means the hidden physics/fidelity grader accepts the output; recognition means the agent flags an invalid or uncertain result rather than endorsing it. MRI continuous outcomes include magnitude and gradient NRMSE and sampled multi-coil k-space residual. MRSI outcomes will include nuisance suppression, metabolite-retention error, and robustness to frequency/phase drift and template mismatch. Secondary outcomes are reproducibility, policy violations, failure recovery, tokens, estimated cost, tool calls, retries, and wall time.
 
-Report every task instance and macro averages rather than one opaque composite score. The MVP publishes raw paired outcomes; paired bootstrap confidence intervals are exploratory until there are enough independent instances. Harness failures are reported separately and excluded from model-success denominators.
+Report every task instance and component metric rather than one opaque composite score. Technical completion, hidden scientific validity, and agent recognition remain separate denominators so an error-free trajectory cannot masquerade as valid MR science. The MVP publishes raw paired outcomes; paired bootstrap confidence intervals are exploratory until there are enough independent instances. Harness failures are reported separately and excluded from model-success denominators.
 
 ## Tasks and splits
 

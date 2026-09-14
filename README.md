@@ -1,6 +1,6 @@
 # Science Agent Bench MRI/MRSI
 
-Science Agent Bench is a provider-neutral research harness for testing which control-loop components improve MRI and MR spectroscopic imaging (MRSI) experiments under fixed budgets.
+Science Agent Bench MRI/MRSI is a provider-neutral research prototype for measuring when technically successful agent/tool workflows still produce physically or statistically invalid MR results, and whether control strategies detect or prevent those failures under fixed budgets.
 
 This independent prototype is not affiliated with the ICLR 2025 benchmark named [ScienceAgentBench](https://proceedings.iclr.cc/paper_files/paper/2025/hash/f12b4df26344f3be803c06b555252efe-Abstract-Conference.html). A distinct publication-facing name is required before a research release to avoid confusion.
 
@@ -8,7 +8,7 @@ This independent prototype is not affiliated with the ICLR 2025 benchmark named 
 
 ## Research question
 
-Under the same model, MRI/MRSI task, tools, token allowance, cost ceiling, retry allowance, and execution limits, do structured planning and failure-aware retry/replanning improve scientifically valid, reproducible experiment completion over a reactive loop?
+Under the same model, MRI/MRSI task, tools, token allowance, cost ceiling, retry allowance, and execution limits, do agent control strategies detect or prevent technically successful but scientifically invalid MRI reconstruction and MRSI processing results?
 
 The benchmark measures computational research workflows, not clinical diagnosis. Initial tasks use generated phantoms, spectra, metadata, and known reference parameters so that grading remains deterministic and no private clinical data is required.
 
@@ -48,6 +48,8 @@ Three task families, research-grade MRI/MRSI tools with meaningful algorithm cho
 The [research quality audit](docs/RESEARCH_QUALITY_AUDIT.md) is a binding red-team assessment. It identifies prior-art and naming risk, toy-task limitations, missing direct/self-debug and conventional MR baselines, absent sample-size justification, and the minimum evidence required before an ISMRM or publish-ready claim.
 
 The first substantive calibration result is deliberately narrow: in a frozen nine-case synthetic multi-coil pilot, regularized SENSE-CG improved magnitude NRMSE over zero fill in 9/9 cases (mean paired reduction 0.0661; seed-fixed bootstrap 95% interval [0.0519, 0.0806]). This validates task separation, not agent performance or clinical realism. The [pilot record](experiments/mri-multicoil-baseline-pilot-v1/README.md) includes the hard-stratum degradation and reproduction command. A separate [design sensitivity](experiments/design-sensitivity-v1/README.md) shows why the old 12-instance plan cannot be treated as confirmatory.
+
+A containerized mechanism case now demonstrates the core endpoint: zero fill returned a successful tool observation and valid, reproducible artifacts, but hidden multi-coil grading rejected its magnitude and gradient fidelity relative to SENSE-CG. The [silent-invalidity record](experiments/mri-silent-invalidity-endpoint-v1/README.md) is evidence that execution success and MR validity can diverge; it is not an agent-effect estimate.
 
 ## Current smoke result
 

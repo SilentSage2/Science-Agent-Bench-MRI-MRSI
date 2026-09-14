@@ -40,8 +40,10 @@ class ContainerLimits:
     captured_stream_bytes: int = 262_144
 
     def __post_init__(self) -> None:
-        if "@sha256:" not in self.image:
-            raise ValueError("container image must be pinned by sha256 digest")
+        registry_digest = "@sha256:" in self.image
+        local_image_id = re.fullmatch(r"sha256:[a-f0-9]{64}", self.image) is not None
+        if not registry_digest and not local_image_id:
+            raise ValueError("container image must be pinned by registry digest or local image ID")
         if not re.fullmatch(r"[0-9]+(?:\.[0-9]+)?", self.cpus):
             raise ValueError("cpus must be a positive decimal string")
         if float(self.cpus) <= 0:

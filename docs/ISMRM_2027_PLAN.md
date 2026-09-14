@@ -12,13 +12,13 @@ The official 2027 meeting page lists abstract submission from 1–28 October 202
 
 ## Candidate scientific question
 
-Under identical model, task, tool, token, cost, retry, and execution budgets, do structured planning and one failure-aware replan improve scientifically valid completion of MRI/MRSI computational experiments over a reactive agent?
+Under identical model, tool, token, cost, retry, and execution budgets, do agent control strategies detect or prevent technically successful but physically/statistically invalid MRI reconstruction and MRSI processing results?
 
 Working title: **Failure-aware planning for scientifically valid autonomous MRI/MRSI experiments under fixed budgets**
 
 The neutral wording is mandatory until the frozen paired effect supports a directional claim. The title is 99 characters under the repository validator.
 
-This framing makes the contribution an MR research-methods study rather than a generic agent demo. Claims must remain computational and research-facing, with no diagnosis or patient-care interpretation.
+The MR problem—not agent novelty—is primary: error-free execution can still violate multi-coil acquired-data physics, erase spatial detail, suppress metabolites, or endorse results under frequency/phase drift and template mismatch. Claims must remain computational and research-facing, with no diagnosis or patient-care interpretation.
 
 ## Minimum submission evidence
 

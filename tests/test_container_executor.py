@@ -36,6 +36,11 @@ class ContainerCommandTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             ContainerLimits(image="python:3.12-slim")
 
+    def test_exact_local_image_id_is_accepted(self) -> None:
+        image = "sha256:" + "a" * 64
+
+        self.assertEqual(ContainerLimits(image=image).image, image)
+
     def test_non_allowlisted_executable_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

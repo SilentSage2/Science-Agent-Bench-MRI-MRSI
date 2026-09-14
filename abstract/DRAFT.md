@@ -9,11 +9,11 @@ Failure-aware planning for scientifically valid autonomous MRI/MRSI experiments 
 ## Synopsis
 
 <!-- ISMRM:SYNOPSIS:START -->
-**Motivation:** Autonomous agents may accelerate MRI and spectroscopic-imaging computation, but fluent outputs can conceal invalid science.
+**Motivation:** Automated MR workflows can finish without errors while violating multi-coil acquisition physics or attenuating metabolites, risking false scientific conclusions.
 
-**Goal(s):** Test whether structured planning and one bounded replan change scientifically valid completion under fixed budgets.
+**Goal(s):** Test whether agent control strategies detect or prevent silent MRI/MRSI invalidity under fixed budgets.
 
-**Approach:** Compare budget-auditable direct, self-debug, reactive, plan-only, and bounded-replan conditions on evaluator-isolated MRI/MRSI tasks with realistic stressors, deterministic domain graders, and isolated execution.
+**Approach:** Compare five budget-auditable strategies on evaluator-isolated tasks spanning multi-coil undersampling/noise and spectral drift/template mismatch, using hidden physics/fidelity graders.
 
 **Results:** PLANNED—no real-model comparison has run. The frozen analysis will report paired effects, 95% intervals, efficiency, and MR-specific failures.
 <!-- ISMRM:SYNOPSIS:END -->
@@ -21,7 +21,7 @@ Failure-aware planning for scientifically valid autonomous MRI/MRSI experiments 
 ## Impact
 
 <!-- ISMRM:IMPACT:START -->
-PLANNED—If completed, this study will show whether planning and bounded recovery make autonomous MRI/MRSI computation more scientifically reliable under fixed budgets, helping MR researchers distinguish useful agent control from added cost or failure.
+PLANNED—The study will show whether agent controls can detect or prevent physically plausible but scientifically invalid MRI/MRSI outputs, helping MR researchers protect reconstruction and spectroscopy conclusions rather than relying on error-free execution alone.
 <!-- ISMRM:IMPACT:END -->
 
 ## Main body
@@ -29,7 +29,7 @@ PLANNED—If completed, this study will show whether planning and bounded recove
 <!-- ISMRM:BODY:START -->
 ### Introduction
 
-Autonomous language-model agents can coordinate computational experiments, yet task completion does not ensure scientifically valid MRI or MR spectroscopic imaging (MRSI) output. Errors such as acquired-k-space inconsistency, metabolite attenuation, unsupported spectral-model selection, and subject leakage may remain hidden behind plausible reports. We ask whether structured planning and one failure-aware replan change valid completion relative to reactive execution when the model, tasks, tools, and budgets are fixed.
+Automated tools and language-model agents can complete MRI or MR spectroscopic imaging (MRSI) workflows without raising an exception while returning scientifically misleading output. In MRI reconstruction, a plausible image may violate the acquired multi-coil forward model or lose spatial detail; in MRSI processing, strong water/lipid suppression may silently attenuate metabolites under frequency/phase drift or template mismatch. File creation and executable-code success do not protect MR conclusions from these failures. We ask whether agent control strategies detect or prevent such silent invalidity when model, task, tools, and budgets are fixed.
 
 ### Methods
 
@@ -37,13 +37,13 @@ Autonomous language-model agents can coordinate computational experiments, yet t
 
 One pinned model snapshot will run the primary controller ablation: reactive, plan-only, and plan plus one bounded retry/replan. Budget-auditable direct generation and self-debug will provide competitive scientific-agent baselines; conventional MR methods, a naive method, and an oracle will calibrate each task without being misrepresented as agents. Conditions will share prompts where applicable, allowlisted research tools, token/cost/tool/time ceilings, seeds, and the digest-pinned network-disabled non-root executor. Plan-only versus reactive will isolate initial planning; retry/replan versus plan-only will isolate recovery. [PLANNED: use a blinded design-stage sensitivity analysis to set independent instance and repetition counts, then freeze model ID, prompts, tools, budgets, instance hashes, exclusions, and seeds before opening outcomes.]
 
-The primary endpoint will be deterministic scientific-validity completion. Secondary endpoints will include artifact completion, reproducibility, provider-reported tokens, dated estimated cost, wall time, tool calls, retries, and policy violations. Repetitions will be averaged within instance-condition cells. Paired controller differences will use task instance as the resampling unit with a seeded 10,000-resample task-family-stratified cluster bootstrap for 95% intervals; an exact paired randomization sensitivity analysis will be used if its frozen assumptions are met. Missing usage will not be imputed as zero. Exclusions and reruns will follow predeclared rules. A separate injected-failure subset will test recovery and will not be pooled into the primary endpoint.
+Co-primary MR endpoints will be silent-invalidity prevention and recognition among technically completed runs. Prevention requires hidden scientific validity; recognition requires the final agent assessment to flag an invalid or uncertain result. MRI metrics will include magnitude and gradient NRMSE plus sampled multi-coil k-space residual. MRSI metrics will include nuisance suppression, metabolite-retention error, and robustness to frequency/phase drift and template mismatch. Secondary endpoints will include reproducibility, provider-reported tokens, dated cost, wall time, calls, retries, and policy violations. Repetitions will be averaged within instance-condition cells. Paired differences will use task instance as the resampling unit with a seeded task-family-stratified bootstrap for 95% intervals. Missing usage will not be imputed as zero. Exclusions and reruns will follow predeclared rules.
 
 Runs will record code revision, dirty state, task/model/prompt/tool/container hashes, budgets, usage, seeds, hardware, transitions, actions, observations, artifacts, and grader output. [PLANNED: provide the single clean-environment reproduction command and release manifest after protocol freeze.]
 
 ### Results
 
-**PLANNED—NO PRIMARY RESULTS EXIST.** [Insert completed and eligible run counts; paired scientific-validity estimates with 95% intervals; task-family effects; efficiency and policy-violation results; injected-failure recovery; and prespecified failure-taxonomy counts exclusively from frozen `R-*` fact-map entries. Do not insert scripted-smoke pass rates here.]
+**PLANNED—NO REAL-MODEL PRIMARY RESULTS EXIST.** A mechanism check confirmed that one zero-filled multi-coil reconstruction completed normally and produced valid artifacts yet failed hidden magnitude/gradient fidelity criteria; this endpoint validation is not a controller result. [Insert eligible run counts; paired invalidity prevention/recognition effects with 95% intervals; MRI/MRSI fidelity; efficiency; and prespecified failure counts exclusively from frozen `R-*` fact-map entries.]
 
 ### Discussion
 

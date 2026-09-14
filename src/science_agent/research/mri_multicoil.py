@@ -162,7 +162,11 @@ def run_multicoil_reconstruction(
         raise MulticoilMRIError("method is not allowlisted")
 
     residual = _sampled_kspace_residual(reconstruction, kspace, mask, sensitivities)
-    output_directory.mkdir(parents=True, exist_ok=False)
+    if output_directory.exists():
+        if not output_directory.is_dir() or any(output_directory.iterdir()):
+            raise MulticoilMRIError("output directory must be empty")
+    else:
+        output_directory.mkdir(parents=True, exist_ok=False)
     np.savez_compressed(
         output_directory / "reconstruction.npz",
         image=reconstruction.astype(np.complex64),
