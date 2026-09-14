@@ -2,7 +2,7 @@
 
 Science Agent Bench is a provider-neutral research harness for testing which control-loop components improve MRI and MR spectroscopic imaging (MRSI) experiments under fixed budgets.
 
-> **Status:** A0 benchmark contract is complete. The A1 core, four deterministic task families, and first replaceable real-model adapter are implemented and tested. The 12/12 scripted smoke result validates the harness only; no real-model research result is claimed yet.
+> **Status:** A0 benchmark contract is complete. The A1 core, four deterministic task families, first replaceable real-model adapter, and Docker execution boundary are implemented and tested. The 12/12 scripted smoke result validates the harness only; no real-model research result is claimed yet.
 
 ## Research question
 
@@ -29,6 +29,7 @@ The frozen A1 comparison will evaluate three conditions:
 - a provider-neutral model protocol and fail-closed OpenAI Responses API adapter;
 - an end-to-end single-agent controller with frozen reactive, plan-only, and bounded retry/replan conditions;
 - an explicit allowlisted tool registry with reservation-before-execution accounting;
+- a digest-pinned Docker executor with denied network, read-only inputs/runtime, non-root execution, resource ceilings, bounded output, and artifact validation;
 - fixed-path development bindings from all four task families through artifacts and graders;
 - independent deterministic graders with positive and adversarial fixtures;
 - a 12-run smoke across all three controller conditions;
@@ -39,7 +40,7 @@ The frozen A1 comparison will evaluate three conditions:
 
 Seven generated task families cover MRS basis fitting, MRSI nuisance removal, undersampled MRI reconstruction, reconstruction quality control, spectral/metabolite quantification, subject-level leakage detection, and dynamic MR model comparison. Each family will have public development instances and evaluator-isolated held-out instances with deterministic graders.
 
-Three task families, research-grade MRI/MRSI tools with meaningful algorithm choices, and isolated task execution remain planned. The single-agent control loop, first adapter, and fixed-path reference bindings are offline-tested, but no paid model request or control-loop comparison has been run. Reference tools only prove orchestration and are excluded from research results. Model-authored code must eventually run in a disposable, network-disabled, non-root container with read-only inputs, a run-scoped output mount, and hard resource limits. A Python subprocess alone is not considered a security boundary.
+Three task families, research-grade MRI/MRSI tools with meaningful algorithm choices, and wiring those tools through the container boundary remain planned. The single-agent control loop, first adapter, fixed-path reference bindings, and container denial controls are tested, but no paid model request or control-loop comparison has been run. Reference tools only prove orchestration and are excluded from research results. Model-authored code remains disabled until a task binding explicitly uses the Docker boundary; a Python subprocess alone is not considered a security boundary.
 
 ## Current smoke result
 
@@ -79,6 +80,12 @@ ruff format --check .
 ruff check .
 mypy
 pytest
+```
+
+The Docker security integration tests are opt-in because ordinary CI runners may not expose a Docker daemon:
+
+```bash
+SAB_RUN_DOCKER_TESTS=1 PYTHONPATH=src pytest tests/test_container_executor.py
 ```
 
 ## Repository boundaries
