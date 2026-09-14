@@ -15,9 +15,9 @@ Copy this file once per candidate figure and commit the completed record beside 
 ## Scientific evidence
 
 - [ ] The permitted claim and observation that would weaken/refute it are unchanged from the preregistered contract.
-- [ ] The baseline, controlled ablations, analysis unit, metric direction, and validity threshold are explicit.
+- [ ] The baseline, controlled ablations, analysis unit, metric direction, and validity threshold are explicit, or each non-applicable item is marked `N/A` with a reason for a framework/methods figure.
 - [ ] The full eligible sample is represented; missing data, exclusions, and reruns follow frozen rules.
-- [ ] Sample size and all panel denominators are shown.
+- [ ] Sample size and all panel denominators are shown for empirical panels, or marked `N/A` for a non-empirical framework panel.
 - [ ] Error bars/intervals name their estimand, level, method, resampling unit, repetition count, and seed.
 - [ ] Raw paired points or the complete task-instance matrix are shown where the contract requires them.
 - [ ] Secondary, sensitivity, exploratory, and injected-failure results are labeled and separated from the primary endpoint.
@@ -25,6 +25,7 @@ Copy this file once per candidate figure and commit the completed record beside 
 - [ ] Qualitative cases follow the deterministic success/boundary/failure selection rule; ties and absent categories are recorded.
 - [ ] Each qualitative artifact resolves to its task ID, run ID, controller, grader report, threshold, and hash.
 - [ ] Diagrammed components and data paths match the released implementation.
+- [ ] Framework nodes and arrows resolve to released modules/interfaces; planned components use a distinct style and the literal label `PLANNED`.
 - [ ] The caption is standalone and makes no claim beyond the plotted evidence.
 
 ## Numeric and MR-domain review

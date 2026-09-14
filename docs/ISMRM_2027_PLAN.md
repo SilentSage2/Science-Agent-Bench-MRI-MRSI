@@ -61,6 +61,8 @@ If gates 1–4 fail, do not force a standard abstract. Reassess whether the 2027
 
 ## Abstract evidence package
 
-Prepare one primary paired-results figure, one cost/efficiency figure, one MRI reconstruction example, one MRSI spectrum example, and one compact failure-taxonomy panel. The written abstract should distinguish the frozen primary comparison from pilot work and clearly state synthetic/public data provenance, limitations, and the absence of clinical claims.
+This repository is one of two intended ISMRM target projects. Keep its experiment freeze, claims, figure sources, and submission QA independent; do not transfer results or panels between projects without a prospectively defined joint analysis.
+
+Prepare one paper-level overall framework/method overview, one MR task/grader gallery, one primary paired-results figure, one efficiency/recovery figure, and one prespecified success/boundary/failure analysis. Figure 1 is not required to be an experiment plot: it must accurately show implemented inputs, core components, execution/feedback flow, outputs, and evaluation, distinguish planned elements, provide a standalone caption, and ship as an editable vector master. The empirical figures must satisfy the frozen baseline/ablation, sample-size, uncertainty, reproducibility, and visual-QA gates. The written abstract should distinguish the frozen primary comparison from pilot work and clearly state synthetic/public data provenance, limitations, and the absence of clinical claims.
 
 The detailed five-figure layout, claim/refutation contracts, frozen sample-selection rules, uncertainty requirements, reproducible data interfaces, preview-image requirements, and visual QA gates are frozen in the [ISMRM 2027 figure specification](ISMRM_2027_FIGURES.md). Every result-dependent figure remains explicitly `PLANNED` until real frozen experiments satisfy that contract.
