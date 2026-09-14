@@ -29,15 +29,17 @@ The frozen A1 comparison will evaluate three conditions:
 - a provider-neutral model protocol and fail-closed OpenAI Responses API adapter;
 - an end-to-end single-agent controller with frozen reactive, plan-only, and bounded retry/replan conditions;
 - an explicit allowlisted tool registry with reservation-before-execution accounting;
+- fixed-path development bindings from all four task families through artifacts and graders;
 - independent deterministic graders with positive and adversarial fixtures;
 - a 12-run smoke across all three controller conditions;
+- a separate 12-run agent-pipeline smoke across every controller and implemented task family;
 - offline standard-library test suite.
 
 ## Planned A1 benchmark
 
 Seven generated task families cover MRS basis fitting, MRSI nuisance removal, undersampled MRI reconstruction, reconstruction quality control, spectral/metabolite quantification, subject-level leakage detection, and dynamic MR model comparison. Each family will have public development instances and evaluator-isolated held-out instances with deterministic graders.
 
-Three task families, production MRI/MRSI tool bindings, and isolated task execution remain planned. The single-agent control loop and first adapter are offline-tested, but no paid model request or control-loop comparison has been run. Model-authored code must eventually run in a disposable, network-disabled, non-root container with read-only inputs, a run-scoped output mount, and hard resource limits. A Python subprocess alone is not considered a security boundary.
+Three task families, research-grade MRI/MRSI tools with meaningful algorithm choices, and isolated task execution remain planned. The single-agent control loop, first adapter, and fixed-path reference bindings are offline-tested, but no paid model request or control-loop comparison has been run. Reference tools only prove orchestration and are excluded from research results. Model-authored code must eventually run in a disposable, network-disabled, non-root container with read-only inputs, a run-scoped output mount, and hard resource limits. A Python subprocess alone is not considered a security boundary.
 
 ## Current smoke result
 
@@ -48,6 +50,7 @@ Three task families, production MRI/MRSI tool bindings, and isolated task execut
 | Scripted plan + retry/replan | 4/4 | MRS fit + MRSI nuisance + MRI leakage/reconstruction |
 
 These are reference-solver runs, not evidence that one control strategy is better. The committed [smoke summary](experiments/a1-smoke-v1/README.md) records the protocol and limitations.
+The separate [agent-pipeline smoke summary](experiments/a1-agent-smoke-v1/README.md) records the 12/12 fixed-path binding validation and its non-research status.
 
 ## Development
 
@@ -61,6 +64,12 @@ Run the end-to-end smoke into a new immutable directory:
 
 ```bash
 PYTHONPATH=src python3.12 -m science_agent.smoke --output runs/a1-smoke-v1
+```
+
+Run the real agent/controller path with deterministic development bindings:
+
+```bash
+PYTHONPATH=src python3.12 -m science_agent.agent_smoke --output runs/a1-agent-smoke-v1
 ```
 
 After installing the pinned development dependencies in an isolated environment, the intended quality gate is:

@@ -24,7 +24,6 @@ The condition changes control flow only. Model, task instances, prompts, action 
 
 ## Current boundary
 
-The orchestration path is implemented and offline-tested across all three conditions, including retry recovery, missing usage, disallowed tools, and budget exhaustion. Production bindings for the four MRI/MRSI task families are next.
+The orchestration path is implemented and offline-tested across all three conditions, including retry recovery, missing usage, disallowed tools, and budget exhaustion. Fixed-path reference bindings now carry all four task families through model action, artifact creation, independent grading, and immutable run records. These bindings validate infrastructure only; research-grade tools must expose meaningful scientific choices rather than a reference answer.
 
 The registry is a correctness boundary, not a security sandbox. Before any model-authored code is allowed, tool execution must move into the planned disposable, network-disabled, non-root container with read-only inputs, a run-scoped output mount, and hard operating-system resource limits.
-

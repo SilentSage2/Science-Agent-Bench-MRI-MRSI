@@ -13,6 +13,7 @@ authors = [{ name = "Ziyang Xu" }]
 dependencies = []
 
 [project.scripts]
+sab-agent-smoke = "science_agent.agent_smoke:main"
 sab-smoke = "science_agent.smoke:main"
 
 [project.optional-dependencies]
