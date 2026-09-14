@@ -9,6 +9,10 @@ from typing import Any, Protocol
 from science_agent.contracts import Action, ContractError
 
 
+class ModelError(RuntimeError):
+    """Provider-neutral failure at the model boundary."""
+
+
 @dataclass(frozen=True, slots=True)
 class ModelRequest:
     """One bounded request for the policy's next structured action."""

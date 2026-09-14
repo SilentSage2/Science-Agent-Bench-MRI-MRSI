@@ -10,10 +10,10 @@ from collections.abc import Mapping
 from typing import Any, Protocol, cast
 
 from science_agent.contracts import Action, ContractError
-from science_agent.model import ModelRequest, ModelResult, ModelUsage
+from science_agent.model import ModelError, ModelRequest, ModelResult, ModelUsage
 
 
-class ModelAdapterError(RuntimeError):
+class ModelAdapterError(ModelError):
     """Raised when a provider response cannot safely become a benchmark action."""
 
 
