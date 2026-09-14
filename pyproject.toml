@@ -10,11 +10,13 @@ readme = "README.md"
 requires-python = ">=3.12,<3.13"
 license = { text = "MIT" }
 authors = [{ name = "Ziyang Xu" }]
-dependencies = []
+dependencies = ["numpy==2.2.4"]
 
 [project.scripts]
 sab-check-abstract = "science_agent.abstract_package:main"
 sab-agent-smoke = "science_agent.agent_smoke:main"
+sab-design-sensitivity = "science_agent.design_sensitivity:main"
+sab-mri-recon-pilot = "science_agent.mri_recon_pilot:main"
 sab-smoke = "science_agent.smoke:main"
 
 [project.optional-dependencies]

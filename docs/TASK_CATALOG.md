@@ -7,6 +7,7 @@ All task families require `outputs/result.json`, reject unknown fields, and expo
 | `SAB-MRS-FIT-001` | selected metabolite basis model, coefficients, fit/held-out RMSE, residual diagnostics, predicted spectrum | Submitted spectrum reproduces coefficients and the selected NAA/Cr model has lower held-out error |
 | `SAB-MRSI-NUIS-001` | corrected spectra, water/lipid suppression metrics, retained-metabolite error | Independent masks verify nuisance reduction without unacceptable metabolite loss |
 | `SAB-MRI-RECON-001` | reconstructed phantom, method/config, data-consistency residual, image metrics | Forward model confirms sampled k-space consistency and reference image metrics |
+| `SAB-MRI-RECON-MC-001` | complex multi-coil reconstruction, method/regularization, sampled residual | Hidden anatomy measures magnitude/gradient NRMSE; noisy forward model checks sampled residual; conventional baseline calibrates validity |
 | `SAB-MRI-QC-001` | artifact labels, affected slices/regions, severity and evidence table | Exact/tolerance matching recovers seeded motion, ghosting, spike, or bias-field artifacts |
 | `SAB-MRSI-QUANT-001` | metabolite maps, uncertainty, residual and failure masks | Hidden concentrations and corrupted-voxel masks verify quantitative error and calibration |
 | `SAB-MRI-LEAK-001` | verdict, violation classes, acquisition IDs, earliest timestamps | Exact independently derived subject overlap, future-feature, target-derived, and duplicate violations |

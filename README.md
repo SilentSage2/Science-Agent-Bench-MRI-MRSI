@@ -28,6 +28,7 @@ The frozen A1 comparison will evaluate three conditions:
 - immutable JSONL trajectory creation with monotonic event sequences;
 - SHA-256 artifact hashing;
 - synthetic MRS basis-model selection, MRSI nuisance removal, MRI/MRSI split-leakage, and undersampled MRI reconstruction tasks;
+- a research-candidate noisy multi-coil Cartesian MRI task with complex coil sensitivities, variable-density masks, and naive/conventional/oracle baselines;
 - a provider-neutral model protocol and fail-closed OpenAI Responses API adapter;
 - an end-to-end single-agent controller with frozen reactive, plan-only, and bounded retry/replan conditions;
 - an explicit allowlisted tool registry with reservation-before-execution accounting;
@@ -45,6 +46,8 @@ Seven generated task families cover MRS basis fitting, MRSI nuisance removal, un
 Three task families, research-grade MRI/MRSI tools with meaningful algorithm choices, and wiring those tools through the container boundary remain planned. The single-agent control loop, first adapter, fixed-path reference bindings, and container denial controls are tested, but no paid model request or control-loop comparison has been run. Reference tools only prove orchestration and are excluded from research results. Model-authored code remains disabled until a task binding explicitly uses the Docker boundary; a Python subprocess alone is not considered a security boundary.
 
 The [research quality audit](docs/RESEARCH_QUALITY_AUDIT.md) is a binding red-team assessment. It identifies prior-art and naming risk, toy-task limitations, missing direct/self-debug and conventional MR baselines, absent sample-size justification, and the minimum evidence required before an ISMRM or publish-ready claim.
+
+The first substantive calibration result is deliberately narrow: in a frozen nine-case synthetic multi-coil pilot, regularized SENSE-CG improved magnitude NRMSE over zero fill in 9/9 cases (mean paired reduction 0.0661; seed-fixed bootstrap 95% interval [0.0519, 0.0806]). This validates task separation, not agent performance or clinical realism. The [pilot record](experiments/mri-multicoil-baseline-pilot-v1/README.md) includes the hard-stratum degradation and reproduction command. A separate [design sensitivity](experiments/design-sensitivity-v1/README.md) shows why the old 12-instance plan cannot be treated as confirmatory.
 
 ## Current smoke result
 
