@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import time
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
@@ -167,11 +168,14 @@ def _bind(
                 BudgetUsage(tool_calls=1, wall_time_ms=_elapsed_ms(started)),
             )
         if output_directory.exists():
-            return ToolResult(
-                Observation(ok=False, code="output_already_exists", retryable=False),
-                BudgetUsage(tool_calls=1, wall_time_ms=_elapsed_ms(started)),
-            )
-        solver(input_directory, output_directory)
+            revision_directory = output_directory.with_name(f"{output_directory.name}.revision")
+            if revision_directory.exists():
+                raise TaskBindingError("reference revision directory already exists")
+            solver(input_directory, revision_directory)
+            shutil.rmtree(output_directory)
+            revision_directory.rename(output_directory)
+        else:
+            solver(input_directory, output_directory)
         artifacts = {
             path.name: sha256_file(path)
             for path in sorted(output_directory.iterdir())

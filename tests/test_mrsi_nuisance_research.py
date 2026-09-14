@@ -31,6 +31,17 @@ class ComplexMRSIResearchTests(unittest.TestCase):
             task = json.loads((root / "inputs" / "task.json").read_text(encoding="utf-8"))
             self.assertEqual(task["adaptive_shift_steps_range"], [5, 41])
             self.assertTrue(task["adaptive_shift_steps_must_be_odd"])
+            axis = task["spectral_axis"]
+            self.assertEqual(axis["nucleus"], "1H")
+            self.assertEqual(axis["units"], "ppm")
+            self.assertEqual(axis["storage_order"], "ascending")
+            self.assertEqual(axis["display_order"], "descending")
+            self.assertIsNone(axis["dwell_time_s"])
+            with np.load(root / "inputs" / "spectra.npz", allow_pickle=False) as data:
+                ppm = data["ppm"]
+                self.assertEqual(float(ppm[0]), axis["minimum_ppm"])
+                self.assertEqual(float(ppm[-1]), axis["maximum_ppm"])
+                self.assertTrue(np.allclose(np.diff(ppm), np.diff(ppm)[0]))
             self.assertNotIn("seed", serialized)
             self.assertNotIn("reference", serialized)
 

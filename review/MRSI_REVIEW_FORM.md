@@ -10,7 +10,7 @@ and cite evidence or an issue-log identifier.
 
 | Item | Decision | Evidence / issue |
 |---|---|---|
-| Spectral axis, bandwidth and NAA/Cr/Cho/Glx component locations are defensible | UNREVIEWED | |
+| Spectral axis, bandwidth and NAA/Cr/Cho/Glx component locations in `MRSI_SPECTRAL_AXIS_EVIDENCE.md` are defensible | UNREVIEWED | |
 | Frequency and zero/first-order phase drift ranges are defensible | UNREVIEWED | |
 | Gaussian/Lorentzian width and mixed-lineshape ranges are defensible | UNREVIEWED | |
 | Spatial amplitudes, complex baseline and noise model support the stated claim | UNREVIEWED | |
@@ -27,4 +27,3 @@ Recommended parameter ranges or references: `UNASSIGNED`
 
 Overall decision: `UNREVIEWED`  
 Signature or verifiable approval record: `UNASSIGNED`
-

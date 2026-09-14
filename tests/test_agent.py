@@ -162,7 +162,15 @@ class MRIScienceAgentTests(unittest.TestCase):
         self.assertEqual(events[-1]["state_after"], "succeeded")
 
     def test_direct_uses_nonplanning_path(self) -> None:
-        model = ScriptedModel([_tool_action(), _final_action()])
+        model = ScriptedModel(
+            [
+                Action(
+                    ActionKind.TOOL,
+                    "analyze_mri",
+                    {"mode": "deterministic", "validity_assessment": "valid"},
+                )
+            ]
+        )
         tool = ObservationQueue([Observation(True, "ok")])
 
         result, events = self._run(model, tool, ControllerCondition.DIRECT)
@@ -172,6 +180,69 @@ class MRIScienceAgentTests(unittest.TestCase):
             event["state_after"] for event in events if event["event_type"] == "state_transition"
         ]
         self.assertNotIn("planning", transitions)
+        self.assertEqual(result.model_calls, 1)
+        self.assertEqual(len(model.requests), 1)
+        self.assertEqual(tool.calls, 1)
+
+    def test_self_debug_revises_a_successful_candidate_once(self) -> None:
+        model = ScriptedModel(
+            [
+                Action(ActionKind.TOOL, "analyze_mri", {"mode": "initial"}),
+                Action(ActionKind.TOOL, "analyze_mri", {"mode": "revised"}),
+                _final_action(),
+            ]
+        )
+        tool = ObservationQueue(
+            [
+                Observation(True, "public_diagnostic_suspicious", {"residual": 0.4}),
+                Observation(True, "public_diagnostic_improved", {"residual": 0.1}),
+            ]
+        )
+
+        result, events = self._run(model, tool, ControllerCondition.SELF_DEBUG)
+
+        self.assertEqual(result.phase, AgentPhase.SUCCEEDED)
+        self.assertEqual(result.retries, 1)
+        self.assertEqual(result.usage.retries, 1)
+        self.assertEqual(tool.calls, 2)
+        transitions = [
+            event["state_after"] for event in events if event["event_type"] == "state_transition"
+        ]
+        self.assertIn("reviewing", transitions)
+        kinds = [request.output_schema["properties"]["kind"]["enum"] for request in model.requests]
+        self.assertEqual(kinds, [["tool"], ["tool"], ["final"]])
+
+    def test_self_debug_rejects_an_unchanged_successful_candidate(self) -> None:
+        model = ScriptedModel([_tool_action(), _tool_action()])
+        tool = ObservationQueue([Observation(True, "public_diagnostic_suspicious")])
+
+        result, events = self._run(model, tool, ControllerCondition.SELF_DEBUG)
+
+        self.assertEqual(result.phase, AgentPhase.FAILED)
+        self.assertEqual(
+            events[-1]["payload"]["reason"], "scientific_revision_must_change_candidate"
+        )
+        self.assertEqual(tool.calls, 1)
+
+    def test_self_debug_cannot_skip_successful_candidate_revision(self) -> None:
+        model = ScriptedModel([_tool_action(), _final_action()])
+        tool = ObservationQueue([Observation(True, "public_diagnostic_suspicious")])
+
+        result, events = self._run(model, tool, ControllerCondition.SELF_DEBUG)
+
+        self.assertEqual(result.phase, AgentPhase.FAILED)
+        self.assertEqual(events[-1]["payload"]["reason"], "scientific_revision_required")
+        self.assertEqual(tool.calls, 1)
+
+    def test_direct_requires_pre_observation_validity_commitment(self) -> None:
+        model = ScriptedModel([_tool_action()])
+        tool = ObservationQueue([Observation(True, "ok")])
+
+        result, events = self._run(model, tool, ControllerCondition.DIRECT)
+
+        self.assertEqual(result.phase, AgentPhase.POLICY_VIOLATION)
+        self.assertEqual(events[-1]["payload"]["reason"], "direct_validity_precommit_required")
+        self.assertEqual(tool.calls, 0)
 
     def test_self_debug_retries_without_structured_replan(self) -> None:
         model = ScriptedModel([_tool_action(), _tool_action(), _final_action()])

@@ -45,16 +45,25 @@ task instance, public prompt content, allowlisted tools, token limits, tool-call
 limits, wall-time limits, artifact limits, and provider settings. Hidden data and
 scores are never visible to a controller.
 
-The development implementation is not yet freeze-ready: direct and reactive can
-follow the same mechanics, and self-debug currently reacts to typed execution
-failure but cannot audit a successful candidate for scientific plausibility.
-These must be corrected and verified with trajectory-level tests before signoff.
+The v4 development implementation was not freeze-ready because direct and
+reactive followed the same mechanics and self-debug only reacted to typed
+execution failure. Protocol v1.1 makes direct precommit its validity assessment
+before its sole tool call and receive no post-observation model turn; reactive
+assesses after its first successful observation. Self-debug must use public
+diagnostics to make exactly one revised successful candidate, and the runtime
+rejects an early final. These mechanics have trajectory-level development tests
+but still require external verification before signoff. Direct is a prevention
+baseline and is excluded from the post-observation recognition contrast.
 Any condition-specific instruction or action opportunity must be documented as
 part of the intervention rather than silently added after observing outcomes.
 
 ## Design and analysis
 
-The analysis unit is an independent task instance. Model repetitions are paired
+The proposed blinded design uses 61 independent latent instances per family,
+derived for a 20 percentage-point paired difference, 0.35 discordance, two-sided
+alpha 0.05, and 80% power. It assigns 20/21/20 instances to easy/moderate/hard and
+two model repetitions per instance-condition. This is a review target, not a
+frozen or authorized run matrix. The analysis unit is an independent task instance. Model repetitions are paired
 within instance and clustered in inference. A blinded design-stage sensitivity
 analysis must choose the number of independent MRI and MRSI instances and model
 repetitions using plausible event rates/effect sizes, anticipated missingness,
@@ -96,4 +105,3 @@ After the run, the same reviewers inspect representative successes, boundary
 cases, failures, all four/five conference figures, numerical cross-checks, and
 claim wording. Post-result review cannot retroactively cure a defective or
 unfrozen protocol.
-

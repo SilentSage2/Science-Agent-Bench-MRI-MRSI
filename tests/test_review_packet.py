@@ -18,6 +18,7 @@ def test_review_packet_manifest_references_existing_files() -> None:
         "CTRL-001",
         "CTRL-002",
         "STAT-001",
+        "MRSI-001",
     }
     for relative_path in manifest["forms"] + manifest["source_material"]:
         assert (ROOT / relative_path).is_file(), relative_path

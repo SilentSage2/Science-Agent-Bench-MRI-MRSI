@@ -41,6 +41,7 @@ The primary comparison is designed around five conditions:
 - a 20-run smoke across five controller conditions;
 - a separate 20-run agent-pipeline smoke across every controller and development task family;
 - a 10-run scripted research dry-run crossing five conditions with the MRI and MRSI research bindings;
+- an adversarial controller-discrimination replay in which direct, self-debug, reactive, plan-only, and retry/replan have distinct enforced trajectory signatures;
 - offline standard-library test suite.
 
 ## Planned A1 benchmark
@@ -64,7 +65,7 @@ A paid two-instance development checkout reached hidden evaluation in 10/10 cell
 | Policy | Tasks passed | Purpose |
 |---|---:|---|
 | Scripted direct | 4/4 | One-shot development binding |
-| Scripted self-debug | 4/4 | Retry-capable development binding |
+| Scripted self-debug | 4/4 | Successful-candidate revision or failure-retry development binding |
 | Scripted reactive | 4/4 | MRS fit + MRSI nuisance + MRI leakage/reconstruction |
 | Scripted plan-only | 4/4 | MRS fit + MRSI nuisance + MRI leakage/reconstruction |
 | Scripted plan + retry/replan | 4/4 | MRS fit + MRSI nuisance + MRI leakage/reconstruction |
@@ -119,6 +120,7 @@ See [model adapters](docs/MODEL_ADAPTERS.md) for the provider boundary, credenti
 See the [credential-gated pilot runbook](docs/LIVE_PILOT_RUNBOOK.md) for the safe key workflow, current cost ceiling, and reproducible launch command.
 See the [agent runtime](docs/AGENT_RUNTIME.md) for controller semantics, accounting invariants, and the current isolation boundary.
 The [independent expert-review packet](review/README.md) turns the MRI, MRSI, statistical, and controller pre-freeze checks into versioned forms, an issue log, and a fail-closed signoff. Its current status is `NO-GO` until the documented control-design and sample-size issues are resolved and independently approved.
+The [public/challenge validity plan](docs/PUBLIC_VALIDITY_PLAN.md) prospectively separates external mechanism checks from synthetic hidden-component endpoints and forbids redistribution of agreement-controlled MR data.
 The [ISMRM 2027 abstract plan](docs/ISMRM_2027_PLAN.md) defines sensitivity-justified experiment and submission gates; the earlier 72-run schedule is only a pilot floor and no completed research result is claimed.
 The [conference figure specification](docs/ISMRM_2027_FIGURES.md) defines five review figures, a separate preview image, immutable plotting inputs, and visual/scientific QA gates.
 The [complete abstract package](abstract/README.md) provides the 2026-format working draft, evidence contract, cross-artifact fact lock, five captions, and an automated length validator. It remains explicitly `PLANNED` until frozen real-model results exist.

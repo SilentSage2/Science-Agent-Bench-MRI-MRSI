@@ -75,7 +75,7 @@ def run_live_pilot(
     executor = DockerContainerExecutor(
         limits=ContainerLimits(
             image=image,
-            artifact_bytes=4_194_304,
+            artifact_bytes=8_388_608,
             file_size_bytes=4_194_304,
         )
     )
@@ -197,6 +197,10 @@ def _canonicalize_action(action: Action) -> Action:
     }
     method_key = method if isinstance(method, str) else ""
     allowed = allowed_by_method.get(method_key, tuple(action.arguments))
+    if "validity_assessment" in action.arguments:
+        allowed = (*allowed, "validity_assessment")
+    if "revision_reason" in action.arguments:
+        allowed = (*allowed, "revision_reason")
     return Action(
         action.kind,
         action.name,
@@ -234,9 +238,16 @@ def _config(
         instructions=(
             "Return exactly one JSON action for the current phase. When phase is planning or "
             "replanning, return kind=plan. When phase is executing and no successful tool "
-            "observation exists, return kind=tool using the declared tool. After a successful tool "
+            "observation exists, return kind=tool using the declared tool. In direct, commit the "
+            "validity_assessment in that tool action because no post-observation model call is "
+            "allowed. In self_debug, use the first successful public diagnostic observation to "
+            "make exactly one revised tool call, then assess the revised observation. In "
+            "reactive, return final after the first successful observation. After the last "
+            "allowed successful "
             "observation, return kind=final with name=submit and validity_assessment set to valid, "
             "invalid, or uncertain. Set every argument unused by that action and method to null. "
+            "For a self_debug revision, change at least one scientific method parameter and set "
+            "revision_reason to a short public-diagnostic-based explanation. "
             "Obey every public parameter range and parity constraint exactly. Never claim access "
             "to hidden evaluator data."
         ),
@@ -263,6 +274,7 @@ def _action_schema(family: str, tool_name: str) -> dict[str, Any]:
             "type": ["string", "null"],
             "enum": ["valid", "invalid", "uncertain", None],
         },
+        "revision_reason": {"type": ["string", "null"]},
     }
     if family == "mri_multicoil":
         argument_properties.update(

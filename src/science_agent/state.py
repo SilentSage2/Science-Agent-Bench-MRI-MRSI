@@ -10,6 +10,7 @@ class AgentPhase(StrEnum):
     READY = "ready"
     PLANNING = "planning"
     EXECUTING = "executing"
+    REVIEWING = "reviewing"
     RETRYING = "retrying"
     REPLANNING = "replanning"
     FINALIZING = "finalizing"
@@ -37,12 +38,16 @@ _ALLOWED: Final[dict[AgentPhase, frozenset[AgentPhase]]] = {
         {
             AgentPhase.EXECUTING,
             AgentPhase.RETRYING,
+            AgentPhase.REVIEWING,
             AgentPhase.REPLANNING,
             AgentPhase.FINALIZING,
             AgentPhase.FAILED,
             AgentPhase.BUDGET_EXCEEDED,
             AgentPhase.POLICY_VIOLATION,
         }
+    ),
+    AgentPhase.REVIEWING: frozenset(
+        {AgentPhase.EXECUTING, AgentPhase.FAILED, AgentPhase.BUDGET_EXCEEDED}
     ),
     AgentPhase.RETRYING: frozenset(
         {

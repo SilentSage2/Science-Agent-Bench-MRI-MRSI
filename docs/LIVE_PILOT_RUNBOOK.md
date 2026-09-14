@@ -1,9 +1,9 @@
 # Credential-gated development pilot runbook
 
-Status: **minimum checkout executed; expansion paused on design defects**
+Status: **minimum checkout executed; revised design awaiting independent review**
 Last pricing check: 2026-09-14
 
-The project adapter passed a one-request paid smoke and a balanced 10-cell checkout was completed. See the [development pilot record](../experiments/real-model-development-pilot-v4/README.md). The existing deterministic replay remains plumbing validation only. Phase-specific action constraints now pass, but do not expand the paid run until the direct/reactive contrast and successful-candidate self-debug path are redesigned and reviewed.
+The project adapter passed a one-request paid smoke and a balanced 10-cell checkout was completed. See the [development pilot record](../experiments/real-model-development-pilot-v4/README.md). The existing deterministic replay remains plumbing validation only. Protocol v1.1 now makes direct pre-observation-only, reactive post-observation, and self-debug a required successful-candidate revision; adversarial trajectory tests pass. Do not expand the paid run until the revised mechanics, blinded design, MRSI spectral-axis abstraction, and candidate freeze receive the required independent review.
 
 ## Recommended checkout model
 

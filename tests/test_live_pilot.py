@@ -68,7 +68,7 @@ class LivePilotConfigurationTests(unittest.TestCase):
             },
         )
 
-    def test_live_action_canonicalizer_removes_schema_placeholders(self) -> None:
+    def test_live_action_canonicalizer_preserves_direct_precommit(self) -> None:
         action = Action(
             ActionKind.TOOL,
             "reconstruct_multicoil_mri",
@@ -84,7 +84,12 @@ class LivePilotConfigurationTests(unittest.TestCase):
 
         self.assertEqual(
             canonical.arguments,
-            {"method": "sense_cg", "regularization": 0.003, "iterations": 40},
+            {
+                "method": "sense_cg",
+                "regularization": 0.003,
+                "iterations": 40,
+                "validity_assessment": "uncertain",
+            },
         )
 
 

@@ -4,9 +4,9 @@
 
 ## Conditions
 
-- `direct`: one-shot execution path without planning or retry;
-- `self_debug`: execution without an initial plan and at most one typed observation-conditioned retry;
-- `reactive`: begin execution immediately and stop on a failed tool observation;
+- `direct`: one pre-observation method choice and validity commitment, with no post-observation model turn;
+- `self_debug`: execution without an initial plan, followed by one required public-diagnostic-conditioned revision of a clean successful candidate; a typed failure may instead consume the same single retry allowance;
+- `reactive`: execution without an initial plan, followed by one post-observation validity assessment and no revision;
 - `plan_only`: require one structured plan, then execute without retry;
 - `plan_retry_replan`: require a plan and permit one typed, budgeted retry followed by one structured replan.
 
@@ -26,7 +26,7 @@ The condition changes control flow only. Model, task instances, prompts, action 
 
 ## Current boundary
 
-The orchestration path is implemented and offline-tested across all five conditions, including self-debug retry, structured retry/replan, missing usage, disallowed tools, and budget exhaustion. Fixed-path reference bindings carry all four development families through immutable run records. Separate MRI and MRSI research bindings expose bounded algorithm choices and hidden scientific graders through the same action/observation/trajectory schema.
+The orchestration path is implemented and offline-tested across all five conditions, including direct precommit, successful-candidate self-debug revision, structured retry/replan, missing usage, disallowed tools, and budget exhaustion. The runtime rejects direct actions without a precommit, early self-debug finalization, and unchanged self-debug candidates. Fixed-path reference bindings carry all four development families through immutable run records. Separate MRI and MRSI research bindings expose bounded algorithm choices and hidden scientific graders through the same action/observation/trajectory schema.
 
 The registry is a correctness boundary, not a security sandbox. `DockerContainerExecutor` now provides the separate execution boundary: digest-pinned image, no network, read-only inputs and runtime, run-scoped output, non-root identity, dropped capabilities, and process, CPU, memory, time, stream, file, and artifact limits. Its local integration suite exercises denial controls against a real Docker daemon.
 

@@ -133,7 +133,15 @@ def _create_fixtures(root: Path) -> tuple[tuple[str, BindingFactory], ...]:
 
 
 def _actions(condition: ControllerCondition, tool_name: str) -> tuple[Action, ...]:
-    actions = [Action(ActionKind.TOOL, tool_name, {}), Action(ActionKind.FINAL, "submit", {})]
+    tool_arguments = (
+        {"validity_assessment": "valid"} if condition is ControllerCondition.DIRECT else {}
+    )
+    actions = [
+        Action(ActionKind.TOOL, tool_name, tool_arguments),
+        Action(ActionKind.FINAL, "submit", {}),
+    ]
+    if condition is ControllerCondition.SELF_DEBUG:
+        actions.insert(1, Action(ActionKind.TOOL, tool_name, {"revision_reason": "smoke"}))
     if condition.planning:
         actions.insert(0, Action(ActionKind.PLAN, "draft_plan", {}))
     return tuple(actions)
@@ -147,10 +155,10 @@ def _config(run_id: str, condition: ControllerCondition) -> AgentRunConfig:
             input_tokens=100,
             output_tokens=100,
             cost_microusd=100,
-            tool_calls=1,
+            tool_calls=2,
             retries=1,
-            wall_time_ms=70_000,
-            artifact_bytes=1_048_576,
+            wall_time_ms=130_000,
+            artifact_bytes=2_097_152,
         ),
         model_call_reservation=BudgetUsage(
             input_tokens=20,
@@ -158,7 +166,7 @@ def _config(run_id: str, condition: ControllerCondition) -> AgentRunConfig:
             cost_microusd=20,
             wall_time_ms=1_000,
         ),
-        max_model_calls=3,
+        max_model_calls=5,
         max_output_tokens=10,
         action_schema=_ACTION_SCHEMA,
         instructions="Return one action for the declared MRI/MRSI task and controller phase.",

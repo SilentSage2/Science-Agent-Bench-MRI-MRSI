@@ -52,6 +52,16 @@ class ControllerCondition(StrEnum):
     def replan_on_retry(self) -> bool:
         return self is ControllerCondition.PLAN_RETRY_REPLAN
 
+    @property
+    def observation_conditioned_final(self) -> bool:
+        """Whether validity may be assessed after observing tool output."""
+        return self is not ControllerCondition.DIRECT
+
+    @property
+    def successful_candidate_revision(self) -> bool:
+        """Whether one clean successful candidate must be scientifically revised."""
+        return self is ControllerCondition.SELF_DEBUG
+
 
 class AgentRunError(ValueError):
     """Raised before a run when its frozen configuration is invalid."""
@@ -205,6 +215,18 @@ class MRIScienceAgent:
                 history.append(_action_record(action))
 
                 if action.kind is ActionKind.FINAL:
+                    if _scientific_revision_due(config.condition, history[:-1]):
+                        self._transition(
+                            writer,
+                            sequence,
+                            config,
+                            task,
+                            machine,
+                            ledger,
+                            AgentPhase.FAILED,
+                            {"reason": "scientific_revision_required"},
+                        )
+                        break
                     sequence = self._transition(
                         writer,
                         sequence,
@@ -241,6 +263,36 @@ class MRIScienceAgent:
                     )
                     break
 
+                if config.condition is ControllerCondition.DIRECT and action.arguments.get(
+                    "validity_assessment"
+                ) not in {"valid", "invalid", "uncertain"}:
+                    self._transition(
+                        writer,
+                        sequence,
+                        config,
+                        task,
+                        machine,
+                        ledger,
+                        AgentPhase.POLICY_VIOLATION,
+                        {"reason": "direct_validity_precommit_required"},
+                    )
+                    break
+
+                if _scientific_revision_due(config.condition, history[:-1]) and not (
+                    _candidate_changed(history[:-1], action)
+                ):
+                    self._transition(
+                        writer,
+                        sequence,
+                        config,
+                        task,
+                        machine,
+                        ledger,
+                        AgentPhase.FAILED,
+                        {"reason": "scientific_revision_must_change_candidate"},
+                    )
+                    break
+
                 tool_result, sequence = self._invoke_tool(
                     writer, sequence, config, task, machine, ledger, action
                 )
@@ -248,6 +300,66 @@ class MRIScienceAgent:
                     break
                 history.append(_observation_record(tool_result.observation))
                 if tool_result.observation.ok:
+                    if config.condition is ControllerCondition.DIRECT:
+                        sequence = self._transition(
+                            writer,
+                            sequence,
+                            config,
+                            task,
+                            machine,
+                            ledger,
+                            AgentPhase.FINALIZING,
+                            {"reason": "direct_precommitted_candidate"},
+                        )
+                        grade = evaluator()
+                        final_phase = AgentPhase.SUCCEEDED if grade.success else AgentPhase.FAILED
+                        self._transition(
+                            writer,
+                            sequence,
+                            config,
+                            task,
+                            machine,
+                            ledger,
+                            final_phase,
+                            {"grade": grade.to_dict()},
+                        )
+                        break
+                    if _scientific_revision_due(config.condition, history):
+                        retries += 1
+                        sequence = self._transition(
+                            writer,
+                            sequence,
+                            config,
+                            task,
+                            machine,
+                            ledger,
+                            AgentPhase.REVIEWING,
+                            {"reason": "successful_candidate_scientific_review"},
+                        )
+                        try:
+                            review_reservation = ledger.reserve(BudgetUsage(retries=1))
+                            ledger.reconcile(review_reservation, BudgetUsage(retries=1))
+                        except BudgetExceeded:
+                            self._transition(
+                                writer,
+                                sequence,
+                                config,
+                                task,
+                                machine,
+                                ledger,
+                                AgentPhase.BUDGET_EXCEEDED,
+                                {"reason": "scientific_revision_reservation"},
+                            )
+                            break
+                        sequence = self._transition(
+                            writer,
+                            sequence,
+                            config,
+                            task,
+                            machine,
+                            ledger,
+                            AgentPhase.EXECUTING,
+                        )
                     continue
                 if (
                     not tool_result.observation.retryable
@@ -402,6 +514,7 @@ class MRIScienceAgent:
                     output_schema=_phase_action_schema(
                         config.action_schema,
                         task,
+                        config.condition,
                         machine.phase,
                         history,
                     ),
@@ -511,7 +624,10 @@ class MRIScienceAgent:
             )
             return None, sequence
         try:
-            result = tool.handler(action.arguments)
+            tool_arguments = dict(action.arguments)
+            tool_arguments.pop("validity_assessment", None)
+            tool_arguments.pop("revision_reason", None)
+            result = tool.handler(tool_arguments)
             ledger.reconcile(reservation, result.usage)
         except BudgetError:
             ledger.cancel(reservation)
@@ -629,6 +745,7 @@ def _policy_input(
 def _phase_action_schema(
     base_schema: Mapping[str, Any],
     task: TaskSpec,
+    condition: ControllerCondition,
     phase: AgentPhase,
     history: list[dict[str, Any]],
 ) -> dict[str, Any]:
@@ -644,7 +761,7 @@ def _phase_action_schema(
     if phase in {AgentPhase.PLANNING, AgentPhase.REPLANNING}:
         expected_kind = ActionKind.PLAN.value
         allowed_names = ["draft_plan" if phase is AgentPhase.PLANNING else "revise_plan"]
-    elif _last_observation_succeeded(history):
+    elif _last_observation_succeeded(history) and not _scientific_revision_due(condition, history):
         expected_kind = ActionKind.FINAL.value
         allowed_names = ["submit"]
     else:
@@ -660,6 +777,33 @@ def _last_observation_succeeded(history: list[dict[str, Any]]) -> bool:
         return False
     observation = history[-1].get("observation")
     return isinstance(observation, dict) and observation.get("ok") is True
+
+
+def _scientific_revision_due(condition: ControllerCondition, history: list[dict[str, Any]]) -> bool:
+    if not condition.successful_candidate_revision:
+        return False
+    observations = [
+        item["observation"] for item in history if isinstance(item.get("observation"), dict)
+    ]
+    successful = sum(observation.get("ok") is True for observation in observations)
+    failed = any(observation.get("ok") is False for observation in observations)
+    return successful == 1 and not failed
+
+
+def _candidate_changed(history: list[dict[str, Any]], action: Action) -> bool:
+    prior_actions = [item for item in history if item.get("kind") == ActionKind.TOOL.value]
+    if not prior_actions:
+        return True
+    ignored = {"validity_assessment", "revision_reason"}
+    prior = {
+        key: value
+        for key, value in prior_actions[-1].get("arguments", {}).items()
+        if key not in ignored
+    }
+    current = {key: value for key, value in action.arguments.items() if key not in ignored}
+    if not prior and not current:
+        return bool(action.arguments.get("revision_reason"))
+    return prior != current
 
 
 def _action_record(action: Action) -> dict[str, Any]:

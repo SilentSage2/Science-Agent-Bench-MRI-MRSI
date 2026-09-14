@@ -1,12 +1,12 @@
 {
-  "protocol_version": "1",
-  "status": "development-dry-run; primary real-model protocol not frozen",
+  "protocol_version": "1.1-development",
+  "status": "controller discrimination implemented; external review and primary freeze pending",
   "conditions": [
-    {"name": "direct", "initial_plan": false, "observation_retry": false, "structured_replan": false},
-    {"name": "self_debug", "initial_plan": false, "observation_retry": true, "structured_replan": false},
-    {"name": "reactive", "initial_plan": false, "observation_retry": false, "structured_replan": false},
-    {"name": "plan_only", "initial_plan": true, "observation_retry": false, "structured_replan": false},
-    {"name": "plan_retry_replan", "initial_plan": true, "observation_retry": true, "structured_replan": true}
+    {"name": "direct", "initial_plan": false, "post_observation_model_call": false, "validity_assessment_timing": "pre_observation", "successful_candidate_revision": false, "failure_retry": false, "structured_replan": false, "estimand_role": "prevention baseline; recognition is not pooled with post-observation conditions"},
+    {"name": "self_debug", "initial_plan": false, "post_observation_model_call": true, "validity_assessment_timing": "after_revised_observation", "successful_candidate_revision": true, "failure_retry": true, "structured_replan": false, "estimand_role": "unstructured observation-conditioned revision baseline"},
+    {"name": "reactive", "initial_plan": false, "post_observation_model_call": true, "validity_assessment_timing": "after_first_successful_observation", "successful_candidate_revision": false, "failure_retry": false, "structured_replan": false, "estimand_role": "primary comparator"},
+    {"name": "plan_only", "initial_plan": true, "post_observation_model_call": true, "validity_assessment_timing": "after_first_successful_observation", "successful_candidate_revision": false, "failure_retry": false, "structured_replan": false, "estimand_role": "planning ablation"},
+    {"name": "plan_retry_replan", "initial_plan": true, "post_observation_model_call": true, "validity_assessment_timing": "after_first_successful_observation_or_recovery", "successful_candidate_revision": false, "failure_retry": true, "structured_replan": true, "estimand_role": "primary intervention"}
   ],
   "common_hard_budget": {
     "input_tokens": 12000,
@@ -14,12 +14,14 @@
     "tool_calls": 2,
     "retries": 1,
     "wall_time_ms": 120000,
-    "artifact_bytes": 4194304
+    "artifact_bytes": 8388608
   },
   "co_primary_endpoints": [
     "silent_invalidity_prevention_among_technically_completed_runs",
     "silent_invalidity_recognition_among_technically_completed_invalid_runs"
   ],
+  "primary_contrast": "plan_retry_replan minus reactive, evaluated separately by task family",
+  "recognition_exclusion": "direct precommits before observation and is excluded from the post-observation recognition contrast",
   "analysis_unit": "independent task instance; repetitions remain clustered within instance",
   "required_run_fields": [
     "run_id",

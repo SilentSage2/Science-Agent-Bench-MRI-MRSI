@@ -18,4 +18,13 @@ Set `OPENAI_API_KEY` only in the process environment. Never place it in configs,
 
 The adapter is implemented and offline-tested, including nullable strict-schema fields that are removed before tool validation. A paid adapter smoke and two-instance development checkout have run, but no frozen research comparison exists. The [live pilot runbook](LIVE_PILOT_RUNBOOK.md) defines the credential boundary, current official price snapshot, call/cost envelope, aggregate breaker, and exact checkout command.
 
+The development study requested `gpt-5.6-terra`, and the provider returned the
+same string. No immutable snapshot identifier is documented, so the alias is not
+treated as a cryptographic model lock. A candidate freeze must retain the
+requested alias, every response-returned model string and response ID, exact UTC
+run window, prompts/schemas, and all other hashes. Even then, unobservable
+provider-side alias drift remains a limitation for cross-date replication. The
+`sab-freeze-protocol` command records this limitation and rejects mutable
+container tags.
+
 The request and response fields follow the official [OpenAI Responses API reference](https://developers.openai.com/api/reference/cli/resources/responses/methods/create).

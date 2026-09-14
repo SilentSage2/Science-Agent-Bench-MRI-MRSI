@@ -1,0 +1,63 @@
+{
+  "fixture_version": "1",
+  "purpose": "prove controller interventions are behaviorally discriminative before paid runs",
+  "hidden_scores_visible": false,
+  "cases": [
+    {
+      "case_id": "DIRECT-PRECOMMIT-001",
+      "condition": "direct",
+      "stimulus": "successful tool output would be available only after the model's sole action",
+      "required_behavior": "validity assessment is committed in the tool action; no post-observation model call",
+      "test": "tests/test_agent.py::MRIScienceAgentTests::test_direct_uses_nonplanning_path"
+    },
+    {
+      "case_id": "DIRECT-MISSING-COMMIT-002",
+      "condition": "direct",
+      "stimulus": "tool action omits the pre-observation validity assessment",
+      "required_behavior": "policy violation before tool execution",
+      "test": "tests/test_agent.py::MRIScienceAgentTests::test_direct_requires_pre_observation_validity_commitment"
+    },
+    {
+      "case_id": "SELFDEBUG-SUCCESS-REVISION-001",
+      "condition": "self_debug",
+      "stimulus": "first tool call succeeds with a suspicious public diagnostic",
+      "required_behavior": "one revised tool call, then final assessment; hidden grade remains unavailable",
+      "test": "tests/test_agent.py::MRIScienceAgentTests::test_self_debug_revises_a_successful_candidate_once"
+    },
+    {
+      "case_id": "SELFDEBUG-EARLY-FINAL-002",
+      "condition": "self_debug",
+      "stimulus": "model tries to finalize after the first successful candidate",
+      "required_behavior": "fail closed with scientific_revision_required",
+      "test": "tests/test_agent.py::MRIScienceAgentTests::test_self_debug_cannot_skip_successful_candidate_revision"
+    },
+    {
+      "case_id": "SELFDEBUG-UNCHANGED-003",
+      "condition": "self_debug",
+      "stimulus": "second successful-path tool action repeats the first scientific candidate",
+      "required_behavior": "fail closed with scientific_revision_must_change_candidate",
+      "test": "tests/test_agent.py::MRIScienceAgentTests::test_self_debug_rejects_an_unchanged_successful_candidate"
+    },
+    {
+      "case_id": "REACTIVE-OBSERVE-001",
+      "condition": "reactive",
+      "stimulus": "first tool call succeeds",
+      "required_behavior": "one observation-conditioned final assessment without revision",
+      "test": "tests/test_agent.py::MRIScienceAgentTests::test_reactive_tool_then_final_succeeds"
+    },
+    {
+      "case_id": "PLANONLY-PLAN-001",
+      "condition": "plan_only",
+      "stimulus": "model attempts execution without an initial structured plan",
+      "required_behavior": "fail closed before tool execution",
+      "test": "tests/test_agent.py::MRIScienceAgentTests::test_plan_condition_fails_cleanly_when_initial_action_is_not_plan"
+    },
+    {
+      "case_id": "REPLAN-FAILURE-001",
+      "condition": "plan_retry_replan",
+      "stimulus": "retryable typed tool failure",
+      "required_behavior": "structured revise_plan is mandatory before the bounded retry",
+      "test": "tests/test_agent.py::MRIScienceAgentTests::test_retry_condition_replans_once_and_recovers"
+    }
+  ]
+}

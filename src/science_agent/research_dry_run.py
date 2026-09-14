@@ -179,11 +179,19 @@ def _actions(
         else {"method": "adaptive_projection", "shift_steps": 20}
     )
     final = Action(ActionKind.FINAL, "submit", {"validity_assessment": "valid"})
-    if condition in {ControllerCondition.DIRECT, ControllerCondition.REACTIVE}:
+    if condition is ControllerCondition.DIRECT:
+        return (
+            Action(
+                ActionKind.TOOL,
+                tool_name,
+                {**naive, "validity_assessment": "valid"},
+            ),
+        )
+    if condition is ControllerCondition.REACTIVE:
         return (Action(ActionKind.TOOL, tool_name, naive), final)
     if condition is ControllerCondition.SELF_DEBUG:
         return (
-            Action(ActionKind.TOOL, tool_name, invalid),
+            Action(ActionKind.TOOL, tool_name, naive),
             Action(ActionKind.TOOL, tool_name, conventional),
             final,
         )
@@ -213,7 +221,7 @@ def _config(run_id: str, condition: ControllerCondition) -> AgentRunConfig:
             tool_calls=2,
             retries=1,
             wall_time_ms=120_000,
-            artifact_bytes=4_194_304,
+            artifact_bytes=8_388_608,
         ),
         model_call_reservation=BudgetUsage(
             input_tokens=20,

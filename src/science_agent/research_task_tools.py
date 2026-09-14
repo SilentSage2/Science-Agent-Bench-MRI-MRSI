@@ -75,11 +75,6 @@ def bind_multicoil_reconstruction(
                 ),
                 BudgetUsage(tool_calls=1, wall_time_ms=_elapsed_ms(started)),
             )
-        if output_directory.exists():
-            return ToolResult(
-                Observation(ok=False, code="output_already_finalized", retryable=False),
-                BudgetUsage(tool_calls=1, wall_time_ms=_elapsed_ms(started)),
-            )
         attempts += 1
         attempt_output = work_directory / f"attempt-{attempts:03d}"
         result = executor.execute(ContainerRequest(input_directory, attempt_output, argv))
@@ -101,7 +96,7 @@ def bind_multicoil_reconstruction(
         payload = json.loads((attempt_output / "result.json").read_text(encoding="utf-8"))
         if not isinstance(payload, dict):
             raise ResearchTaskBindingError("container result must be an object")
-        shutil.copytree(attempt_output, output_directory)
+        shutil.copytree(attempt_output, output_directory, dirs_exist_ok=True)
         return ToolResult(
             Observation(
                 ok=True,
@@ -165,11 +160,6 @@ def bind_complex_mrsi_nuisance(
                 ),
                 BudgetUsage(tool_calls=1, wall_time_ms=_elapsed_ms(started)),
             )
-        if output_directory.exists():
-            return ToolResult(
-                Observation(ok=False, code="output_already_finalized", retryable=False),
-                BudgetUsage(tool_calls=1, wall_time_ms=_elapsed_ms(started)),
-            )
         attempts += 1
         attempt_output = work_directory / f"attempt-{attempts:03d}"
         result = executor.execute(ContainerRequest(input_directory, attempt_output, argv))
@@ -191,7 +181,7 @@ def bind_complex_mrsi_nuisance(
         payload = json.loads((attempt_output / "result.json").read_text(encoding="utf-8"))
         if not isinstance(payload, dict):
             raise ResearchTaskBindingError("container result must be an object")
-        shutil.copytree(attempt_output, output_directory)
+        shutil.copytree(attempt_output, output_directory, dirs_exist_ok=True)
         return ToolResult(
             Observation(
                 ok=True,

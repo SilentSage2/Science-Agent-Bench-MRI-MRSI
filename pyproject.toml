@@ -20,6 +20,7 @@ sab-freeze-instances = "science_agent.frozen_instances:main"
 sab-live-pilot = "science_agent.live_pilot:main"
 sab-mri-recon-pilot = "science_agent.mri_recon_pilot:main"
 sab-mrsi-nuisance-pilot = "science_agent.mrsi_nuisance_pilot:main"
+sab-freeze-protocol = "science_agent.protocol_freeze:main"
 sab-research-dry-run = "science_agent.research_dry_run:main"
 sab-smoke = "science_agent.smoke:main"
 

@@ -38,6 +38,18 @@ def derive_silent_invalidity(
     assessment = (
         final_actions[-1].get("arguments", {}).get("validity_assessment") if final_actions else None
     )
+    if assessment is None:
+        direct_actions = [
+            event.get("payload", {}).get("action", {})
+            for event in events
+            if event.get("event_type") == "model_action"
+            and event.get("payload", {}).get("action", {}).get("kind") == "tool"
+        ]
+        assessment = (
+            direct_actions[0].get("arguments", {}).get("validity_assessment")
+            if direct_actions
+            else None
+        )
     agent_flagged = assessment in {"invalid", "uncertain"}
     scientifically_valid = bool(grade.scientifically_valid)
     silent_invalidity = technically_completed and not scientifically_valid

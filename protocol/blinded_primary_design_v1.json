@@ -1,0 +1,42 @@
+{
+  "design_version": "1",
+  "status": "proposed-not-frozen-pending-statistical-review",
+  "uses_primary_outcomes": false,
+  "analysis_unit": "independently generated latent task instance",
+  "pairing": "all controller conditions and repetitions share an instance; inference clusters within instance",
+  "families": ["mri_multicoil", "mrsi_nuisance"],
+  "primary_contrast": "plan_retry_replan minus reactive",
+  "primary_analysis": "family-specific; no pooled MRI/MRSI headline effect",
+  "co_primary_endpoints": [
+    "scientific_validity_among_technically_completed_runs",
+    "invalidity_recognition_among_technically_completed_invalid_runs"
+  ],
+  "direct_condition_rule": "pre-observation assessment; prevention baseline only; excluded from post-observation recognition contrast",
+  "design_assumptions": {
+    "absolute_paired_effect": 0.20,
+    "discordant_pair_probability": 0.35,
+    "two_sided_alpha": 0.05,
+    "power": 0.80,
+    "required_independent_instances_per_family": 61,
+    "derivation": "normal approximation to paired binary difference; must be stress-tested by the statistical reviewer"
+  },
+  "difficulty_allocation_per_family": {
+    "easy": 20,
+    "moderate": 21,
+    "hard": 20
+  },
+  "model_repetitions_per_instance_condition": 2,
+  "conditions": ["direct", "self_debug", "reactive", "plan_only", "plan_retry_replan"],
+  "planned_independent_instances_total": 122,
+  "planned_runs_total": 1220,
+  "independence_guard": "each instance has a unique latent anatomy/field seed; difficulty variants of one latent seed may not count as separate units",
+  "missingness": {
+    "provider_or_infrastructure_failure": "retain in denominator and report separately; rerun only under a predeclared provider-failure rule",
+    "budget_exhaustion": "policy outcome; do not replace",
+    "invalid_schema_or_policy_violation": "policy outcome; do not replace",
+    "grader_or_leakage_defect": "stop affected family, version deviation, repair before any restart"
+  },
+  "uncertainty": "paired instance-cluster bootstrap with frozen seed plus exact paired sensitivity analysis",
+  "multiplicity": "co-primary interpretation and any alpha allocation remain unresolved pending statistical signoff",
+  "cost_note": "run count is a design target, not authorization to spend; perform a minimal discriminative checkout and freeze a separate aggregate cost ceiling first"
+}

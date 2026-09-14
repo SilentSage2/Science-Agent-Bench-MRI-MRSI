@@ -12,6 +12,7 @@
   "forms": [
     "review/MRI_REVIEW_FORM.md",
     "review/MRSI_REVIEW_FORM.md",
+    "review/MRSI_SPECTRAL_AXIS_EVIDENCE.md",
     "review/STATISTICAL_REVIEW_FORM.md",
     "review/AGENT_CONTROL_REVIEW_FORM.md",
     "review/ISSUE_LOG.md",
@@ -19,17 +20,21 @@
   ],
   "source_material": [
     "protocol/five_condition_protocol_v1.json",
+    "protocol/controller_adversarial_fixtures_v1.json",
+    "protocol/blinded_primary_design_v1.json",
     "protocol/frozen_development_instances_v1.json",
     "protocol/figure_data_contract_v1.json",
     "docs/ARCHITECTURE.md",
     "docs/ISMRM_2027_PLAN.md",
     "docs/ISMRM_2027_FIGURES.md",
+    "docs/PUBLIC_VALIDITY_PLAN.md",
     "experiments/mri-multicoil-baseline-pilot-v1/README.md",
     "experiments/mri-silent-invalidity-endpoint-v1/README.md",
     "experiments/mrsi-complex-nuisance-baseline-pilot-v1/README.md",
     "experiments/mrsi-silent-invalidity-endpoint-v1/README.md",
-    "experiments/real-model-development-pilot-v4/README.md"
+    "experiments/real-model-development-pilot-v4/README.md",
+    "experiments/controller-discrimination-dry-run-v1/README.md"
   ],
-  "known_blocking_issues": ["CTRL-001", "CTRL-002", "STAT-001"],
+  "known_blocking_issues": ["CTRL-001", "CTRL-002", "STAT-001", "MRSI-001"],
   "primary_run_authorized": false
 }
