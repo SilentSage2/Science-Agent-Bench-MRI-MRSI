@@ -25,7 +25,7 @@ The MR problem—not agent novelty—is primary: error-free execution can still 
 - Two research-grade core families: MRSI nuisance removal and undersampled MRI reconstruction. Current small generated fixtures are development tests and do not satisfy this gate.
 - Realistic noise/mismatch/difficulty strata plus public/challenge-derived evaluation or literature-justified simulation ranges; MRS selection and leakage audit remain secondary unless they pass the same gate.
 - An evaluator-isolated held-out set whose independent-instance count is selected by a blinded design-stage sensitivity analysis. Seeds and repeated calls are not counted as independent task instances.
-- Three frozen controller conditions: reactive, plan-only, and plan plus bounded retry/replan, with budget-auditable direct and self-debug baselines.
+- Five frozen controller conditions: direct, self-debug, reactive, plan-only, and plan plus bounded retry/replan.
 - Conventional non-agent MR baselines, a naive method, and an oracle/sanity ceiling for each core family.
 - A frozen repetition count and total run matrix derived from sensitivity, cost, and missingness planning; the earlier 72-run schedule is only a minimum pilot.
 - One pinned model snapshot, prompt set, tool schema set, executor image, grader version, and budget specification.

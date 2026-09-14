@@ -3,11 +3,11 @@
 Status: **PLANNED / NOT SUBMISSION-READY**. Captions 3–5 cannot become final until their source figures are `RESULT`. The preview image has no caption.
 
 <!-- ISMRM:CAPTION:START -->
-MRI/MRSI agent-benchmark framework and paired design. Public versioned tasks enter a provider-neutral controller with hard budgets and allowlisted actions. Typed observations, hashed artifacts, and trajectories feed independent grading; hidden references remain evaluator-only. Trusted bindings validate orchestration. The Docker boundary is implemented, while research-task wiring is PLANNED.
+MR-AgentGuard framework and paired design. Public versioned MRI/MRSI tasks enter a provider-neutral controller with hard budgets and allowlisted actions. Typed observations, hashed artifacts, and trajectories feed independent grading; hidden references remain evaluator-only. The Docker boundary and core MRI/MRSI research bindings are implemented. The primary comparison remains PLANNED.
 <!-- ISMRM:CAPTION:END -->
 
 <!-- ISMRM:CAPTION:START -->
-Four generated MR workflow families and independent grading evidence: MRS basis selection, MRSI nuisance removal, Cartesian MRI reconstruction, and subject-level leakage audit. Each panel uses the prespecified canonical development instance and recomputed grader values. These examples demonstrate task construction, not controller performance.
+Generated core-task calibration across nine cases per family. Bars show difficulty-stratified mean error for naive and conventional multi-coil MRI reconstruction and complex-MRSI nuisance removal. Lower NRMSE is better. These development values demonstrate task separation, not controller effects, prevalence, public-data validity, or clinical performance.
 <!-- ISMRM:CAPTION:END -->
 
 <!-- ISMRM:CAPTION:START -->

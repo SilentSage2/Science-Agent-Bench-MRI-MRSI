@@ -6,9 +6,9 @@ continuity; see the [naming decision](docs/NAMING_DECISION.md).
 
 Science Agent Bench MRI/MRSI is a provider-neutral research prototype for measuring when technically successful agent/tool workflows still produce physically or statistically invalid MR results, and whether control strategies detect or prevent those failures under fixed budgets.
 
-This independent prototype is not affiliated with the ICLR 2025 benchmark named [ScienceAgentBench](https://proceedings.iclr.cc/paper_files/paper/2025/hash/f12b4df26344f3be803c06b555252efe-Abstract-Conference.html). A distinct publication-facing name is required before a research release to avoid confusion.
+This independent prototype is not affiliated with the ICLR 2025 benchmark named [ScienceAgentBench](https://proceedings.iclr.cc/paper_files/paper/2025/hash/f12b4df26344f3be803c06b555252efe-Abstract-Conference.html). Its distinct, provisional publication-facing name is `MR-AgentGuard`; a final conflict check remains required before submission.
 
-> **Status:** Engineering/research prototype, not a benchmark release. Two generated research-core families now have naive/conventional/oracle baselines, hidden graders, fixed-path Docker bindings, and frozen development manifests. A 10-cell real-model development checkout exposed silent invalidity and control-design defects but is not a primary result. Public/challenge validation, an independently sized primary set, a frozen real-model comparison, and MR-domain review do not yet exist.
+> **Status:** Engineering/research prototype, not a benchmark release. Two generated research-core families now have naive/conventional/oracle baselines, hidden graders, fixed-path Docker bindings, and frozen development manifests. A 10-cell paid real-model development checkout exposed silent invalidity and control-design defects but is not a primary result. Real public/challenge physics validation, materialization of the sensitivity-sized private primary set, a frozen primary comparison, and MR-domain review do not yet exist.
 
 ## Research question
 
@@ -56,7 +56,7 @@ The primary comparison is designed around five conditions:
 
 Seven generated task families cover MRS basis fitting, MRSI nuisance removal, undersampled MRI reconstruction, reconstruction quality control, spectral/metabolite quantification, subject-level leakage detection, and dynamic MR model comparison. Each family will have public development instances and evaluator-isolated held-out instances with deterministic graders.
 
-The two depth-target families and their research bindings are implemented on generated data. Three secondary task families, public/challenge validation, an independently sized held-out suite, and domain review remain planned. No paid model request or real control-loop comparison has run. Reference and scripted tools prove orchestration only and are excluded from research results. Model-authored code remains disabled; the research tools execute only allowlisted repository-owned algorithms inside the Docker boundary.
+The two depth-target families and their research bindings are implemented on generated data. Secondary families may remain diagnostics; weak families will not be added merely to increase task count. Real public/challenge physics validation, materialization of the sensitivity-sized held-out suite, and domain review remain planned. A paid 10-cell development checkout has run, but no signed, frozen primary real-model comparison has run. Reference and scripted tools prove orchestration only and are excluded from research results. Model-authored code remains disabled; the research tools execute only allowlisted repository-owned algorithms inside the Docker boundary.
 
 The [research quality audit](docs/RESEARCH_QUALITY_AUDIT.md) is a binding red-team assessment. It identifies prior-art and naming risk, toy-task limitations, missing direct/self-debug and conventional MR baselines, absent sample-size justification, and the minimum evidence required before an ISMRM or publish-ready claim.
 

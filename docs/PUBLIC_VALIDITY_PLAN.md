@@ -1,12 +1,20 @@
 # Public/challenge validity plan
 
 This plan tests whether the generated MRI/MRSI failure mechanisms survive contact
-with external data. It is not implemented evidence and it does not authorize data
-redistribution or clinical claims.
+with external data. A real OpenNeuro header-only ingestion smoke is implemented,
+but no external reconstruction or spectroscopy physics validation exists. The
+metadata smoke does not authorize data redistribution or clinical claims.
 
 ## MRI arm
 
-Candidate source: [NYU fastMRI](https://fastmri.med.nyu.edu/), using only data
+Implemented metadata source: OpenNeuro `ds004068` snapshot `1.0.3`. Two
+allowlisted BIDS T2w JSON projections and CC0 evidence validate snapshot hashes,
+field/acquisition mapping, sensitive-field exclusion, and subject-level split
+enforcement. The source contains image-domain metadata rather than raw multi-coil
+k-space, so it cannot validate coil sensitivities, reconstruction endpoints, or
+the synthetic failure mechanism.
+
+Physics-validation candidate: [NYU fastMRI](https://fastmri.med.nyu.edu/), using only data
 obtained under its then-current access agreement. The repository will contain an
 adapter, integrity hashes, acquisition filters, and split identifiers—not images,
 k-space, headers, or derived patient-level artifacts.
@@ -66,8 +74,8 @@ Before data access, reviewers must approve:
 External validation is **NO-GO** until those fields are frozen. It may refute the
 simulator; such a negative result is retained rather than tuned away.
 
-The metadata-only ingestion boundary is executable without downloading either
-dataset:
+The synthetic registry smoke remains executable without downloading either
+candidate physics dataset:
 
 ```bash
 PYTHONPATH=src python3.12 -m science_agent.public_ingestion \
@@ -81,6 +89,10 @@ This checks the source registry, required MRI/MRSI mapping fields, file hashes,
 path containment, unique acquisitions, and subject/exam/acquisition split
 leakage. It intentionally fails if used as real ingestion without an explicit
 access/license approval record.
+
+The real OpenNeuro projected-header smoke is separately documented in
+[`OPENNEURO_DS004068_INGESTION.md`](OPENNEURO_DS004068_INGESTION.md). Passing it
+is ingestion evidence only, never MRI reconstruction-validity evidence.
 
 ## Leakage and release boundary
 

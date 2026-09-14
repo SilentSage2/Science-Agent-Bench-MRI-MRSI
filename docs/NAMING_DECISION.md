@@ -1,7 +1,7 @@
 # Publication-facing naming decision
 
 Decision date: 2026-09-14  
-Decision status: **provisional until pre-submission conflict review**
+Decision status: **adopted for development; provisional until pre-submission conflict review**
 
 The publication-facing project name is:
 

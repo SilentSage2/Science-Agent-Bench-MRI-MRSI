@@ -28,7 +28,7 @@ Report every task instance and component metric rather than one opaque composite
 
 ## Tasks and splits
 
-Seven planned CPU-compatible families cover MRS basis fitting, MRSI nuisance removal, undersampled MRI reconstruction, reconstruction QC, spectral/metabolite quantification, subject-level leakage detection, and dynamic MR model comparison. Current small generated instances are development fixtures, not research-grade evidence. The primary held-out count must follow blinded sensitivity analysis; generators, schemas, grader versions, difficulty strata, conventional baselines, and input hashes freeze before a real-model comparison.
+The catalog describes seven possible CPU-compatible families, but A1 targets two depth-qualified cores: multi-coil MRI reconstruction and complex-MRSI nuisance removal. Other families remain diagnostics unless they independently pass the same evidence gate; they will not be added merely to inflate task count. A blinded sensitivity analysis now specifies 61 independent instances per core family and two repetitions per condition. Expert review, private materialization, and the final generators/schemas/graders/baselines/input-hash freeze must precede the primary comparison.
 
 Tasks evaluate computational research behavior only. They do not request diagnosis, prognosis, treatment selection, or patient-facing interpretation.
 

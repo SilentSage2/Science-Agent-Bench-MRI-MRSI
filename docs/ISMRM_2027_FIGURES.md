@@ -4,7 +4,7 @@
 
 Prepare five review figures and one separate preview image for this MRI/MRSI agent-benchmark project, then submit the strongest four or five after the results freeze. This is one of two intended ISMRM target projects; its data, claims, manifests, and QA records remain project-specific unless a prospectively frozen joint protocol says otherwise. Figure 1 is a methods/framework overview and Figure 2 is a generated-task gallery, so both can reach design-complete status before the live benchmark. Figures 3–5 are empirical result figures and must remain labeled as templates until the frozen analysis and selected cases exist; synthetic or mock values must never appear as conference results.
 
-**Current status (14 September 2026): all five figures and the preview are `PLANNED`; no submission-ready empirical result figure exists.** A layout, caption draft, or generated-fixture illustration is not a result. The status can change to `RESULT` only when the frozen-data command, sidecar manifest, independent number check, and visual QA record all pass.
+**Current status (14 September 2026): reproducible development Figure 1 and Figure 2 exports exist and passed visual/export QA, but independent MR-domain signoff is pending. Figures 3–5 and the preview remain `PLANNED`; no submission-ready empirical result figure exists.** Development calibration is not a controller result. A status can change to `RESULT` only when the frozen-data command, sidecar manifest, independent number check, and visual/scientific QA records all pass.
 
 The detailed 2027 instructions must be rechecked when submissions open. The current production targets follow the prior official guidance: no more than five review figures, captions no longer than 500 characters, and a separate simple preview figure that remains legible on a phone. The prior submission system additionally required a 3:2 preview image under 1 MB.
 
@@ -40,7 +40,7 @@ Global rules:
 
 ## Figure 1 — Frozen paired benchmark design
 
-**Status:** `PLANNED — DESIGN/PROTOCOL`, never an empirical result figure.
+**Status:** `DESIGN-COMPLETE / MR-SIGNOFF-PENDING`, never an empirical result figure.
 
 **Permitted scientific statement:** the implemented system accepts versioned MRI/MRSI task inputs, uses a provider-neutral single-agent controller to select allowlisted actions under hard budgets, feeds typed observations back into the condition path, and produces hashed artifacts, trajectories, and independent grades. Multi-coil MRI and complex-MRSI research bindings traverse the tested isolated execution boundary; fixed-path development bindings remain trusted host-side smoke infrastructure. A future paired study must hold model, tasks, tools, budgets, and evaluators constant and eliminate the direct/reactive and successful-candidate self-debug ambiguities exposed by the development pilot.
 
@@ -54,35 +54,33 @@ Global rules:
 
 - **A — inputs:** versioned task specification, public MRI/MRSI inputs, controller condition, prompt/tool versions, and hard budget; evaluator-isolated references enter only the grader path;
 - **B — core components:** provider-neutral model adapter, reactive/plan-only/retry-replan controller, state machine, budget ledger, immutable tool registry, and trajectory writer;
-- **C — execution and feedback:** typed action → allowlist/budget reservation → current trusted fixed-path reference binding or the separately implemented Docker boundary → typed observation/artifact hashes → controller feedback, including the single bounded retry/replan branch. The research-grade binding into Docker is dashed and labeled `PLANNED` until implemented;
+- **C — execution and feedback:** typed action → allowlist/budget reservation → trusted development binding or digest-pinned Docker research binding → typed observation/artifact hashes → controller feedback, including the single bounded retry/replan branch;
 - **D — outputs and evaluation:** run manifest, append-only trajectory, scientific artifacts, deterministic grader, and separated validity, reproducibility, efficiency, and policy-violation outcomes.
 
 **Data dependency:** versioned protocol only. This figure can be completed before live runs and adapted into the preview image.
 
-**Draft caption:** MRI/MRSI agent-benchmark framework and frozen paired design. Versioned public inputs and a hard budget enter a provider-neutral controller; allowlisted actions return typed observations, hashed artifacts, and append-only trajectories for independent grading, while hidden references never enter the policy path. Trusted reference bindings currently validate orchestration; the tested Docker boundary is implemented, but its research-task binding remains `PLANNED`. Three controller conditions share model, tasks, tools, prompts, and budgets.
+**Development caption:** MR-AgentGuard framework and paired design. Versioned public inputs and a hard budget enter one of five enforced controller paths; allowlisted Docker-bound actions return typed observations and hashed artifacts for independent grading, while hidden references never enter the policy path. The primary study remains NO-GO pending review and freeze.
 
-## Figure 2 — MR-specific task and grader gallery
+## Figure 2 — Core MR task calibration
 
-**Status:** `PLANNED — GENERATED DEVELOPMENT DATA`, not evidence of controller performance.
+**Status:** `DEVELOPMENT-CALIBRATION / MR-SIGNOFF-PENDING`, not evidence of controller performance.
 
-**Permitted scientific statement:** the benchmark exercises distinct MR-specific validity constraints that deterministic graders can recompute from declared artifacts.
+**Permitted scientific statement:** across nine generated cases per core family, the conventional MRI/MRSI method has lower mean task error than the naive method in each difficulty stratum. This establishes task separation only.
 
 **Would weaken/refute the statement:** a panel whose conclusion can be graded without MR-specific quantities, a displayed value not independently recomputed, evaluator-reference leakage, or inconsistent physical units/orientation.
 
-**Analysis unit and selection:** exactly one predeclared public development instance per family, chosen as the lexicographically first canonical instance ID before rendering. The manifest lists the IDs and hashes. No visually preferable substitute is allowed.
+**Analysis unit and selection:** all nine frozen generated calibration cases in each of the MRI and MRSI core families, summarized by predeclared difficulty. The immutable source JSON records the values and hashes.
 
-**Statistics:** descriptive values only, recomputed by the graders. No generalization or controller comparison is permitted.
+**Statistics:** difficulty-stratified descriptive mean NRMSE only. The source records paired calibration intervals, but the development figure does not present them as inference. No agent effect, prevalence, public-data validity, or clinical generalization is permitted.
 
 **Panels**
 
-- **A:** MRS basis-model selection: observed spectrum, candidate fits, and residual region;
-- **B:** MRSI nuisance removal: frequency/phase drift and template mismatch, contaminated/corrected spectra, water/lipid bands, and retained metabolite region;
-- **C:** noisy multi-coil MRI reconstruction: coil/mask inputs, zero-filled and SENSE-CG outputs, shared-scale error maps, and sampled-k-space residual;
-- **D:** subject-level split audit: compact subject/session-to-split diagram with detected violations.
+- **A:** MRI magnitude NRMSE for naive zero-fill and conventional SENSE-CG by difficulty;
+- **B:** MRSI spectral NRMSE for fixed-template and adaptive nuisance removal by difficulty.
 
-**Data dependency:** one frozen public development instance per family. Images and spectra come directly from generator outputs and independent grader recomputation.
+**Data dependency:** `experiments/baseline_figure_data_v1.json`, with `research_result=false`; v4 condition counts are explicitly excluded.
 
-**Draft caption:** Four deterministic MR workflow families. Tasks cover MRS model selection, MRSI nuisance suppression, Cartesian MRI reconstruction, and subject-level leakage auditing. Each task produces machine-readable artifacts and MR-specific evidence; graders independently recompute conclusions using evaluator-isolated parameters where required.
+**Development caption:** Generated task calibration for multi-coil MRI and complex MRSI. Bars show difficulty-stratified mean naive and conventional NRMSE across nine cases per family (lower is better). Values demonstrate task separation, not agent effects, prevalence, public-data validity, or clinical performance.
 
 ## Figure 3 — Silent-invalidity prevention and recognition
 
@@ -94,7 +92,7 @@ Global rules:
 
 **Baseline and ablations:** reactive is the primary controller baseline; plan-only isolates initial planning; plan plus retry/replan versus plan-only isolates bounded recovery. Direct generation and budget-matched self-debug are competitive agent baselines. Conventional, naive, and oracle MR methods calibrate task difficulty and validity but are not pooled with agent effects.
 
-**Sample and statistics:** the independent-instance and repetition counts remain `PLANNED` until a blinded design-stage sensitivity analysis is committed. The primary estimand is the paired difference in mean scientific-validity completion, averaging repetitions within each instance-condition cell. Show the seeded task-family-stratified cluster-bootstrap 95% interval, raw paired outcomes, denominators, incomplete runs, and prespecified exclusions.
+**Sample and statistics:** the implemented blinded sensitivity design specifies 61 independent instances per family and two repetitions per condition (1,220 scheduled runs), pending statistical and domain signoff. The primary estimand is the paired difference in mean scientific-validity completion, averaging repetitions within each instance-condition cell. Show the seeded task-family-stratified cluster-bootstrap 95% interval, raw paired outcomes, denominators, incomplete runs, and prespecified exclusions.
 
 **Panels**
 

@@ -5,7 +5,7 @@ Verdict: **RED — engineering prototype; not a publish-ready benchmark or ISMRM
 
 ## Executive finding
 
-The repository currently demonstrates careful engineering: typed contracts, fail-closed budgets/state transitions, reproducible trajectories, deterministic graders, and a tested Docker boundary. Those are necessary controls, but they are not the scientific contribution. No real-model comparison, research-grade task tool, held-out benchmark set, effect estimate, uncertainty interval, or blinded MR-domain validation exists.
+The repository now demonstrates careful engineering, two generated research-candidate MR task bindings, conventional/naive/oracle calibration, a sensitivity-sized private-manifest generator, and a 10-cell paid real-model development checkout. Those are necessary controls, but the checkout is confounded development evidence rather than a primary comparison. No signed frozen primary run, public/challenge physics validation, primary effect estimate, or blinded MR-domain validation exists.
 
 The defensible research direction is narrower than “Science Agent Bench for MRI/MRSI”: test **silent MR-specific scientific invalidity** and the causal effect of controller components under matched budgets. Even that claim is only potentially valuable if tasks are realistic enough to expose physics/domain failures that generic execution or exact-match benchmarks miss.
 
@@ -17,7 +17,7 @@ The defensible research direction is narrower than “Science Agent Bench for MR
 - [SciAgentGym](https://sciagentgym.github.io/) already evaluates isolated multi-step scientific tool use and reports degradation with longer horizons.
 - [Simple Agents Outperform Experts in Biomedical Imaging Workflow Optimization (CVPR 2026)](https://openaccess.thecvf.com/content/CVPR2026/papers/Wang_Simple_Agents_Outperform_Experts_in_Biomedical_Imaging_Workflow_Optimization_CVPR_2026_paper.pdf) directly studies agent design on production biomedical-imaging workflows with expert baselines and deployed generated functions.
 
-Therefore, “an agent uses tools for MRI/MRSI” and “planning versus retry” are not sufficient novelty claims. Before public research positioning, use a distinct publication-facing identity (working option: `MRValidityBench`) or explicitly state that this independent project is unrelated to ICLR ScienceAgentBench. Repository renaming requires a separate decision.
+Therefore, “an agent uses tools for MRI/MRSI” and “planning versus retry” are not sufficient novelty claims. The project now uses the distinct publication-facing identity `MR-AgentGuard` and explicitly disclaims affiliation with ICLR ScienceAgentBench; a final conflict check remains required before submission.
 
 ## Dimension-by-dimension audit
 
@@ -25,19 +25,19 @@ Therefore, “an agent uses tools for MRI/MRSI” and “planning versus retry�
 |---|---|---:|---|
 | Important, falsifiable question | Matched-budget controller question is falsifiable; silent MR validity failures could matter | Amber | Importance is asserted, not yet demonstrated on realistic MR workflows |
 | Novel contribution | MR-specific validity graders are a plausible niche | Red | Strong adjacent benchmark and biomedical-imaging agent prior art; no comparative gap study or expert validation |
-| Data/task realism | Four deterministic generated families with hidden references | Red | Small/toy defaults, exact synthetic templates, limited perturbations, no paper/public-challenge task provenance |
-| Split/leakage control | Evaluator-only references and fixed paths are good foundations | Amber | Held-out instance manifest, contamination audit, difficulty calibration, and frozen exclusions do not exist |
-| Baselines/ablations | Reactive, plan-only, retry/replan controller code exists | Red | Only scripted reference actions have run; no direct/self-debug baseline, conventional MR baseline, or human/domain calibration |
-| Technical depth | Runtime, accounting, trajectory, and container boundary are substantive engineering | Amber | Scientific tools remain trusted reference solvers; Docker is not wired to research task bindings |
+| Data/task realism | Two generated core candidates include multi-coil MRI and complex MRSI nuisance mechanisms | Amber | OpenNeuro validates metadata ingestion only; public/challenge physics validity and expert range approval are absent |
+| Split/leakage control | Private 122-instance manifest design and subject-level ingestion mutation tests exist | Amber | Private held-out materialization and expert-signed exclusions are not frozen |
+| Baselines/ablations | Five distinct controllers and naive/conventional/oracle task baselines are implemented | Amber | Only a confounded two-instance paid checkout exists; no frozen paired primary or human/domain calibration |
+| Technical depth | Research MRI/MRSI bindings traverse the digest-pinned Docker boundary | Amber | External-data adapter physics validation and expert protocol signoff remain missing |
 | Evaluation validity | Deterministic artifact and MR-specific checks exist | Amber | Threshold calibration, inter-rater/domain validation, metric gaming tests, and cross-instance robustness are missing |
-| Statistical support | Paired bootstrap is planned | Red | No effect data; 12 instances/72 runs were chosen by schedule, not detectable-effect analysis |
+| Statistical support | Blinded sensitivity design, family-stratified cluster bootstrap, and sign-flip sensitivity are implemented | Amber | The 61-per-family, two-repetition design awaits statistical signoff and has no primary outcomes |
 | Failure analysis | Taxonomy and deterministic case-selection contract are planned | Red | No primary run corpus or blinded double-coding exists |
-| Reproducible claims | Strong manifest/hash intent and abstract fact map | Amber | No locked research run, analysis release, or independent reproduction exists |
+| Reproducible claims | Candidate lock v5, fact map, clean-clone tests, and deterministic Figure 1/2 exports exist | Amber | No locked primary run, primary analysis release, or independent scientific reproduction exists |
 
 ## Concrete weaknesses in current task depth
 
-- MRI reconstruction defaults to a small single-coil synthetic phantom (16×16; tests often use 8×8) and zero-filled reference behavior. It does not yet test multi-coil sensitivity handling, realistic noise, acceleration/mask shifts, regularization choice, or robustness on public MR data.
-- MRSI nuisance removal uses a 3×3 default grid (tests use 2×2) and nuisance templates generated from the same model used by the trusted solver. It does not yet stress frequency/phase drift, linewidth variation, template mismatch, metabolite overlap, spatial heterogeneity, or realistic complex spectra.
+- The older small single-coil MRI fixture remains a correctness test. The core candidate now exercises complex coil sensitivities, variable-density masks, noise, acceleration, and SENSE-CG choices, but has not been validated on public raw multi-coil k-space.
+- The older small MRSI fixture remains a correctness test. The core candidate now exercises complex spectra, frequency/phase drift, mixed lineshapes, baseline and template mismatch, but its frequency-domain abstraction lacks expert-approved time-domain/header/vendor mapping.
 - MRS basis selection uses a small generated regression problem. It does not yet represent basis mismatch, linewidth/phase/frequency nuisance, correlated metabolites, macromolecules, uncertainty, or accepted spectroscopy fitting baselines.
 - Leakage audit uses a small generated table with directly seeded violations. It is useful for correctness tests but insufficient evidence that an agent can detect realistic subject/session/acquisition/temporal leakage in MR studies.
 
@@ -78,7 +78,7 @@ Do not claim superiority to experts without an actual blinded expert baseline. D
 
 ### Sample size and analysis
 
-Treat the earlier 12-instance/72-run schedule as a **minimum pilot**, not a confirmatory design. Before freezing `n`, run a blinded design-stage sensitivity analysis over plausible paired discordance/effect ranges and set the number of independent instances accordingly. Seeds are repetitions, not independent task samples. If time or cost cannot support the resulting design, narrow the claim to feasibility and descriptive failure characterization.
+Treat the earlier 12-instance/72-run schedule as a **minimum pilot**, not a confirmatory design. The implemented blinded design-stage sensitivity analysis selects 61 independent instances per family for its working assumptions and two repetitions per condition; this 1,220-run design still requires independent statistical review before freeze. Seeds are repetitions, not independent task samples. If review, time, or cost cannot support the resulting design, narrow the claim to feasibility and descriptive failure characterization rather than reducing `n` for deadline convenience.
 
 Report paired absolute effects, 95% intervals, raw instance outcomes, task-family heterogeneity, missingness, cost, and all negative/adverse results. A null result is acceptable if the interval and design are informative.
 
