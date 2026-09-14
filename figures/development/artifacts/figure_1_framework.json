@@ -1,0 +1,39 @@
+{
+  "agent_effect_claim_allowed": false,
+  "data_status": "IMPLEMENTED-DESIGN",
+  "exports": {
+    "phone_preview": "figure_1_framework_phone.png",
+    "png": "figure_1_framework.png",
+    "svg": "figure_1_framework.svg"
+  },
+  "figure_id": "figure_1_framework",
+  "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+  "font_sha256": "525979822591a3447cfc49d943d6f7683508e25543407871c0ed8fed05fd2bd9",
+  "palette": {
+    "blue": "#0072B2",
+    "green": "#009E73",
+    "ink": "#17212B",
+    "magenta": "#CC79A7",
+    "muted": "#5D6B78",
+    "orange": "#E69F00",
+    "panel": "#F4F7F9",
+    "paper": "#FFFFFF"
+  },
+  "qa": {
+    "canvas_pixels": [
+      1800,
+      1100
+    ],
+    "caption_present": true,
+    "color_encoding_redundant_with_labels": true,
+    "colorblind_palette": "Okabe-Ito subset",
+    "mr_domain_signoff": "PENDING",
+    "phone_preview_width_pixels": 480,
+    "provenance_present": true,
+    "visual_inspection": "PASSED-2026-09-14"
+  },
+  "renderer_sha256": "a9f8e0bae9be20c0711f113069f39c3b996436a84b22c739fbe0fd9d6ff81eb8",
+  "research_result": false,
+  "source_data_sha256": "a9948b6a7b6bb578153337463984261dc65737eec3922dc6e911de1882c54dc5",
+  "source_revision": "d7be957f3b28303190ed2c00b9b33d46fe7f4680"
+}

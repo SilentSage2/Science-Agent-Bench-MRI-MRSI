@@ -10,6 +10,8 @@ dist/
 
 # Run outputs, model responses, and local evaluator secrets are never committed.
 artifacts/
+!figures/development/artifacts/
+!figures/development/artifacts/*
 runs/
 .env
 .env.*

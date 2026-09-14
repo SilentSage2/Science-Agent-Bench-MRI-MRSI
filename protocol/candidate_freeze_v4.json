@@ -1,0 +1,56 @@
+{
+  "executor_image": "sha256:fbb0cde9a40ec156133c67b434a719615f8b2bc3df7744e1087911a0bb950f1c",
+  "file_sha256": {
+    "controller_prompt_schema": {
+      "protocol/controller_adversarial_fixtures_v1.json": "34be759f20e34186435e363f7653a2923a70dd1a299e7a4cced959b014009076",
+      "src/science_agent/agent.py": "b20caec275c441ccf6bd0e8f83ae1e55a25cd8845feb7b40ea5e04341fa48967",
+      "src/science_agent/contracts.py": "4f82841a67bd5fe7c68808a7feb6ea9cfe799496bc410179a3f85725d3ac284a",
+      "src/science_agent/live_pilot.py": "9b3db38f1d03a09f6dc4ea6692f47c0e1b15c55ed8451fa27ce718008f27e26a"
+    },
+    "development_publication_assets": {
+      "docs/NAMING_DECISION.md": "7c84c78b0c29175dad1b5cf9d3d1a5574211f6aa8bfc287b82bc299c7da8dc8e",
+      "experiments/baseline_figure_data_v1.json": "a9948b6a7b6bb578153337463984261dc65737eec3922dc6e911de1882c54dc5",
+      "figures/development/CAPTIONS.md": "6a5f7815af8323cf403d9253a89d065d27bd7aefe26bb080468852d300f72e00",
+      "review/BUNDLE_INDEX.md": "6315f2d0ff8f2958b6cd3bb6842d755cf7ca47471676953f11d335094503b0ae",
+      "src/science_agent/development_figures.py": "a9f8e0bae9be20c0711f113069f39c3b996436a84b22c739fbe0fd9d6ff81eb8"
+    },
+    "executor": {
+      "docker/research.Dockerfile": "1a319376d55301fbe99817feffa7af3ac3bcdfa797ca2845d9ce3afb533dfe51",
+      "src/science_agent/container_executor.py": "9205f12baeb6eaf59b58bc1c1cbe1b2a3c6dc186a255493774d3b1eec7500703"
+    },
+    "protocol_and_analysis": {
+      "protocol/blinded_primary_design_v1.json": "579178dbc09b3a7f3fdf8ccae12772f5d5b8dae85a8b1e9c6e355fe1e5f77a78",
+      "protocol/figure_data_contract_v1.json": "9c74359b60e071b366b6b2df094960d8931b8bfe3063bd35bf525b9fe7e4c501",
+      "protocol/five_condition_protocol_v1.json": "110c71d625c410d5e0e0b8c06b21e7f4d0cb1bda821bd5445b65e04b2f6f0b20",
+      "protocol/openneuro_ds004068_header_manifest_v1.json": "89283772b96eb1c701f6e7a50981f7b543885d31d046be4be44239fd6257e871",
+      "protocol/public_ingestion_smoke_manifest_v1.json": "f74f49558961aa340a02ec65544467e5a72d3709eef041bb0b49a4bd20f8e21f",
+      "protocol/public_sources_v1.json": "785ae4ebbca87a00ede6b2d548774581b9d5633fa7dfd88cdc91c9426030f446",
+      "src/science_agent/design_sensitivity.py": "4175aa0905a8c6385903772a36fc1c6514d1dbddf26c1e05aefc8815791fe6c8",
+      "src/science_agent/paired_analysis.py": "f37393d999830833b85eb7be82472337c944fc8a6057caec6ea4143487200075",
+      "src/science_agent/public_ingestion.py": "b78e1cd45ee94147d1328eaed5ee85bda7ccdba210a35db7259d9606898d372b",
+      "src/science_agent/silent_invalidity.py": "8179c24fd1c5eec965b910876e7b27bdcd779c2e282089940202463350408be6"
+    },
+    "task_generators_and_graders": {
+      "protocol/primary_manifest_spec_v1.json": "2155aff22d5c215edb50193e419aee00b696a03aa39c9e4c9ad300ae23d80cb6",
+      "src/science_agent/frozen_instances.py": "7212816486333383d21bd60032bf6efdcd4406be06788abe10a197d3d4e509cf",
+      "src/science_agent/primary_manifest.py": "ef812750c2d7ad2edce85f6e0ea01eafa26a7463f6b638fd4b4863bc6c723a1b",
+      "src/science_agent/research/mri_multicoil.py": "e06fb42da991c6936ce95b477ff0d680fdd0d68eee4ecda1e1068bea202f343e",
+      "src/science_agent/research/mrsi_nuisance.py": "c94b000f8c2cd530b6af0e21fc071d31786bbe2924c152732cd5eca8b09bfdfc",
+      "src/science_agent/research_task_tools.py": "ad9cb6dc87831c90af0ddbad6b9a606b67b4a95a86850b1ace0f6c0094ee087d"
+    }
+  },
+  "freeze_schema": "candidate-protocol-lock-v1",
+  "model_identity": {
+    "immutable_snapshot_available": false,
+    "limitation": "The provider exposes the requested model as an alias in this study. Every response-returned model string and response ID must be retained; cross-date reruns may still experience unobservable alias drift.",
+    "required_run_fields": [
+      "requested_model",
+      "returned_model",
+      "response_id"
+    ]
+  },
+  "primary_run_authorized": false,
+  "requested_model": "gpt-5.6-terra",
+  "source_revision": "d7be957f3b28303190ed2c00b9b33d46fe7f4680",
+  "status": "candidate-no-go-pending-expert-signoff"
+}

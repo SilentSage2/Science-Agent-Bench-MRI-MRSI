@@ -3,7 +3,7 @@
 Current decision: **NO-GO — UNSIGNED DEVELOPMENT PACKET**
 
 The current mechanically generated candidate lock is
-`protocol/candidate_freeze_v3.json`. It binds the reviewed implementation revision
+`protocol/candidate_freeze_v4.json`. It binds the reviewed implementation revision
 and immutable executor digest but deliberately keeps `primary_run_authorized` set
 to `false` until this signoff is complete.
 
@@ -11,14 +11,14 @@ Freeze identifiers:
 
 | Artifact | Frozen value |
 |---|---|
-| Git revision | UNASSIGNED |
+| Git revision | `d7be957f3b28303190ed2c00b9b33d46fe7f4680` |
 | Task-manifest SHA-256 | UNASSIGNED |
 | Prompt/schema SHA-256 | UNASSIGNED |
 | Grader SHA-256 | UNASSIGNED |
 | Analysis SHA-256 | UNASSIGNED |
 | Model/provider settings | UNASSIGNED |
 | Hard budget and pricing basis | UNASSIGNED |
-| Executor image digest | UNASSIGNED |
+| Executor image digest | `sha256:fbb0cde9a40ec156133c67b434a719615f8b2bc3df7744e1087911a0bb950f1c` |
 
 Required approvals:
 
