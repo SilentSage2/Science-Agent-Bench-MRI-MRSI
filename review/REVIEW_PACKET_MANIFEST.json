@@ -22,6 +22,7 @@
     "protocol/five_condition_protocol_v1.json",
     "protocol/controller_adversarial_fixtures_v1.json",
     "protocol/candidate_freeze_v1.json",
+    "protocol/candidate_freeze_v2.json",
     "protocol/blinded_primary_design_v1.json",
     "protocol/primary_manifest_spec_v1.json",
     "protocol/public_sources_v1.json",

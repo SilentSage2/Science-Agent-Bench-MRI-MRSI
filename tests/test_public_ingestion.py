@@ -50,11 +50,13 @@ def _manifest() -> dict[str, object]:
                 "synthetic_metadata_only": True,
                 "metadata": {
                     "nucleus": "1H",
-                    "field_strength_t": 3.0,
-                    "spectral_points": 256,
+                    "spectrometer_frequency_mhz": 123.2,
+                    "sequence": "PRESS",
+                    "echo_time_ms": 30.0,
+                    "spectral_points": 2048,
                     "ppm_min": 0.5,
                     "ppm_max": 5.0,
-                    "spectral_width_hz": 574.79596542,
+                    "spectral_width_hz": 4000.0,
                 },
             },
         ]

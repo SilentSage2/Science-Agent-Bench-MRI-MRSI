@@ -25,7 +25,7 @@
       "sha256": "9d7f85c90f48826efe7d329ab3c5ca245f8fd14a5bf5615f6bd5b63fd0998053",
       "access_approved": false,
       "synthetic_metadata_only": true,
-      "metadata": {"nucleus": "1H", "field_strength_t": 3.0, "spectral_points": 256, "ppm_min": 0.5, "ppm_max": 5.0, "spectral_width_hz": 574.79596542}
+      "metadata": {"nucleus": "1H", "spectrometer_frequency_mhz": 123.2, "sequence": "PRESS", "echo_time_ms": 30.0, "spectral_points": 2048, "ppm_min": 0.5, "ppm_max": 5.0, "spectral_width_hz": 4000.0}
     }
   ]
 }

@@ -23,6 +23,7 @@ FREEZE_GROUPS: dict[str, tuple[str, ...]] = {
         "src/science_agent/research/mrsi_nuisance.py",
         "src/science_agent/research_task_tools.py",
         "src/science_agent/primary_manifest.py",
+        "src/science_agent/frozen_instances.py",
         "protocol/primary_manifest_spec_v1.json",
     ),
     "protocol_and_analysis": (

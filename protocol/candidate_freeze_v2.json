@@ -1,0 +1,47 @@
+{
+  "executor_image": "sha256:fbb0cde9a40ec156133c67b434a719615f8b2bc3df7744e1087911a0bb950f1c",
+  "file_sha256": {
+    "controller_prompt_schema": {
+      "protocol/controller_adversarial_fixtures_v1.json": "34be759f20e34186435e363f7653a2923a70dd1a299e7a4cced959b014009076",
+      "src/science_agent/agent.py": "b20caec275c441ccf6bd0e8f83ae1e55a25cd8845feb7b40ea5e04341fa48967",
+      "src/science_agent/contracts.py": "4f82841a67bd5fe7c68808a7feb6ea9cfe799496bc410179a3f85725d3ac284a",
+      "src/science_agent/live_pilot.py": "9b3db38f1d03a09f6dc4ea6692f47c0e1b15c55ed8451fa27ce718008f27e26a"
+    },
+    "executor": {
+      "docker/research.Dockerfile": "1a319376d55301fbe99817feffa7af3ac3bcdfa797ca2845d9ce3afb533dfe51",
+      "src/science_agent/container_executor.py": "9205f12baeb6eaf59b58bc1c1cbe1b2a3c6dc186a255493774d3b1eec7500703"
+    },
+    "protocol_and_analysis": {
+      "protocol/blinded_primary_design_v1.json": "579178dbc09b3a7f3fdf8ccae12772f5d5b8dae85a8b1e9c6e355fe1e5f77a78",
+      "protocol/figure_data_contract_v1.json": "9c74359b60e071b366b6b2df094960d8931b8bfe3063bd35bf525b9fe7e4c501",
+      "protocol/five_condition_protocol_v1.json": "110c71d625c410d5e0e0b8c06b21e7f4d0cb1bda821bd5445b65e04b2f6f0b20",
+      "protocol/public_ingestion_smoke_manifest_v1.json": "9a108c4559386a8e6d7b50127aaf27e780e12256a172f59283c34d0c75a7f017",
+      "protocol/public_sources_v1.json": "03c15c7b58f7c0aba55a8d0015fe491bbf357450e30c84069924a730b93830ef",
+      "src/science_agent/design_sensitivity.py": "4175aa0905a8c6385903772a36fc1c6514d1dbddf26c1e05aefc8815791fe6c8",
+      "src/science_agent/paired_analysis.py": "f37393d999830833b85eb7be82472337c944fc8a6057caec6ea4143487200075",
+      "src/science_agent/public_ingestion.py": "64255c34f38e753449e97505ffd932722486ab5b7d3d506cbb67ce7e09a3f5b0",
+      "src/science_agent/silent_invalidity.py": "8179c24fd1c5eec965b910876e7b27bdcd779c2e282089940202463350408be6"
+    },
+    "task_generators_and_graders": {
+      "protocol/primary_manifest_spec_v1.json": "2155aff22d5c215edb50193e419aee00b696a03aa39c9e4c9ad300ae23d80cb6",
+      "src/science_agent/primary_manifest.py": "ef812750c2d7ad2edce85f6e0ea01eafa26a7463f6b638fd4b4863bc6c723a1b",
+      "src/science_agent/research/mri_multicoil.py": "e06fb42da991c6936ce95b477ff0d680fdd0d68eee4ecda1e1068bea202f343e",
+      "src/science_agent/research/mrsi_nuisance.py": "c94b000f8c2cd530b6af0e21fc071d31786bbe2924c152732cd5eca8b09bfdfc",
+      "src/science_agent/research_task_tools.py": "ad9cb6dc87831c90af0ddbad6b9a606b67b4a95a86850b1ace0f6c0094ee087d"
+    }
+  },
+  "freeze_schema": "candidate-protocol-lock-v1",
+  "model_identity": {
+    "immutable_snapshot_available": false,
+    "limitation": "The provider exposes the requested model as an alias in this study. Every response-returned model string and response ID must be retained; cross-date reruns may still experience unobservable alias drift.",
+    "required_run_fields": [
+      "requested_model",
+      "returned_model",
+      "response_id"
+    ]
+  },
+  "primary_run_authorized": false,
+  "requested_model": "gpt-5.6-terra",
+  "source_revision": "c2c2b90f6e7d374258173617396dc54d04abd53c",
+  "status": "candidate-no-go-pending-expert-signoff"
+}

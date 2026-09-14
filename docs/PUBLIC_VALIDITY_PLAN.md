@@ -11,6 +11,11 @@ obtained under its then-current access agreement. The repository will contain an
 adapter, integrity hashes, acquisition filters, and split identifiers—not images,
 k-space, headers, or derived patient-level artifacts.
 
+The terms check on 14 September 2026 found that access requires an individual
+application and agreement, use is limited to internal research/education, and
+redistribution requires prior permission. The code repository's MIT license does
+not replace the dataset agreement.
+
 The validation target is mechanism-level: whether zero-filled and conventional
 parallel-imaging reconstructions remain separated by acquired-sample consistency,
 image fidelity, and edge/gradient fidelity across prospectively chosen knee or
@@ -35,6 +40,14 @@ nuisance components are unavailable, evaluation is limited to observable
 surrogates and blinded expert ratings; hidden synthetic component error remains a
 simulation-only endpoint. Subject and acquisition—not voxels or augmented
 spectra—define independence.
+
+The challenge page describes 28 synthetic datasets at 123.2 MHz using PRESS,
+TE=30 ms, 4,000 Hz spectral width, and 2,048 points, with water-suppressed and
+water FIDs plus basis/macromolecular files. Those properties differ materially
+from the current 256-point, 0.5–5.0 ppm nuisance simulator. The initial adapter is
+therefore a spectral-axis/basis sanity check, not spatial MRSI validation. The
+page does not state a clear redistribution license; reuse terms remain a blocking
+field rather than being inferred from public download links.
 
 ## Prospective acceptance criteria
 

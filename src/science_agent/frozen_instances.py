@@ -59,12 +59,35 @@ def materialize_frozen_instances(manifest_path: Path, output_root: Path) -> dict
         "purpose": manifest["purpose"],
         "scientific_unit_warning": manifest["scientific_unit_warning"],
         "instance_count": len(materialized),
+        "dependence_audit": audit_dependence_groups(manifest),
         "instances": materialized,
     }
     (output_root / "materialization.json").write_text(
         json.dumps(record, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
     return record
+
+
+def audit_dependence_groups(manifest: dict[str, Any]) -> dict[str, Any]:
+    instances = manifest["instances"]
+    by_family: dict[str, dict[str, int]] = {}
+    for family in ("mri_multicoil", "mrsi_nuisance"):
+        members = [item for item in instances if item.get("family") == family]
+        groups = {str(item["dependence_group"]) for item in members}
+        by_family[family] = {
+            "instance_count": len(members),
+            "dependence_group_count": len(groups),
+        }
+    all_groups = [str(item["dependence_group"]) for item in instances]
+    unique = len(set(all_groups)) == len(all_groups)
+    primary_candidate = "primary" in str(manifest.get("purpose", "")).lower()
+    if primary_candidate and not unique:
+        raise FrozenInstanceError("primary manifests require one instance per dependence group")
+    return {
+        "one_instance_per_dependence_group": unique,
+        "family_counts": by_family,
+        "primary_candidate": primary_candidate,
+    }
 
 
 def _read_manifest(path: Path) -> dict[str, Any]:

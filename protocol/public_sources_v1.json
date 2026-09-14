@@ -5,7 +5,9 @@
       "source_id": "nyu-fastmri",
       "family": "mri_multicoil",
       "url": "https://fastmri.med.nyu.edu/",
-      "access": "account and current data-use agreement required",
+      "terms_verified_on": "2026-09-14",
+      "access": "individual application and current NYU Dataset Sharing Agreement required; internal research or education only",
+      "redistribution": "prohibited without prior permission, including subsequent variables or derived data files except uses allowed by the agreement",
       "repository_release_policy": "code, metadata schema, split IDs and integrity hashes only; no source or derived imaging data",
       "split_keys": ["subject_id", "exam_id"],
       "required_mapping": ["anatomy", "coil_count", "matrix_shape", "acquisition", "field_strength_t"]
@@ -14,10 +16,12 @@
       "source_id": "ismrm-mrs-fitting-challenge-2016",
       "family": "mrsi_nuisance",
       "url": "https://www.ismrm.org/workshops/Spectroscopy16/mrs_fitting_challenge/",
+      "terms_verified_on": "2026-09-14",
       "access": "public page; dataset-specific reuse terms must be documented before data ingestion",
       "repository_release_policy": "do not redistribute until explicit terms are verified",
       "split_keys": ["subject_id", "acquisition_id"],
-      "required_mapping": ["nucleus", "field_strength_t", "spectral_points", "ppm_min", "ppm_max", "spectral_width_hz"]
+      "required_mapping": ["nucleus", "spectrometer_frequency_mhz", "sequence", "echo_time_ms", "spectral_points", "ppm_min", "ppm_max", "spectral_width_hz"],
+      "published_challenge_metadata": {"synthetic_dataset_count": 28, "spectrometer_frequency_mhz": 123.2, "sequence": "PRESS", "echo_time_ms": 30.0, "spectral_points": 2048, "spectral_width_hz": 4000.0}
     }
   ]
 }
