@@ -32,8 +32,8 @@
     "provenance_present": true,
     "visual_inspection": "PASSED-2026-09-14"
   },
-  "renderer_sha256": "a9f8e0bae9be20c0711f113069f39c3b996436a84b22c739fbe0fd9d6ff81eb8",
+  "renderer_sha256": "93db4eeb7b2c88958642b9389eb94bfc716c7f706e4905d6ce9c2c64f03807e0",
   "research_result": false,
   "source_data_sha256": "a9948b6a7b6bb578153337463984261dc65737eec3922dc6e911de1882c54dc5",
-  "source_revision": "d7be957f3b28303190ed2c00b9b33d46fe7f4680"
+  "source_revision": "112466bc8366fb830ae74b20dc6935660479b71d"
 }

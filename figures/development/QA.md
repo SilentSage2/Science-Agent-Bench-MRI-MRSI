@@ -1,7 +1,9 @@
 # Development Figure 1/2 QA record
 
-QA date: 2026-09-14  
-Source revision: `d7be957f3b28303190ed2c00b9b33d46fe7f4680`  
+QA date: 2026-09-14
+
+Source revision: `112466bc8366fb830ae74b20dc6935660479b71d`
+
 Overall status: **visual/export QA passed; independent MR-domain signoff pending**
 
 ## Checks completed
