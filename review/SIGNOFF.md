@@ -2,6 +2,11 @@
 
 Current decision: **NO-GO — UNSIGNED DEVELOPMENT PACKET**
 
+The mechanically generated candidate lock is
+`protocol/candidate_freeze_v1.json`. It binds the reviewed implementation revision
+and immutable executor digest but deliberately keeps `primary_run_authorized` set
+to `false` until this signoff is complete.
+
 Freeze identifiers:
 
 | Artifact | Frozen value |
@@ -30,4 +35,3 @@ The study may change to **GO** only when the decision rule in `review/README.md`
 is satisfied and a versioned commit replaces every required placeholder. Signing
 acknowledges protocol validity within the reviewer's stated expertise; it does not
 certify clinical use or guarantee a positive result.
-

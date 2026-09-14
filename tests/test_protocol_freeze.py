@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -58,6 +59,20 @@ class ProtocolFreezeTests(unittest.TestCase):
                 requested_model="model",
                 executor_image="latest",
             )
+
+    def test_committed_candidate_lock_matches_source_files(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        committed = json.loads(
+            (root / "protocol" / "candidate_freeze_v1.json").read_text(encoding="utf-8")
+        )
+        regenerated = create_candidate_freeze(
+            root,
+            source_revision=committed["source_revision"],
+            requested_model=committed["requested_model"],
+            executor_image=committed["executor_image"],
+        )
+
+        self.assertEqual(committed, regenerated)
 
 
 if __name__ == "__main__":
