@@ -1,0 +1,38 @@
+{
+  "manifest_version": "1",
+  "source_snapshot": "OpenNeuro ds004068 v1.0.3 / f10baa45d16affcea81d7006177d551410e1cd27",
+  "license_evidence": "tests/fixtures/openneuro_ds004068/dataset_description.json",
+  "download_scope": "three public JSON files only; allowlisted projections committed",
+  "records": [
+    {
+      "source_id": "openneuro-ds004068-v1.0.3",
+      "family": "mri_multicoil",
+      "subject_id": "sub-ZS001",
+      "exam_id": "sub-ZS001-T2w",
+      "acquisition_id": "sub-ZS001-T2w",
+      "split": "development",
+      "relative_path": "sub-ZS001_T2w.header.json",
+      "sha256": "98abc5769ffe31f51840ea5179cd350b580cd562c41eed7b00b78450a2b894aa",
+      "source_path": "sub-ZS001/anat/sub-ZS001_T2w.json",
+      "source_sha256": "ea347477ccf0012da94cf182d1db26a8b50bb205017d28f601ebb5792fee02a3",
+      "access_approved": true,
+      "synthetic_metadata_only": false,
+      "metadata": {"modality": "MR", "anatomy": "spinal_cord_T2w", "field_strength_t": 3.0, "manufacturer": "Siemens", "model": "Prisma_fit", "acquisition_type": "3D", "sequence": "SE", "echo_time_s": 0.12, "repetition_time_s": 1.5, "base_resolution": 320, "parallel_reduction_factor": 3.0, "pixel_bandwidth_hz": 625.0, "dwell_time_s": 0.0000025, "receive_coil_name": "HeadNeck_64"}
+    },
+    {
+      "source_id": "openneuro-ds004068-v1.0.3",
+      "family": "mri_multicoil",
+      "subject_id": "sub-ZS002",
+      "exam_id": "sub-ZS002-T2w",
+      "acquisition_id": "sub-ZS002-T2w",
+      "split": "validation",
+      "relative_path": "sub-ZS002_T2w.header.json",
+      "sha256": "98abc5769ffe31f51840ea5179cd350b580cd562c41eed7b00b78450a2b894aa",
+      "source_path": "sub-ZS002/anat/sub-ZS002_T2w.json",
+      "source_sha256": "c16642ebe6a63ca52071640a3a7ec57e99eb4ea6f6b0014aeddf280bbce8c035",
+      "access_approved": true,
+      "synthetic_metadata_only": false,
+      "metadata": {"modality": "MR", "anatomy": "spinal_cord_T2w", "field_strength_t": 3.0, "manufacturer": "Siemens", "model": "Prisma_fit", "acquisition_type": "3D", "sequence": "SE", "echo_time_s": 0.12, "repetition_time_s": 1.5, "base_resolution": 320, "parallel_reduction_factor": 3.0, "pixel_bandwidth_hz": 625.0, "dwell_time_s": 0.0000025, "receive_coil_name": "HeadNeck_64"}
+    }
+  ]
+}

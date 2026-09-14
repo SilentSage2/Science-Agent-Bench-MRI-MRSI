@@ -1,5 +1,7 @@
 # Independent MR protocol review
 
+Start with the role-routed [reviewer bundle index](BUNDLE_INDEX.md).
+
 This packet is the mandatory pre-freeze review for the MRI/MRSI agent study. It
 does not certify clinical use and it is not evidence that the controller
 comparison is ready. Reviewers assess the computational MR task, hidden grading,
@@ -57,4 +59,3 @@ The primary run is **NO-GO** unless all of the following are true:
 The present packet starts in `NO-GO`. Blank forms and unsigned placeholders are
 not approvals. Pilot results may inform engineering but may not be used to tune
 held-out thresholds or select favorable primary endpoints.
-

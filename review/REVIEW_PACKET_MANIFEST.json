@@ -17,6 +17,8 @@
     "review/AGENT_CONTROL_REVIEW_FORM.md",
     "review/ISSUE_LOG.md",
     "review/SIGNOFF.md"
+    ,"review/BUNDLE_INDEX.md"
+    ,"review/REVIEW_REQUEST_TEMPLATE.md"
   ],
   "source_material": [
     "protocol/five_condition_protocol_v1.json",
@@ -28,12 +30,15 @@
     "protocol/primary_manifest_spec_v1.json",
     "protocol/public_sources_v1.json",
     "protocol/public_ingestion_smoke_manifest_v1.json",
+    "protocol/openneuro_ds004068_header_manifest_v1.json",
     "protocol/frozen_development_instances_v1.json",
     "protocol/figure_data_contract_v1.json",
     "docs/ARCHITECTURE.md",
     "docs/ISMRM_2027_PLAN.md",
     "docs/ISMRM_2027_FIGURES.md",
     "docs/PUBLIC_VALIDITY_PLAN.md",
+    "docs/OPENNEURO_DS004068_INGESTION.md",
+    "docs/NAMING_DECISION.md",
     "experiments/mri-multicoil-baseline-pilot-v1/README.md",
     "experiments/mri-silent-invalidity-endpoint-v1/README.md",
     "experiments/mrsi-complex-nuisance-baseline-pilot-v1/README.md",

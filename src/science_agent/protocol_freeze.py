@@ -32,10 +32,18 @@ FREEZE_GROUPS: dict[str, tuple[str, ...]] = {
         "protocol/figure_data_contract_v1.json",
         "protocol/public_sources_v1.json",
         "protocol/public_ingestion_smoke_manifest_v1.json",
+        "protocol/openneuro_ds004068_header_manifest_v1.json",
         "src/science_agent/design_sensitivity.py",
         "src/science_agent/silent_invalidity.py",
         "src/science_agent/paired_analysis.py",
         "src/science_agent/public_ingestion.py",
+    ),
+    "development_publication_assets": (
+        "src/science_agent/development_figures.py",
+        "experiments/baseline_figure_data_v1.json",
+        "figures/development/CAPTIONS.md",
+        "docs/NAMING_DECISION.md",
+        "review/BUNDLE_INDEX.md",
     ),
     "executor": (
         "docker/research.Dockerfile",

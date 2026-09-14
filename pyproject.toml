@@ -24,6 +24,7 @@ sab-freeze-protocol = "science_agent.protocol_freeze:main"
 sab-create-primary-manifest = "science_agent.primary_manifest:main"
 sab-analyze-paired = "science_agent.paired_analysis:main"
 sab-public-ingestion-check = "science_agent.public_ingestion:main"
+sab-render-development-figures = "science_agent.development_figures:main"
 sab-research-dry-run = "science_agent.research_dry_run:main"
 sab-smoke = "science_agent.smoke:main"
 
@@ -33,6 +34,7 @@ dev = [
   "pytest==8.3.5",
   "ruff==0.9.10",
 ]
+figures = ["Pillow==12.0.0"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/science_agent"]

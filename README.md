@@ -1,5 +1,9 @@
 # Science Agent Bench MRI/MRSI
 
+**Publication-facing name:** **MR-AgentGuard: Failure-Aware Evaluation of
+Scientific Agents for MRI and MRSI**. The repository name is retained for
+continuity; see the [naming decision](docs/NAMING_DECISION.md).
+
 Science Agent Bench MRI/MRSI is a provider-neutral research prototype for measuring when technically successful agent/tool workflows still produce physically or statistically invalid MR results, and whether control strategies detect or prevent those failures under fixed budgets.
 
 This independent prototype is not affiliated with the ICLR 2025 benchmark named [ScienceAgentBench](https://proceedings.iclr.cc/paper_files/paper/2025/hash/f12b4df26344f3be803c06b555252efe-Abstract-Conference.html). A distinct publication-facing name is required before a research release to avoid confusion.
@@ -45,6 +49,7 @@ The primary comparison is designed around five conditions:
 - a private-keyed, sensitivity-sized primary-manifest generator that enforces 122 unique dependence groups without publishing evaluator seeds;
 - family-stratified paired analysis with instance-cluster bootstrap intervals, exact sign-flip sensitivity, explicit exclusions, and fail-closed Figure 3/4 data status;
 - a metadata-only public-source ingestion smoke with license/access, mapping, integrity, containment, and split-leakage checks;
+- deterministic, explicitly non-result development Figure 1/2 rendering with SVG, 300-dpi PNG, phone preview, captions, and provenance sidecars;
 - offline standard-library test suite.
 
 ## Planned A1 benchmark

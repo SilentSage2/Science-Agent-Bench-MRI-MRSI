@@ -2,6 +2,19 @@
   "source_registry_version": "1",
   "sources": [
     {
+      "source_id": "openneuro-ds004068-v1.0.3",
+      "family": "mri_multicoil",
+      "url": "https://openneuro.org/datasets/ds004068/versions/1.0.3",
+      "snapshot_commit": "f10baa45d16affcea81d7006177d551410e1cd27",
+      "terms_verified_on": "2026-09-14",
+      "access": "public snapshot; no application required",
+      "license": "CC0 as declared by dataset_description.json",
+      "repository_release_policy": "allowlisted metadata projections and checksums only; no images downloaded for this smoke",
+      "split_keys": ["subject_id", "exam_id"],
+      "allowed_mapping": ["modality", "anatomy", "field_strength_t", "manufacturer", "model", "acquisition_type", "sequence", "echo_time_s", "repetition_time_s", "base_resolution", "parallel_reduction_factor", "pixel_bandwidth_hz", "dwell_time_s", "receive_coil_name"],
+      "required_mapping": ["modality", "anatomy", "field_strength_t", "manufacturer", "model", "acquisition_type", "sequence", "echo_time_s", "repetition_time_s", "base_resolution", "parallel_reduction_factor", "pixel_bandwidth_hz", "dwell_time_s", "receive_coil_name"]
+    },
+    {
       "source_id": "nyu-fastmri",
       "family": "mri_multicoil",
       "url": "https://fastmri.med.nyu.edu/",

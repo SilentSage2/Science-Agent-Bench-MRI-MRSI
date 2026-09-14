@@ -56,9 +56,20 @@ def validate_public_ingestion(
         metadata = record.get("metadata")
         if not isinstance(metadata, dict):
             raise PublicIngestionError("metadata must be an object")
+        if path.suffix == ".json":
+            file_metadata = json.loads(path.read_text(encoding="utf-8"))
+            if file_metadata != metadata:
+                raise PublicIngestionError("manifest metadata does not match projected header")
         missing = set(source["required_mapping"]).difference(metadata)
         if missing:
             raise PublicIngestionError(f"required mapping fields missing: {sorted(missing)}")
+        allowed_mapping = source.get("allowed_mapping")
+        if allowed_mapping is not None:
+            unexpected = set(metadata).difference(allowed_mapping)
+            if unexpected:
+                raise PublicIngestionError(
+                    f"metadata contains non-allowlisted fields: {sorted(unexpected)}"
+                )
         acquisition_key = (source_id, str(record.get("acquisition_id")))
         if acquisition_key in seen_acquisitions:
             raise PublicIngestionError("acquisition IDs must be unique within source")

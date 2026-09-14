@@ -1,0 +1,16 @@
+{
+  "modality": "MR",
+  "anatomy": "spinal_cord_T2w",
+  "field_strength_t": 3.0,
+  "manufacturer": "Siemens",
+  "model": "Prisma_fit",
+  "acquisition_type": "3D",
+  "sequence": "SE",
+  "echo_time_s": 0.12,
+  "repetition_time_s": 1.5,
+  "base_resolution": 320,
+  "parallel_reduction_factor": 3.0,
+  "pixel_bandwidth_hz": 625.0,
+  "dwell_time_s": 0.0000025,
+  "receive_coil_name": "HeadNeck_64"
+}
