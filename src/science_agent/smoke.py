@@ -16,12 +16,15 @@ from science_agent.tasks import (
     create_mri_leakage_fixture,
     create_mri_reconstruction_fixture,
     create_mrs_fit_fixture,
+    create_mrsi_nuisance_fixture,
     grade_mri_leakage,
     grade_mri_reconstruction,
     grade_mrs_fit,
+    grade_mrsi_nuisance,
     solve_mri_leakage_reference,
     solve_mri_reconstruction_reference,
     solve_mrs_fit_reference,
+    solve_mrsi_nuisance_reference,
 )
 from science_agent.trajectory import TrajectoryEvent, TrajectoryWriter, sha256_file
 
@@ -73,6 +76,21 @@ def run_smoke(output_root: Path) -> dict[str, object]:
             ),
             solve_mri_reconstruction_reference,
             lambda inputs, outputs: grade_mri_reconstruction(
+                inputs,
+                inputs.parent / "evaluator",
+                outputs,
+            ),
+        ),
+        (
+            "SAB-MRSI-NUIS-001-dev-1",
+            lambda path: create_mrsi_nuisance_fixture(
+                path,
+                path.parent / "evaluator",
+                seed=4101,
+                grid_size=2,
+            ),
+            solve_mrsi_nuisance_reference,
+            lambda inputs, outputs: grade_mrsi_nuisance(
                 inputs,
                 inputs.parent / "evaluator",
                 outputs,

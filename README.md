@@ -2,7 +2,7 @@
 
 Science Agent Bench is a provider-neutral research harness for testing which control-loop components improve MRI and MR spectroscopic imaging (MRSI) experiments under fixed budgets.
 
-> **Status:** A0 benchmark contract is complete. The A1 core and three deterministic task families are implemented and tested. The 9/9 scripted smoke result validates the harness only; no real-model research result is claimed yet.
+> **Status:** A0 benchmark contract is complete. The A1 core and four deterministic task families are implemented and tested. The 12/12 scripted smoke result validates the harness only; no real-model research result is claimed yet.
 
 ## Research question
 
@@ -25,24 +25,24 @@ The frozen A1 comparison will evaluate three conditions:
 - fail-closed state-transition validation;
 - immutable JSONL trajectory creation with monotonic event sequences;
 - SHA-256 artifact hashing;
-- synthetic MRS basis-model selection, MRI/MRSI split-leakage, and undersampled MRI reconstruction tasks;
+- synthetic MRS basis-model selection, MRSI nuisance removal, MRI/MRSI split-leakage, and undersampled MRI reconstruction tasks;
 - independent deterministic graders with positive and adversarial fixtures;
-- a nine-run smoke across all three controller conditions;
+- a 12-run smoke across all three controller conditions;
 - offline standard-library test suite.
 
 ## Planned A1 benchmark
 
 Seven generated task families cover MRS basis fitting, MRSI nuisance removal, undersampled MRI reconstruction, reconstruction quality control, spectral/metabolite quantification, subject-level leakage detection, and dynamic MR model comparison. Each family will have public development instances and evaluator-isolated held-out instances with deterministic graders.
 
-Four task families, the replaceable model adapter, and isolated task execution remain planned. Model-authored code must eventually run in a disposable, network-disabled, non-root container with read-only inputs, a run-scoped output mount, and hard resource limits. A Python subprocess alone is not considered a security boundary.
+Three task families, the replaceable model adapter, and isolated task execution remain planned. Model-authored code must eventually run in a disposable, network-disabled, non-root container with read-only inputs, a run-scoped output mount, and hard resource limits. A Python subprocess alone is not considered a security boundary.
 
 ## Current smoke result
 
 | Policy | Tasks passed | Purpose |
 |---|---:|---|
-| Scripted reactive | 3/3 | MRS fit + MRI leakage + MRI reconstruction |
-| Scripted plan-only | 3/3 | MRS fit + MRI leakage + MRI reconstruction |
-| Scripted plan + retry/replan | 3/3 | MRS fit + MRI leakage + MRI reconstruction |
+| Scripted reactive | 4/4 | MRS fit + MRSI nuisance + MRI leakage/reconstruction |
+| Scripted plan-only | 4/4 | MRS fit + MRSI nuisance + MRI leakage/reconstruction |
+| Scripted plan + retry/replan | 4/4 | MRS fit + MRSI nuisance + MRI leakage/reconstruction |
 
 These are reference-solver runs, not evidence that one control strategy is better. The committed [smoke summary](experiments/a1-smoke-v1/README.md) records the protocol and limitations.
 

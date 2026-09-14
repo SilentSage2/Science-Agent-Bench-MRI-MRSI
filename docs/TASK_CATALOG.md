@@ -12,6 +12,6 @@ All task families require `outputs/result.json`, reject unknown fields, and expo
 | `SAB-MRI-LEAK-001` | verdict, violation classes, acquisition IDs, earliest timestamps | Exact independently derived subject overlap, future-feature, target-derived, and duplicate violations |
 | `SAB-DYNMR-001` | parameters/errors for two kinetic models, status, prediction curves | Curves reproduce from bounded parameters and selection passes held-out predictive margin |
 
-Three families now have executable development generators and graders; four remain at contract stage. Each family ultimately has two development and three held-out instances, for 35 instances total. Hidden parameters are evaluator-only. Frozen-task corrections create a new suite version rather than silently changing an existing comparison.
+Four families now have executable development generators and graders; three remain at contract stage. Each family ultimately has two development and three held-out instances, for 35 instances total. Hidden parameters are evaluator-only. Frozen-task corrections create a new suite version rather than silently changing an existing comparison.
 
 Required negative grader fixtures cover malformed records, unknown fields, missing or duplicate rows, wrong units, non-finite or out-of-tolerance values, inconsistent statistics, path traversal, oversized output, and unsupported conclusions. A lucky scalar answer without required evidence cannot pass scientific validity.
