@@ -42,7 +42,7 @@ Global rules:
 
 **Status:** `PLANNED — DESIGN/PROTOCOL`, never an empirical result figure.
 
-**Permitted scientific statement:** the implemented system accepts versioned MRI/MRSI task inputs, uses a provider-neutral single-agent controller to select allowlisted actions under hard budgets, feeds typed observations back into the frozen controller path, and produces hashed artifacts, trajectories, and independent grades. A tested isolated execution boundary exists, while research-grade task bindings through it remain explicitly planned; current fixed-path reference bindings are trusted host-side smoke infrastructure. In the paired study, model, tasks, tools, budgets, and evaluators are held constant so controller logic is the intended experimental contrast.
+**Permitted scientific statement:** the implemented system accepts versioned MRI/MRSI task inputs, uses a provider-neutral single-agent controller to select allowlisted actions under hard budgets, feeds typed observations back into the condition path, and produces hashed artifacts, trajectories, and independent grades. Multi-coil MRI and complex-MRSI research bindings traverse the tested isolated execution boundary; fixed-path development bindings remain trusted host-side smoke infrastructure. A future paired study must hold model, tasks, tools, budgets, and evaluators constant and eliminate the direct/reactive and successful-candidate self-debug ambiguities exposed by the development pilot.
 
 **Would weaken/refute the statement:** any condition-specific prompt, tool, budget, task exposure, hidden-reference access, or non-paired instance assignment. Such a discrepancy blocks the figure and the primary comparison.
 

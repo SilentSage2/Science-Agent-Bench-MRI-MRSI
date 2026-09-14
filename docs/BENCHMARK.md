@@ -32,7 +32,7 @@ Seven planned CPU-compatible families cover MRS basis fitting, MRSI nuisance rem
 
 Tasks evaluate computational research behavior only. They do not request diagnosis, prognosis, treatment selection, or patient-facing interpretation.
 
-The deterministic mock policy is the CI oracle. The first replaceable real-model adapter is implemented and offline-tested, but it must complete all three experimental conditions before A1 makes a result claim. Provider comparison is not an A1 hypothesis.
+The deterministic mock policy is the CI oracle. The first replaceable real-model adapter is implemented and has completed a five-condition development checkout, but A1 cannot make a result claim until an independently sized, frozen comparison passes protocol and domain review. Provider comparison is not an A1 hypothesis.
 
 ## Run record
 
@@ -49,4 +49,4 @@ Secrets, authorization headers, hidden references, and private evaluator paramet
 
 ## A1 completion gate
 
-A1 requires at least two research-grade core MR families with conventional/naive/oracle references, sensitivity-justified held-out instances, direct and self-debug baselines plus identical-budget execution of all three controller conditions, a green offline mock suite, complete trajectories and artifact hashes, fail-closed budget/state/path tests, tested container denial controls, one frozen real-model comparison, MR-domain review, and a README containing actual paired effects, uncertainty, costs, failures, architecture, and exact reproduction commands. Additional families do not count toward A1 merely because toy fixtures exist.
+A1 requires at least two research-grade core MR families with conventional/naive/oracle references, sensitivity-justified held-out instances, identical-budget execution of direct, self-debug, reactive, plan-only, and bounded-replan conditions, a green offline mock suite, complete trajectories and artifact hashes, fail-closed budget/state/path tests, tested container denial controls, one frozen real-model comparison, MR-domain review, and a README containing actual paired effects, uncertainty, costs, failures, architecture, and exact reproduction commands. Additional families do not count toward A1 merely because toy fixtures exist.

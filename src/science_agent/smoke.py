@@ -36,6 +36,8 @@ class Condition:
 
 
 CONDITIONS = (
+    Condition("direct", False),
+    Condition("self_debug", False),
     Condition("reactive", False),
     Condition("plan_only", True),
     Condition("plan_retry_replan", True),
@@ -43,7 +45,7 @@ CONDITIONS = (
 
 
 def run_smoke(output_root: Path) -> dict[str, object]:
-    """Run two deterministic tasks under all three controller conditions."""
+    """Run deterministic development tasks under all five controller conditions."""
     output_root.mkdir(parents=True, exist_ok=False)
     task_definitions: tuple[
         tuple[

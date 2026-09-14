@@ -14,8 +14,8 @@ class AgentSmokeTests(unittest.TestCase):
             output = Path(temporary) / "agent-smoke"
             summary = run_agent_smoke(output)
 
-            self.assertEqual(summary["total_runs"], 12)
-            self.assertEqual(summary["successes"], 12)
+            self.assertEqual(summary["total_runs"], 20)
+            self.assertEqual(summary["successes"], 20)
             self.assertFalse(summary["research_result"])
             self.assertEqual(json.loads((output / "metrics.json").read_text()), summary)
             runs = summary["runs"]
@@ -23,6 +23,8 @@ class AgentSmokeTests(unittest.TestCase):
             self.assertEqual(
                 {run["condition"] for run in runs},
                 {
+                    "direct",
+                    "self_debug",
                     "reactive",
                     "plan_only",
                     "plan_retry_replan",

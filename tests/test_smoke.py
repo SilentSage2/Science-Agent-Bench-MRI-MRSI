@@ -13,14 +13,14 @@ class SmokeTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "smoke"
             summary = run_smoke(output)
-            self.assertEqual(summary["total_runs"], 12)
-            self.assertEqual(summary["successes"], 12)
+            self.assertEqual(summary["total_runs"], 20)
+            self.assertEqual(summary["successes"], 20)
             self.assertFalse(summary["research_result"])
             persisted = json.loads((output / "metrics.json").read_text())
             self.assertEqual(persisted, summary)
             self.assertEqual(
                 {run["condition"] for run in summary["runs"]},
-                {"reactive", "plan_only", "plan_retry_replan"},
+                {"direct", "self_debug", "reactive", "plan_only", "plan_retry_replan"},
             )
 
 

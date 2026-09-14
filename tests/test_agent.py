@@ -86,7 +86,14 @@ def _config(run_id: str, condition: ControllerCondition, retries: int = 1) -> Ag
         ),
         max_model_calls=5,
         max_output_tokens=10,
-        action_schema={"type": "object"},
+        action_schema={
+            "type": "object",
+            "properties": {
+                "kind": {"type": "string", "enum": ["plan", "tool", "final"]},
+                "name": {"type": "string"},
+                "arguments": {"type": "object"},
+            },
+        },
         instructions="Return exactly one valid action.",
         pricing=FixedTokenPricing(1_000, 1_000, "2026-09-14"),
     )
@@ -154,6 +161,34 @@ class MRIScienceAgentTests(unittest.TestCase):
         self.assertEqual(tool.calls, 1)
         self.assertEqual(events[-1]["state_after"], "succeeded")
 
+    def test_direct_uses_nonplanning_path(self) -> None:
+        model = ScriptedModel([_tool_action(), _final_action()])
+        tool = ObservationQueue([Observation(True, "ok")])
+
+        result, events = self._run(model, tool, ControllerCondition.DIRECT)
+
+        self.assertEqual(result.phase, AgentPhase.SUCCEEDED)
+        transitions = [
+            event["state_after"] for event in events if event["event_type"] == "state_transition"
+        ]
+        self.assertNotIn("planning", transitions)
+
+    def test_self_debug_retries_without_structured_replan(self) -> None:
+        model = ScriptedModel([_tool_action(), _tool_action(), _final_action()])
+        tool = ObservationQueue(
+            [Observation(False, "retryable_check", retryable=True), Observation(True, "ok")]
+        )
+
+        result, events = self._run(model, tool, ControllerCondition.SELF_DEBUG)
+
+        self.assertEqual(result.phase, AgentPhase.SUCCEEDED)
+        self.assertEqual(result.retries, 1)
+        transitions = [
+            event["state_after"] for event in events if event["event_type"] == "state_transition"
+        ]
+        self.assertIn("retrying", transitions)
+        self.assertNotIn("replanning", transitions)
+
     def test_plan_only_requires_plan_and_does_not_retry(self) -> None:
         model = ScriptedModel([_plan_action(), _tool_action()])
         tool = ObservationQueue([Observation(False, "fit_failed", retryable=True)])
@@ -163,6 +198,20 @@ class MRIScienceAgentTests(unittest.TestCase):
         self.assertEqual(result.phase, AgentPhase.FAILED)
         self.assertEqual(result.retries, 0)
         self.assertEqual(tool.calls, 1)
+
+    def test_model_request_schema_is_narrowed_by_phase(self) -> None:
+        model = ScriptedModel([_plan_action(), _tool_action(), _final_action()])
+        tool = ObservationQueue([Observation(True, "ok")])
+
+        result, _ = self._run(model, tool, ControllerCondition.PLAN_ONLY)
+
+        self.assertEqual(result.phase, AgentPhase.SUCCEEDED)
+        kinds = [request.output_schema["properties"]["kind"]["enum"] for request in model.requests]
+        names = [request.output_schema["properties"]["name"]["enum"] for request in model.requests]
+        self.assertEqual(kinds, [["plan"], ["tool"], ["final"]])
+        self.assertEqual(names[0], ["draft_plan"])
+        self.assertEqual(names[1], ["analyze_mri"])
+        self.assertEqual(names[2], ["submit"])
 
     def test_plan_condition_fails_cleanly_when_initial_action_is_not_plan(self) -> None:
         model = ScriptedModel([_tool_action()])

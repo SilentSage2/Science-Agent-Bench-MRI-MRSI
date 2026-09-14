@@ -1,0 +1,21 @@
+{
+  "schema_version": "1",
+  "research_result": false,
+  "scope": "task calibration only; no agent/model outcomes",
+  "series": [
+    {"family": "mri_multicoil", "difficulty": "easy", "naive_primary_metric": 0.252989, "conventional_primary_metric": 0.161967, "metric": "magnitude_nrmse"},
+    {"family": "mri_multicoil", "difficulty": "medium", "naive_primary_metric": 0.286715, "conventional_primary_metric": 0.218128, "metric": "magnitude_nrmse"},
+    {"family": "mri_multicoil", "difficulty": "hard", "naive_primary_metric": 0.303364, "conventional_primary_metric": 0.264659, "metric": "magnitude_nrmse"},
+    {"family": "mrsi_nuisance", "difficulty": "easy", "naive_primary_metric": 1.085980, "conventional_primary_metric": 0.247639, "metric": "spectral_nrmse"},
+    {"family": "mrsi_nuisance", "difficulty": "moderate", "naive_primary_metric": 1.307512, "conventional_primary_metric": 0.266389, "metric": "spectral_nrmse"},
+    {"family": "mrsi_nuisance", "difficulty": "hard", "naive_primary_metric": 1.666200, "conventional_primary_metric": 0.290976, "metric": "spectral_nrmse"}
+  ],
+  "paired_effects": [
+    {"family": "mri_multicoil", "estimand": "mean naive minus conventional magnitude_nrmse", "estimate": 0.0661044, "interval_95": [0.0518623, 0.0806042], "resamples": 10000, "unit": "generated case"},
+    {"family": "mrsi_nuisance", "estimand": "mean naive minus conventional spectral_nrmse", "estimate": 1.0848965, "interval_95": [0.9440397, 1.2345450], "resamples": 10000, "unit": "generated case"}
+  ],
+  "provenance": [
+    "PYTHONPATH=src python3.12 -m science_agent.mri_recon_pilot --output runs/mri-multicoil-baseline-pilot-v1",
+    "PYTHONPATH=src python3.12 -m science_agent.mrsi_nuisance_pilot --output runs/mrsi-complex-nuisance-baseline-pilot-v1"
+  ]
+}

@@ -16,7 +16,11 @@ dependencies = ["numpy==2.2.4"]
 sab-check-abstract = "science_agent.abstract_package:main"
 sab-agent-smoke = "science_agent.agent_smoke:main"
 sab-design-sensitivity = "science_agent.design_sensitivity:main"
+sab-freeze-instances = "science_agent.frozen_instances:main"
+sab-live-pilot = "science_agent.live_pilot:main"
 sab-mri-recon-pilot = "science_agent.mri_recon_pilot:main"
+sab-mrsi-nuisance-pilot = "science_agent.mrsi_nuisance_pilot:main"
+sab-research-dry-run = "science_agent.research_dry_run:main"
 sab-smoke = "science_agent.smoke:main"
 
 [project.optional-dependencies]

@@ -1,0 +1,34 @@
+{
+  "protocol_version": "1",
+  "status": "development-dry-run; primary real-model protocol not frozen",
+  "conditions": [
+    {"name": "direct", "initial_plan": false, "observation_retry": false, "structured_replan": false},
+    {"name": "self_debug", "initial_plan": false, "observation_retry": true, "structured_replan": false},
+    {"name": "reactive", "initial_plan": false, "observation_retry": false, "structured_replan": false},
+    {"name": "plan_only", "initial_plan": true, "observation_retry": false, "structured_replan": false},
+    {"name": "plan_retry_replan", "initial_plan": true, "observation_retry": true, "structured_replan": true}
+  ],
+  "common_hard_budget": {
+    "input_tokens": 12000,
+    "output_tokens": 3000,
+    "tool_calls": 2,
+    "retries": 1,
+    "wall_time_ms": 120000,
+    "artifact_bytes": 4194304
+  },
+  "co_primary_endpoints": [
+    "silent_invalidity_prevention_among_technically_completed_runs",
+    "silent_invalidity_recognition_among_technically_completed_invalid_runs"
+  ],
+  "analysis_unit": "independent task instance; repetitions remain clustered within instance",
+  "required_run_fields": [
+    "run_id",
+    "task_id",
+    "task_schema_version",
+    "condition",
+    "provider",
+    "model",
+    "budget",
+    "pricing"
+  ]
+}

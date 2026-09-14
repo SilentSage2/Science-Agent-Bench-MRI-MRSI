@@ -109,6 +109,20 @@ class OpenAIResponsesAdapterTests(unittest.TestCase):
 
         self.assertFalse(result.usage.complete)
 
+    def test_nullable_schema_fields_are_removed_before_action_validation(self) -> None:
+        action = {
+            "kind": "tool",
+            "name": "fit_mrs",
+            "arguments": {"method": "adaptive", "iterations": None},
+        }
+        adapter = OpenAIResponsesAdapter(
+            "test-secret", "gpt-test", transport=RecordingTransport(_response(action))
+        )
+
+        result = adapter.complete(_request())
+
+        self.assertEqual(result.action.arguments, {"method": "adaptive"})
+
     def test_rejects_non_completed_response(self) -> None:
         response = _response()
         response["status"] = "incomplete"

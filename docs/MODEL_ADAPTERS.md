@@ -16,7 +16,6 @@ adapter = OpenAIResponsesAdapter.from_env(model="YOUR_FROZEN_MODEL_ID")
 
 Set `OPENAI_API_KEY` only in the process environment. Never place it in configs, trajectories, run metadata, shell history, or committed files. The adapter does not calculate price: experiments must freeze a dated provider-pricing snapshot separately, then convert reported usage to integer microdollars. Missing usage remains unknown rather than being treated as zero.
 
-The adapter is implemented and offline-tested, but no paid request or research comparison is committed yet. The first live run must use a pinned model ID, frozen prompts and task instances, a USD 30 total ceiling, and the same limits for every controller condition.
+The adapter is implemented and offline-tested, including nullable strict-schema fields that are removed before tool validation. A paid adapter smoke and two-instance development checkout have run, but no frozen research comparison exists. The [live pilot runbook](LIVE_PILOT_RUNBOOK.md) defines the credential boundary, current official price snapshot, call/cost envelope, aggregate breaker, and exact checkout command.
 
 The request and response fields follow the official [OpenAI Responses API reference](https://developers.openai.com/api/reference/cli/resources/responses/methods/create).
-

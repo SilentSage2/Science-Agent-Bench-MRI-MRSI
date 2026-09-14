@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import time
 from collections.abc import Callable, Mapping
+from copy import deepcopy
 from dataclasses import asdict, dataclass
 from datetime import UTC, date, datetime
 from enum import StrEnum
@@ -27,16 +28,28 @@ from science_agent.trajectory import TrajectoryEvent, TrajectoryWriter
 
 
 class ControllerCondition(StrEnum):
+    DIRECT = "direct"
+    SELF_DEBUG = "self_debug"
     REACTIVE = "reactive"
     PLAN_ONLY = "plan_only"
     PLAN_RETRY_REPLAN = "plan_retry_replan"
 
     @property
     def planning(self) -> bool:
-        return self is not ControllerCondition.REACTIVE
+        return self in {
+            ControllerCondition.PLAN_ONLY,
+            ControllerCondition.PLAN_RETRY_REPLAN,
+        }
 
     @property
     def retry(self) -> bool:
+        return self in {
+            ControllerCondition.SELF_DEBUG,
+            ControllerCondition.PLAN_RETRY_REPLAN,
+        }
+
+    @property
+    def replan_on_retry(self) -> bool:
         return self is ControllerCondition.PLAN_RETRY_REPLAN
 
 
@@ -278,6 +291,17 @@ class MRIScienceAgent:
                         {"reason": "retry_reservation"},
                     )
                     break
+                if not config.condition.replan_on_retry:
+                    sequence = self._transition(
+                        writer,
+                        sequence,
+                        config,
+                        task,
+                        machine,
+                        ledger,
+                        AgentPhase.EXECUTING,
+                    )
+                    continue
                 sequence = self._transition(
                     writer,
                     sequence,
@@ -375,7 +399,12 @@ class MRIScienceAgent:
                     instructions=config.instructions,
                     input_text=_policy_input(task, config.condition, machine.phase, history),
                     max_output_tokens=config.max_output_tokens,
-                    output_schema=config.action_schema,
+                    output_schema=_phase_action_schema(
+                        config.action_schema,
+                        task,
+                        machine.phase,
+                        history,
+                    ),
                 )
             )
             actual = BudgetUsage(
@@ -595,6 +624,42 @@ def _policy_input(
         sort_keys=True,
         separators=(",", ":"),
     )
+
+
+def _phase_action_schema(
+    base_schema: Mapping[str, Any],
+    task: TaskSpec,
+    phase: AgentPhase,
+    history: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Narrow a compatible action schema to the single kind allowed by runtime state."""
+    schema = deepcopy(dict(base_schema))
+    properties = schema.get("properties")
+    if not isinstance(properties, dict):
+        return schema
+    kind_property = properties.get("kind")
+    name_property = properties.get("name")
+    if not isinstance(kind_property, dict) or not isinstance(name_property, dict):
+        return schema
+    if phase in {AgentPhase.PLANNING, AgentPhase.REPLANNING}:
+        expected_kind = ActionKind.PLAN.value
+        allowed_names = ["draft_plan" if phase is AgentPhase.PLANNING else "revise_plan"]
+    elif _last_observation_succeeded(history):
+        expected_kind = ActionKind.FINAL.value
+        allowed_names = ["submit"]
+    else:
+        expected_kind = ActionKind.TOOL.value
+        allowed_names = list(task.allowed_tools)
+    kind_property["enum"] = [expected_kind]
+    name_property["enum"] = allowed_names
+    return schema
+
+
+def _last_observation_succeeded(history: list[dict[str, Any]]) -> bool:
+    if not history:
+        return False
+    observation = history[-1].get("observation")
+    return isinstance(observation, dict) and observation.get("ok") is True
 
 
 def _action_record(action: Action) -> dict[str, Any]:

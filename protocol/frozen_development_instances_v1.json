@@ -1,0 +1,25 @@
+{
+  "manifest_version": "1",
+  "purpose": "development calibration and deterministic dry-run only",
+  "scientific_unit_warning": "Generator seeds, difficulty variants, and voxels are not independent biological subjects.",
+  "instances": [
+    {"instance_id": "MRI-easy-01", "family": "mri_multicoil", "dependence_group": "MRI-anatomy-1101", "seed": 1101, "difficulty": "easy", "matrix_size": 64, "coils": 8, "acceleration": 4.0, "relative_noise": 0.01},
+    {"instance_id": "MRI-easy-02", "family": "mri_multicoil", "dependence_group": "MRI-anatomy-1102", "seed": 1102, "difficulty": "easy", "matrix_size": 64, "coils": 8, "acceleration": 4.0, "relative_noise": 0.01},
+    {"instance_id": "MRI-easy-03", "family": "mri_multicoil", "dependence_group": "MRI-anatomy-1103", "seed": 1103, "difficulty": "easy", "matrix_size": 64, "coils": 8, "acceleration": 4.0, "relative_noise": 0.01},
+    {"instance_id": "MRI-medium-01", "family": "mri_multicoil", "dependence_group": "MRI-anatomy-1101", "seed": 1101, "difficulty": "medium", "matrix_size": 64, "coils": 8, "acceleration": 6.0, "relative_noise": 0.02},
+    {"instance_id": "MRI-medium-02", "family": "mri_multicoil", "dependence_group": "MRI-anatomy-1102", "seed": 1102, "difficulty": "medium", "matrix_size": 64, "coils": 8, "acceleration": 6.0, "relative_noise": 0.02},
+    {"instance_id": "MRI-medium-03", "family": "mri_multicoil", "dependence_group": "MRI-anatomy-1103", "seed": 1103, "difficulty": "medium", "matrix_size": 64, "coils": 8, "acceleration": 6.0, "relative_noise": 0.02},
+    {"instance_id": "MRI-hard-01", "family": "mri_multicoil", "dependence_group": "MRI-anatomy-1101", "seed": 1101, "difficulty": "hard", "matrix_size": 64, "coils": 8, "acceleration": 8.0, "relative_noise": 0.04},
+    {"instance_id": "MRI-hard-02", "family": "mri_multicoil", "dependence_group": "MRI-anatomy-1102", "seed": 1102, "difficulty": "hard", "matrix_size": 64, "coils": 8, "acceleration": 8.0, "relative_noise": 0.04},
+    {"instance_id": "MRI-hard-03", "family": "mri_multicoil", "dependence_group": "MRI-anatomy-1103", "seed": 1103, "difficulty": "hard", "matrix_size": 64, "coils": 8, "acceleration": 8.0, "relative_noise": 0.04},
+    {"instance_id": "MRSI-easy-01", "family": "mrsi_nuisance", "dependence_group": "MRSI-field-2101", "seed": 2101, "difficulty": "easy", "grid_size": 4, "spectral_points": 256},
+    {"instance_id": "MRSI-easy-02", "family": "mrsi_nuisance", "dependence_group": "MRSI-field-2102", "seed": 2102, "difficulty": "easy", "grid_size": 4, "spectral_points": 256},
+    {"instance_id": "MRSI-easy-03", "family": "mrsi_nuisance", "dependence_group": "MRSI-field-2103", "seed": 2103, "difficulty": "easy", "grid_size": 4, "spectral_points": 256},
+    {"instance_id": "MRSI-moderate-01", "family": "mrsi_nuisance", "dependence_group": "MRSI-field-2101", "seed": 2101, "difficulty": "moderate", "grid_size": 4, "spectral_points": 256},
+    {"instance_id": "MRSI-moderate-02", "family": "mrsi_nuisance", "dependence_group": "MRSI-field-2102", "seed": 2102, "difficulty": "moderate", "grid_size": 4, "spectral_points": 256},
+    {"instance_id": "MRSI-moderate-03", "family": "mrsi_nuisance", "dependence_group": "MRSI-field-2103", "seed": 2103, "difficulty": "moderate", "grid_size": 4, "spectral_points": 256},
+    {"instance_id": "MRSI-hard-01", "family": "mrsi_nuisance", "dependence_group": "MRSI-field-2101", "seed": 2101, "difficulty": "hard", "grid_size": 4, "spectral_points": 256},
+    {"instance_id": "MRSI-hard-02", "family": "mrsi_nuisance", "dependence_group": "MRSI-field-2102", "seed": 2102, "difficulty": "hard", "grid_size": 4, "spectral_points": 256},
+    {"instance_id": "MRSI-hard-03", "family": "mrsi_nuisance", "dependence_group": "MRSI-field-2103", "seed": 2103, "difficulty": "hard", "grid_size": 4, "spectral_points": 256}
+  ]
+}

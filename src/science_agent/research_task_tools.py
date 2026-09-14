@@ -15,6 +15,12 @@ from science_agent.container_executor import ContainerRequest, ContainerResult
 from science_agent.contracts import Observation, TaskSpec
 from science_agent.grading import GradeReport
 from science_agent.research.mri_multicoil import TASK_ID, grade_multicoil_reconstruction
+from science_agent.research.mrsi_nuisance import (
+    TASK_ID as MRSI_TASK_ID,
+)
+from science_agent.research.mrsi_nuisance import (
+    grade_complex_mrsi_nuisance,
+)
 from science_agent.tools import RegisteredTool, ToolRegistry, ToolResult
 
 
@@ -28,6 +34,13 @@ class ContainerExecutor(Protocol):
 
 @dataclass(frozen=True, slots=True)
 class MulticoilResearchBinding:
+    task: TaskSpec
+    tools: ToolRegistry
+    evaluator: Callable[[], GradeReport]
+
+
+@dataclass(frozen=True, slots=True)
+class ComplexMRSIResearchBinding:
     task: TaskSpec
     tools: ToolRegistry
     evaluator: Callable[[], GradeReport]
@@ -123,6 +136,96 @@ def bind_multicoil_reconstruction(
     )
 
 
+def bind_complex_mrsi_nuisance(
+    input_directory: Path,
+    evaluator_directory: Path,
+    output_directory: Path,
+    work_directory: Path,
+    executor: ContainerExecutor,
+) -> ComplexMRSIResearchBinding:
+    """Bind fixed MRSI paths while exposing only algorithmic choices."""
+    metadata = _read_metadata(input_directory / "task.json", task_id=MRSI_TASK_ID)
+    if output_directory.exists() or work_directory.exists():
+        raise ResearchTaskBindingError("output and work directories must not exist")
+    work_directory.mkdir(parents=True, exist_ok=False)
+    attempts = 0
+
+    def handler(arguments: Mapping[str, Any]) -> ToolResult:
+        nonlocal attempts
+        started = time.monotonic_ns()
+        try:
+            argv = _mrsi_candidate_argv(arguments)
+        except ResearchTaskBindingError as exc:
+            return ToolResult(
+                Observation(
+                    ok=False,
+                    code="invalid_nuisance_removal_choice",
+                    payload={"reason": str(exc)},
+                    retryable=True,
+                ),
+                BudgetUsage(tool_calls=1, wall_time_ms=_elapsed_ms(started)),
+            )
+        if output_directory.exists():
+            return ToolResult(
+                Observation(ok=False, code="output_already_finalized", retryable=False),
+                BudgetUsage(tool_calls=1, wall_time_ms=_elapsed_ms(started)),
+            )
+        attempts += 1
+        attempt_output = work_directory / f"attempt-{attempts:03d}"
+        result = executor.execute(ContainerRequest(input_directory, attempt_output, argv))
+        usage = BudgetUsage(
+            tool_calls=1,
+            wall_time_ms=result.duration_ms,
+            artifact_bytes=result.artifact_bytes,
+        )
+        if result.exit_code != 0:
+            return ToolResult(
+                Observation(
+                    ok=False,
+                    code="container_nuisance_removal_failed",
+                    payload={"exit_code": result.exit_code},
+                    retryable=True,
+                ),
+                usage,
+            )
+        payload = json.loads((attempt_output / "result.json").read_text(encoding="utf-8"))
+        if not isinstance(payload, dict):
+            raise ResearchTaskBindingError("container result must be an object")
+        shutil.copytree(attempt_output, output_directory)
+        return ToolResult(
+            Observation(
+                ok=True,
+                code="corrected_mrsi_artifacts_created",
+                payload={
+                    "method": payload.get("method"),
+                    "public_nuisance_residual": payload.get("reported_public_nuisance_residual"),
+                    "artifact_hashes": result.artifact_hashes,
+                },
+            ),
+            usage,
+        )
+
+    task = TaskSpec(
+        task_id=MRSI_TASK_ID,
+        schema_version=str(metadata["schema_version"]),
+        objective=(
+            "Remove water/lipid nuisance from complex MRSI under drift and lineshape "
+            "mismatch without silently attenuating metabolite signal."
+        ),
+        allowed_tools=("remove_complex_mrsi_nuisance",),
+        required_artifacts=("result.json", "corrected_spectra.npz"),
+        metadata=metadata,
+    )
+    maximum = BudgetUsage(tool_calls=1, wall_time_ms=60_000, artifact_bytes=4_194_304)
+    return ComplexMRSIResearchBinding(
+        task=task,
+        tools=ToolRegistry((RegisteredTool(task.allowed_tools[0], maximum, handler),)),
+        evaluator=lambda: grade_complex_mrsi_nuisance(
+            input_directory, evaluator_directory, output_directory
+        ),
+    )
+
+
 def _candidate_argv(arguments: Mapping[str, Any]) -> tuple[str, ...]:
     method = arguments.get("method")
     if method == "zero_filled":
@@ -161,9 +264,42 @@ def _candidate_argv(arguments: Mapping[str, Any]) -> tuple[str, ...]:
     )
 
 
-def _read_metadata(path: Path) -> dict[str, Any]:
+def _mrsi_candidate_argv(arguments: Mapping[str, Any]) -> tuple[str, ...]:
+    method = arguments.get("method")
+    if method == "fixed_projection":
+        if set(arguments) != {"method"}:
+            raise ResearchTaskBindingError("fixed_projection accepts only method")
+        return (
+            "python",
+            "-m",
+            "science_agent.research.mrsi_nuisance_runner",
+            "--method",
+            "fixed_projection",
+        )
+    if method != "adaptive_projection" or set(arguments) != {"method", "shift_steps"}:
+        raise ResearchTaskBindingError("adaptive_projection requires method and shift_steps")
+    shift_steps = arguments["shift_steps"]
+    if (
+        isinstance(shift_steps, bool)
+        or not isinstance(shift_steps, int)
+        or not 5 <= shift_steps <= 41
+        or shift_steps % 2 == 0
+    ):
+        raise ResearchTaskBindingError("shift_steps must be an odd integer in [5, 41]")
+    return (
+        "python",
+        "-m",
+        "science_agent.research.mrsi_nuisance_runner",
+        "--method",
+        "adaptive_projection",
+        "--shift-steps",
+        str(shift_steps),
+    )
+
+
+def _read_metadata(path: Path, *, task_id: str = TASK_ID) -> dict[str, Any]:
     value = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(value, dict) or value.get("task_id") != TASK_ID:
+    if not isinstance(value, dict) or value.get("task_id") != task_id:
         raise ResearchTaskBindingError("task metadata is invalid")
     return value
 

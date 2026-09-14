@@ -14,7 +14,7 @@ Can a reconstruction tool return normally, produce schema-valid reproducible art
 - seed 1301, retained only for this endpoint fixture;
 - reconstruction: zero-filled multi-coil adjoint;
 - container controls: no network, read-only root/input, non-root, dropped capabilities, hard resources;
-- research image: `sha256:83f2faaf0f3e7556b29867b343e75448fe5bd3c4028d486b84439aa5676d1e84`;
+- research image: `sha256:fbb0cde9a40ec156133c67b434a719615f8b2bc3df7744e1087911a0bb950f1c`;
 - hidden comparison: fixed SENSE-CG conventional baseline, λ=0.003, 40 iterations.
 
 ## Result

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1",
+  "required_common_fields": ["figure_id", "data_status", "source_revision", "analysis_command"],
+  "allowed_data_status": ["task_calibration", "deterministic_dry_run", "frozen_real_model_result"],
+  "figure_contracts": {
+    "figure_2_task_physics": {
+      "required_fields": ["family", "instance_id", "difficulty", "naive_metrics", "conventional_metrics", "oracle_metrics", "artifact_hashes"]
+    },
+    "figure_3_agent_endpoints": {
+      "required_fields": ["condition", "instance_id", "repetition", "technically_completed", "scientifically_valid", "invalidity_detected", "eligible_denominator", "exclusion_code"]
+    },
+    "figure_4_efficiency": {
+      "required_fields": ["condition", "instance_id", "provider_input_tokens", "provider_output_tokens", "estimated_cost_microusd", "wall_time_ms", "tool_calls", "retries"]
+    },
+    "figure_5_failures": {
+      "required_fields": ["family", "instance_id", "condition", "failure_code", "public_observation", "hidden_metrics", "agent_validity_assessment", "artifact_hashes"]
+    }
+  },
+  "prohibitions": [
+    "No placeholder numbers in a result-status dataset.",
+    "No scripted/deterministic dry-run values may be labeled as model or agent effects.",
+    "No seed or voxel may be counted as an independent biological subject.",
+    "No hidden evaluator field may enter policy-visible task metadata or observations."
+  ]
+}

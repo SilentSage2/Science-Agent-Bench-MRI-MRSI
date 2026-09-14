@@ -187,8 +187,14 @@ def _parse_action(text: str) -> Action:
         raise ModelAdapterError("OpenAI structured output is not valid JSON") from exc
     if not isinstance(decoded, Mapping):
         raise ModelAdapterError("OpenAI structured output is not a JSON object")
+    normalized = dict(decoded)
+    arguments = normalized.get("arguments")
+    if isinstance(arguments, Mapping):
+        normalized["arguments"] = {
+            key: value for key, value in arguments.items() if value is not None
+        }
     try:
-        return Action.from_dict(decoded)
+        return Action.from_dict(normalized)
     except ContractError as exc:
         raise ModelAdapterError("OpenAI structured output violates the Action contract") from exc
 
