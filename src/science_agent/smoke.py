@@ -14,10 +14,13 @@ from science_agent.grading import GradeReport
 from science_agent.state import AgentPhase, AgentStateMachine
 from science_agent.tasks import (
     create_mri_leakage_fixture,
+    create_mri_reconstruction_fixture,
     create_mrs_fit_fixture,
     grade_mri_leakage,
+    grade_mri_reconstruction,
     grade_mrs_fit,
     solve_mri_leakage_reference,
+    solve_mri_reconstruction_reference,
     solve_mrs_fit_reference,
 )
 from science_agent.trajectory import TrajectoryEvent, TrajectoryWriter, sha256_file
@@ -59,6 +62,21 @@ def run_smoke(output_root: Path) -> dict[str, object]:
             lambda path: create_mri_leakage_fixture(path, seed=2301, include_violations=True),
             solve_mri_leakage_reference,
             grade_mri_leakage,
+        ),
+        (
+            "SAB-MRI-RECON-001-dev-1",
+            lambda path: create_mri_reconstruction_fixture(
+                path,
+                path.parent / "evaluator",
+                seed=3101,
+                matrix_size=8,
+            ),
+            solve_mri_reconstruction_reference,
+            lambda inputs, outputs: grade_mri_reconstruction(
+                inputs,
+                inputs.parent / "evaluator",
+                outputs,
+            ),
         ),
     )
     runs: list[dict[str, object]] = []

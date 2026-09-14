@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from collections.abc import Mapping
+from dataclasses import asdict, dataclass, field
 from typing import Any
 
 
@@ -13,6 +14,7 @@ class GradeReport:
     scientifically_valid: bool
     reproducible: bool
     diagnostics: tuple[str, ...] = ()
+    metrics: Mapping[str, float] = field(default_factory=dict)
 
     @property
     def success(self) -> bool:
