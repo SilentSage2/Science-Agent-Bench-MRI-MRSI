@@ -41,6 +41,7 @@ Submit a standard abstract only if all of the following are true:
 4. Analysis is reproducible from one versioned command and includes uncertainty by 14 October.
 5. At least one substantive, honestly reportable outcome exists by 18 October. A well-supported null or negative result is acceptable; a harness-only result is not.
 6. An MR-domain collaborator reviews task validity, figures, and claims before submission.
+7. Every submitted figure passes the versioned paper-level evidence contract, statistical review, independent number verification, and rasterized SVG/PDF/PNG visual QA; no `PLANNED` or template panel is submitted as a result.
 
 If gates 1–4 fail, do not force a standard abstract. Reassess whether the 2027 call offers a registered-abstract track with rules comparable to the prior year; do not assume eligibility until the current call is public.
 
@@ -62,4 +63,4 @@ If gates 1–4 fail, do not force a standard abstract. Reassess whether the 2027
 
 Prepare one primary paired-results figure, one cost/efficiency figure, one MRI reconstruction example, one MRSI spectrum example, and one compact failure-taxonomy panel. The written abstract should distinguish the frozen primary comparison from pilot work and clearly state synthetic/public data provenance, limitations, and the absence of clinical claims.
 
-The detailed five-figure layout, reproducible data interfaces, preview-image requirements, and visual QA gates are frozen in the [ISMRM 2027 figure specification](ISMRM_2027_FIGURES.md).
+The detailed five-figure layout, claim/refutation contracts, frozen sample-selection rules, uncertainty requirements, reproducible data interfaces, preview-image requirements, and visual QA gates are frozen in the [ISMRM 2027 figure specification](ISMRM_2027_FIGURES.md). Every result-dependent figure remains explicitly `PLANNED` until real frozen experiments satisfy that contract.
