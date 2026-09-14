@@ -80,6 +80,7 @@ pytest
 
 See [model adapters](docs/MODEL_ADAPTERS.md) for the provider boundary, credential rules, and live-run requirements.
 The [ISMRM 2027 abstract plan](docs/ISMRM_2027_PLAN.md) defines a time-bounded 72-run experiment and explicit submission gates; it does not claim acceptance or completed research results.
+The [conference figure specification](docs/ISMRM_2027_FIGURES.md) defines five review figures, a separate preview image, immutable plotting inputs, and visual/scientific QA gates.
 
 Generated runs, datasets, provider responses, credentials, private evaluator fixtures, and model artifacts are ignored and must not be committed.
 

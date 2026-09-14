@@ -62,3 +62,4 @@ If gates 1–4 fail, do not force a standard abstract. Reassess whether the 2027
 
 Prepare one primary paired-results figure, one cost/efficiency figure, one MRI reconstruction example, one MRSI spectrum example, and one compact failure-taxonomy panel. The written abstract should distinguish the frozen primary comparison from pilot work and clearly state synthetic/public data provenance, limitations, and the absence of clinical claims.
 
+The detailed five-figure layout, reproducible data interfaces, preview-image requirements, and visual QA gates are frozen in the [ISMRM 2027 figure specification](ISMRM_2027_FIGURES.md).
