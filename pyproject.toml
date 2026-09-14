@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "science-agent-bench"
+version = "0.1.0"
+description = "A budget-controlled benchmark for scientific agent control loops"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = { text = "MIT" }
+authors = [{ name = "Ziyang Xu" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "mypy==1.15.0",
+  "pytest==8.3.5",
+  "ruff==0.9.10",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/science_agent"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "RUF"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+packages = ["science_agent"]
+mypy_path = "src"
+

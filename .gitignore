@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.venv/
+build/
+dist/
+
+# Run outputs, model responses, and local evaluator secrets are never committed.
+artifacts/
+runs/
+.env
+.env.*
+tasks/private/
+
