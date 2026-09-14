@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib
 import json
 from itertools import pairwise
 from pathlib import Path
@@ -222,11 +223,13 @@ def _svg_document(elements: list[str]) -> str:
 
 
 def _render_framework_png(path: Path, font_path: Path) -> None:
-    from PIL import Image, ImageDraw, ImageFont  # type: ignore[import-not-found]
+    image_module = importlib.import_module("PIL.Image")
+    image_draw = importlib.import_module("PIL.ImageDraw")
+    image_font = importlib.import_module("PIL.ImageFont")
 
-    image = Image.new("RGB", (WIDTH, HEIGHT), PALETTE["paper"])
-    draw = ImageDraw.Draw(image)
-    fonts = _fonts(ImageFont, font_path)
+    image = image_module.new("RGB", (WIDTH, HEIGHT), PALETTE["paper"])
+    draw = image_draw.Draw(image)
+    fonts = _fonts(image_font, font_path)
     _png_header(
         draw, fonts, "Failure-aware MR agent evaluation", "IMPLEMENTED DESIGN · PRIMARY STUDY NO-GO"
     )
@@ -295,11 +298,13 @@ def _render_framework_png(path: Path, font_path: Path) -> None:
 
 
 def _render_calibration_png(data: dict[str, Any], path: Path, font_path: Path) -> None:
-    from PIL import Image, ImageDraw, ImageFont
+    image_module = importlib.import_module("PIL.Image")
+    image_draw = importlib.import_module("PIL.ImageDraw")
+    image_font = importlib.import_module("PIL.ImageFont")
 
-    image = Image.new("RGB", (WIDTH, HEIGHT), PALETTE["paper"])
-    draw = ImageDraw.Draw(image)
-    fonts = _fonts(ImageFont, font_path)
+    image = image_module.new("RGB", (WIDTH, HEIGHT), PALETTE["paper"])
+    draw = image_draw.Draw(image)
+    fonts = _fonts(image_font, font_path)
     _png_header(draw, fonts, "MR task calibration", "TASK MECHANISM ONLY · NO AGENT EFFECT")
     families = (
         ("mri_multicoil", "MRI magnitude NRMSE", 0.36),
@@ -370,9 +375,9 @@ def _png_arrow(draw: Any, x1: int, y1: int, x2: int, y2: int) -> None:
 
 
 def _phone_preview(source: Path, destination: Path) -> None:
-    from PIL import Image
+    image_module = importlib.import_module("PIL.Image")
 
-    with Image.open(source) as image:
+    with image_module.open(source) as image:
         height = round(image.height * 480 / image.width)
         image.resize((480, height)).save(destination)
 
