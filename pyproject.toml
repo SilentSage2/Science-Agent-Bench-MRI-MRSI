@@ -13,6 +13,7 @@ authors = [{ name = "Ziyang Xu" }]
 dependencies = []
 
 [project.scripts]
+sab-check-abstract = "science_agent.abstract_package:main"
 sab-agent-smoke = "science_agent.agent_smoke:main"
 sab-smoke = "science_agent.smoke:main"
 

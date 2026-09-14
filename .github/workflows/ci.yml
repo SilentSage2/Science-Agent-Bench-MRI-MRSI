@@ -27,5 +27,7 @@ jobs:
         run: mypy
       - name: Unit and integration tests
         run: pytest
+      - name: Check ISMRM abstract working limits
+        run: sab-check-abstract abstract
       - name: Offline mock smoke
         run: sab-smoke --output runs/ci-smoke

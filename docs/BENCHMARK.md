@@ -28,7 +28,7 @@ Report every task instance and macro averages rather than one opaque composite s
 
 ## Tasks and splits
 
-Seven generated CPU-only families cover MRS basis fitting, MRSI nuisance removal, undersampled MRI reconstruction, reconstruction QC, spectral/metabolite quantification, subject-level leakage detection, and dynamic MR model comparison. Each begins with two public development and three evaluator-isolated held-out instances. Generators, schemas, grader versions, and input hashes are frozen before a real-model comparison.
+Seven planned CPU-compatible families cover MRS basis fitting, MRSI nuisance removal, undersampled MRI reconstruction, reconstruction QC, spectral/metabolite quantification, subject-level leakage detection, and dynamic MR model comparison. Current small generated instances are development fixtures, not research-grade evidence. The primary held-out count must follow blinded sensitivity analysis; generators, schemas, grader versions, difficulty strata, conventional baselines, and input hashes freeze before a real-model comparison.
 
 Tasks evaluate computational research behavior only. They do not request diagnosis, prognosis, treatment selection, or patient-facing interpretation.
 
@@ -45,8 +45,8 @@ Secrets, authorization headers, hidden references, and private evaluator paramet
 - Unit and mock integration tests run offline on CPU.
 - One task receives at most 60 seconds, 1 GiB RAM, 64 processes, 1 MiB artifacts, and 256 KiB captured output.
 - The complete mock suite finishes within 10 minutes on a laptop CPU.
-- The first real-model comparison is capped at 100 runs and USD 30.
+- A pre-freeze pilot is capped at 100 runs and USD 30. The primary run/cost ceiling is set only after sensitivity and per-run-cost measurements; if it is unaffordable, the claim narrows instead of underpowering a confirmatory comparison.
 
 ## A1 completion gate
 
-A1 requires versioned contracts, deterministic graders and held-out instances for all seven families, a green offline mock suite, identical-budget execution of all three conditions, complete trajectories and artifact hashes, fail-closed budget/state/path tests, tested container denial controls, one frozen real-model comparison, and a README containing actual paired results, costs, failures, architecture, and exact reproduction commands.
+A1 requires at least two research-grade core MR families with conventional/naive/oracle references, sensitivity-justified held-out instances, direct and self-debug baselines plus identical-budget execution of all three controller conditions, a green offline mock suite, complete trajectories and artifact hashes, fail-closed budget/state/path tests, tested container denial controls, one frozen real-model comparison, MR-domain review, and a README containing actual paired effects, uncertainty, costs, failures, architecture, and exact reproduction commands. Additional families do not count toward A1 merely because toy fixtures exist.

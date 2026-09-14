@@ -31,7 +31,7 @@ Global rules:
 1. A framework or methods overview need not contain experimental statistics. It must be structurally accurate, independently captioned, and visually publication-ready. Every node and arrow maps to a released component or is explicitly labeled `PLANNED`; decorative or aspirational data flow is prohibited.
 2. Empirical plots use the frozen protocol and complete eligible run set. Filtering after viewing outcomes is prohibited; exclusions and missingness appear in the figure manifest.
 3. Reactive execution is the meaningful primary baseline. Plan-only is the planning ablation; plan plus retry/replan isolates the additional recovery mechanism. No controller claim may be made from an unpaired comparison.
-4. Primary uncertainty uses task instance as the paired resampling unit. The two repeated runs remain nested within instance-condition cells. Report `n=12` held-out instances and `72` scheduled runs, plus completed and excluded counts. Use a seeded, versioned 10,000-resample stratified cluster bootstrap across instances within task family for 95% intervals; label small-sample inference as exploratory. Report the paired point estimate even when its interval includes zero.
+4. Primary uncertainty uses independent task instance as the paired resampling unit; repeated model calls remain nested within instance-condition cells. Set `n` and repetition count by a blinded design-stage sensitivity analysis rather than deadline convenience, then report scheduled, completed, and excluded counts. Use a seeded, versioned task-family-stratified cluster bootstrap across instances for 95% intervals; label small-sample inference as exploratory. Report the paired point estimate even when its interval includes zero.
 5. Secondary metrics and injected-failure analyses are labeled secondary. Multiplicity is disclosed; isolated nominal significance is not promoted as a primary claim. A paired exact sign-flip/randomization sensitivity analysis is reported when its assumptions match the frozen estimand. Exact test choices and seeds must be frozen before the results are opened.
 6. Qualitative selection is deterministic. A displayed case never substitutes for the all-run distribution and always carries task ID, run ID, controller, grader score, threshold, and artifact hash.
 7. Captions stand alone: population, `n`, comparison, metric direction, interval method, selection rule, abbreviations, and limitation are stated when applicable without overstating causality or generalization.
@@ -46,7 +46,7 @@ Global rules:
 
 **Would weaken/refute the statement:** any condition-specific prompt, tool, budget, task exposure, hidden-reference access, or non-paired instance assignment. Such a discrepancy blocks the figure and the primary comparison.
 
-**Analysis unit and selection:** all three frozen controllers and all four included task families; no sample selection. Solid styling denotes implemented components. Dashed styling is reserved for explicitly labeled planned research-grade tool bindings and may not be visually conflated with released components.
+**Analysis unit and selection:** every frozen included family and all primary/baseline conditions; no sample selection. Solid styling denotes implemented components. Dashed styling is reserved for explicitly labeled planned research-grade tool bindings and may not be visually conflated with released components.
 
 **Statistics:** not applicable. This figure describes the frozen design and must not imply an observed effect.
 
@@ -92,9 +92,9 @@ Global rules:
 
 **Support/refutation rule:** support requires a positive paired effect with its 95% interval and task-family consistency shown. An interval spanning zero is reported as inconclusive; a negative estimate supports harm. No wording of “improves” is allowed solely from a higher aggregate pass count.
 
-**Baseline and ablations:** reactive is the primary baseline; plan-only isolates initial planning; plan plus retry/replan versus plan-only isolates bounded recovery.
+**Baseline and ablations:** reactive is the primary controller baseline; plan-only isolates initial planning; plan plus retry/replan versus plan-only isolates bounded recovery. Direct generation and budget-matched self-debug are competitive agent baselines. Conventional, naive, and oracle MR methods calibrate task difficulty and validity but are not pooled with agent effects.
 
-**Sample and statistics:** 12 held-out task instances × 3 controllers × 2 repetitions = 72 scheduled runs. The primary estimand is the paired difference in mean scientific-validity completion, averaging repetitions within each instance-condition cell. Show the seeded 10,000-resample task-family-stratified cluster-bootstrap 95% interval, denominators, incomplete runs, and prespecified exclusions.
+**Sample and statistics:** the independent-instance and repetition counts remain `PLANNED` until a blinded design-stage sensitivity analysis is committed. The primary estimand is the paired difference in mean scientific-validity completion, averaging repetitions within each instance-condition cell. Show the seeded task-family-stratified cluster-bootstrap 95% interval, raw paired outcomes, denominators, incomplete runs, and prespecified exclusions.
 
 **Panels**
 
@@ -102,7 +102,7 @@ Global rules:
 - **B:** paired effect estimates for plan-only and retry/replan versus reactive, with 95% intervals;
 - **C:** family-stratified effects and denominators.
 
-**Data dependency:** frozen 72-run primary comparison plus versioned paired analysis. Intervals and resampling unit must match the analysis plan.
+**Data dependency:** sensitivity-justified frozen primary comparison plus versioned paired analysis. Intervals and resampling unit must match the analysis plan.
 
 **Draft caption template:** Paired scientific-validity outcomes across four MRI/MRSI task families. The matrix shows every frozen instance and repetition; effect estimates compare each structured controller with reactive execution using task-instance pairing. Points denote [ESTIMAND] and intervals denote [METHOD]. Values are inserted only by the frozen analysis command.
 
@@ -114,7 +114,7 @@ Global rules:
 
 **Would weaken/refute the claims:** overlapping paired uncertainty, worse cost per valid completion, incomplete provider usage, or no improvement over plan-only in the injected-failure subset. Null and adverse results remain in the figure.
 
-**Baseline, ablations, and statistics:** use the same 12 paired instances and nested repetitions as Figure 3. Contrast both structured controllers with reactive for efficiency and retry/replan with plan-only for recovery. Show raw paired instance points where legible and the same seeded cluster-bootstrap interval definition. Analyze injected failures separately from the 72-run primary endpoint and report their exact `n`; never pool them into the primary success estimate.
+**Baseline, ablations, and statistics:** use the same sensitivity-justified paired instances and nested repetitions as Figure 3. Contrast structured controllers with reactive, direct, and self-debug for efficiency and retry/replan with plan-only for recovery. Show raw paired instance points where legible and the same seeded cluster-bootstrap interval definition. Analyze injected failures separately from the primary endpoint and report their exact `n`; never pool them into the primary success estimate.
 
 **Panels**
 
@@ -173,7 +173,7 @@ The sidecar must additionally record figure status (`PLANNED`, `DESIGN`, or `RES
 | 20 Sep | Figure 1 wireframe, palette, typography, and panel grid frozen |
 | 27 Sep | Figure 2 generated from frozen development fixtures |
 | 30 Sep | Empty Figure 3–5 templates pass data-schema tests |
-| 10 Oct | Primary data frozen; no visual tuning based on desired conclusions |
+| 10 Oct | Sensitivity-justified primary data frozen; no visual tuning based on desired conclusions |
 | 14 Oct | First complete Figure 3–5 render and captions |
 | 18 Oct | MR-domain scientific review and statistical review complete |
 | 22 Oct | Phone-size, grayscale, PDF/SVG/PNG, and caption-length QA complete |

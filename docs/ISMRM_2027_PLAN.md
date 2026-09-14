@@ -2,7 +2,7 @@
 
 ## Decision
 
-Target a standard ISMRM abstract only if the benchmark produces frozen, paired real-model results by 18 October 2026. The repository itself, reference-solver smoke test, or adapter implementation is not a scientific result.
+Target a standard ISMRM abstract only if research-grade core tasks and a sensitivity-justified, frozen, paired real-model study produce an informative MR-specific result by 18 October 2026. The repository itself, reference-solver smoke test, adapter, container, abstract draft, or figures are not scientific results.
 
 The official 2027 meeting page lists abstract submission from 1–28 October 2026 for the 8–13 May 2027 meeting in Vancouver. The detailed 2027 call is not yet publicly readable as of 14 September, so format details below use the prior standard-abstract guidance only as a planning assumption and must be rechecked when submissions open.
 
@@ -14,34 +14,39 @@ The official 2027 meeting page lists abstract submission from 1–28 October 202
 
 Under identical model, task, tool, token, cost, retry, and execution budgets, do structured planning and one failure-aware replan improve scientifically valid completion of MRI/MRSI computational experiments over a reactive agent?
 
-Candidate title: **Failure-aware planning improves the validity of autonomous MRI/MRSI computational experiments under fixed budgets**
+Working title: **Failure-aware planning for scientifically valid autonomous MRI/MRSI experiments under fixed budgets**
+
+The neutral wording is mandatory until the frozen paired effect supports a directional claim. The title is 99 characters under the repository validator.
 
 This framing makes the contribution an MR research-methods study rather than a generic agent demo. Claims must remain computational and research-facing, with no diagnosis or patient-care interpretation.
 
-## Minimum submission dataset
+## Minimum submission evidence
 
-- Four frozen MR-specific task families already implemented: MRS basis-model selection, MRSI nuisance removal, MRI/MRSI leakage audit, and undersampled MRI reconstruction.
-- Three evaluator-isolated held-out instances per family.
-- Three frozen controller conditions: reactive, plan-only, and plan plus bounded retry/replan.
-- Two independent repetitions for every condition-instance pair: 72 primary runs total.
+- Two research-grade core families: MRSI nuisance removal and undersampled MRI reconstruction. Current small generated fixtures are development tests and do not satisfy this gate.
+- Realistic noise/mismatch/difficulty strata plus public/challenge-derived evaluation or literature-justified simulation ranges; MRS selection and leakage audit remain secondary unless they pass the same gate.
+- An evaluator-isolated held-out set whose independent-instance count is selected by a blinded design-stage sensitivity analysis. Seeds and repeated calls are not counted as independent task instances.
+- Three frozen controller conditions: reactive, plan-only, and plan plus bounded retry/replan, with budget-auditable direct and self-debug baselines.
+- Conventional non-agent MR baselines, a naive method, and an oracle/sanity ceiling for each core family.
+- A frozen repetition count and total run matrix derived from sensitivity, cost, and missingness planning; the earlier 72-run schedule is only a minimum pilot.
 - One pinned model snapshot, prompt set, tool schema set, executor image, grader version, and budget specification.
 - Separate outcomes for task success, scientific validity, reproducibility, policy violations, tokens, cost, tool calls, retries, and wall time.
 - Paired instance-level analysis with uncertainty; no claim based only on aggregate pass counts.
 - Failure taxonomy with representative MRI/MRSI artifacts, spectra, or reconstructions.
 
-The remaining three planned task families are desirable but not required for the first abstract. Adding breadth must not delay a reproducible four-family experiment.
+Additional task breadth is desirable but must not displace depth, baseline quality, domain review, or an interpretable primary interval.
 
 ## Go/no-go gates
 
 Submit a standard abstract only if all of the following are true:
 
 1. Live orchestration and isolated execution pass adversarial tests by 24 September.
-2. Task prompts, held-out instances, graders, budgets, and model settings freeze by 30 September.
-3. All 72 primary runs finish with complete trajectories and provider usage by 10 October.
+2. Core research tools, conventional baselines, task prompts, held-out instances, graders, sample-size design, budgets, and model settings freeze by 30 September.
+3. The complete frozen primary run matrix finishes with trajectories and provider usage by 10 October.
 4. Analysis is reproducible from one versioned command and includes uncertainty by 14 October.
 5. At least one substantive, honestly reportable outcome exists by 18 October. A well-supported null or negative result is acceptable; a harness-only result is not.
 6. An MR-domain collaborator reviews task validity, figures, and claims before submission.
 7. Every submitted figure passes the versioned paper-level evidence contract, statistical review, independent number verification, and rasterized SVG/PDF/PNG visual QA; no `PLANNED` or template panel is submitted as a result.
+8. Title, four-part Synopsis, Impact, body, captions, figures, table, README, and conclusion resolve to the same frozen fact map and pass the versioned abstract-package validator.
 
 If gates 1–4 fail, do not force a standard abstract. Reassess whether the 2027 call offers a registered-abstract track with rules comparable to the prior year; do not assume eligibility until the current call is public.
 
@@ -51,8 +56,8 @@ If gates 1–4 fail, do not force a standard abstract. Reassess whether the 2027
 |---|---|
 | 14–20 Sep | Model adapter, live controller boundary, isolated executor design, abstract analysis plan |
 | 21–24 Sep | End-to-end live pilot, injected-failure tests, provider usage/cost accounting |
-| 25–30 Sep | Three held-out instances per family; freeze protocol and hashes |
-| 1–10 Oct | Run the 72-run comparison; rerun only under predeclared failure rules |
+| 25–30 Sep | Sensitivity analysis; held-out set; freeze protocol, baselines, and hashes |
+| 1–10 Oct | Run the frozen comparison matrix; rerun only under predeclared failure rules |
 | 11–14 Oct | Paired analysis, uncertainty, failure taxonomy, figure generation |
 | 15–18 Oct | Draft title, synopsis, impact statement, body, and figures |
 | 19–24 Oct | MR collaborator review and one revision cycle |
@@ -66,3 +71,5 @@ This repository is one of two intended ISMRM target projects. Keep its experimen
 Prepare one paper-level overall framework/method overview, one MR task/grader gallery, one primary paired-results figure, one efficiency/recovery figure, and one prespecified success/boundary/failure analysis. Figure 1 is not required to be an experiment plot: it must accurately show implemented inputs, core components, execution/feedback flow, outputs, and evaluation, distinguish planned elements, provide a standalone caption, and ship as an editable vector master. The empirical figures must satisfy the frozen baseline/ablation, sample-size, uncertainty, reproducibility, and visual-QA gates. The written abstract should distinguish the frozen primary comparison from pilot work and clearly state synthetic/public data provenance, limitations, and the absence of clinical claims.
 
 The detailed five-figure layout, claim/refutation contracts, frozen sample-selection rules, uncertainty requirements, reproducible data interfaces, preview-image requirements, and visual QA gates are frozen in the [ISMRM 2027 figure specification](ISMRM_2027_FIGURES.md). Every result-dependent figure remains explicitly `PLANNED` until real frozen experiments satisfy that contract.
+
+The [submission-facing abstract package](../abstract/README.md) contains the format/evidence contract, current structured draft, cross-artifact fact map, captions, and automated working-limit check. Its experiment-to-package table maps protocol, primary outcomes, efficiency, recovery, and failure taxonomy into Synopsis, Impact, body sections, and Figures 1–5. The [research quality audit](RESEARCH_QUALITY_AUDIT.md) supersedes any schedule-driven claim that the old 12-instance/72-run plan was automatically adequate.
