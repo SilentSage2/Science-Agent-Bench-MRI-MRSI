@@ -20,7 +20,7 @@ def event(sequence: int) -> TrajectoryEvent:
         sequence=sequence,
         timestamp_utc="2026-09-14T16:00:00Z",
         run_id="run-1",
-        task_id="SAB-FIT-001-dev-1",
+        task_id="SAB-MRS-FIT-001-dev-1",
         event_type="state_transition",
         state_before=AgentPhase.READY,
         state_after=AgentPhase.EXECUTING,
@@ -60,4 +60,3 @@ class TrajectoryTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

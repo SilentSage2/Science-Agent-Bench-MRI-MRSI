@@ -21,4 +21,3 @@ __all__ = [
     "TrajectoryWriter",
     "sha256_file",
 ]
-

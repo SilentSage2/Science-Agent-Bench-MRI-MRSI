@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass, field
 from enum import StrEnum
-from typing import Any, Mapping
+from typing import Any
 
 
 class ContractError(ValueError):
@@ -30,7 +31,7 @@ def _non_empty(value: str, field_name: str) -> str:
 
 
 def _string_tuple(value: object, field_name: str) -> tuple[str, ...]:
-    if not isinstance(value, (list, tuple)):
+    if not isinstance(value, list | tuple):
         raise ContractError(f"{field_name} must be a sequence of strings")
     result = tuple(value)
     if not all(isinstance(item, str) and item.strip() for item in result):
@@ -85,9 +86,7 @@ class TaskSpec:
                 schema_version=str(data["schema_version"]),
                 objective=str(data["objective"]),
                 allowed_tools=_string_tuple(data["allowed_tools"], "allowed_tools"),
-                required_artifacts=_string_tuple(
-                    data["required_artifacts"], "required_artifacts"
-                ),
+                required_artifacts=_string_tuple(data["required_artifacts"], "required_artifacts"),
                 metadata=_mapping(data.get("metadata", {}), "metadata"),
             )
         except (KeyError, TypeError) as exc:

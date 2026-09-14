@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass, fields
 from typing import Final
 
-
 _DIMENSIONS: Final = (
     "input_tokens",
     "output_tokens",

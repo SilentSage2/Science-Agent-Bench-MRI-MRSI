@@ -2,7 +2,7 @@
 
 ## Hypotheses
 
-Under identical model, task, tool, token, cost, execution, and retry budgets:
+Under identical model, MRI/MRSI task, tool, token, cost, execution, and retry budgets:
 
 1. a structured initial plan improves valid task completion over a reactive loop;
 2. typed retry and one bounded replan recover execution failures more efficiently than repetition;
@@ -28,7 +28,9 @@ Report every task instance and macro averages rather than one opaque composite s
 
 ## Tasks and splits
 
-Seven generated CPU-only families cover linear-model audit, decay estimation, numerical convergence, spectral peak recovery, two-sample simulation, leakage detection, and competing ODE models. Each begins with two public development and three evaluator-isolated held-out instances. Generators, schemas, grader versions, and input hashes are frozen before a real-model comparison.
+Seven generated CPU-only families cover MRS basis fitting, MRSI nuisance removal, undersampled MRI reconstruction, reconstruction QC, spectral/metabolite quantification, subject-level leakage detection, and dynamic MR model comparison. Each begins with two public development and three evaluator-isolated held-out instances. Generators, schemas, grader versions, and input hashes are frozen before a real-model comparison.
+
+Tasks evaluate computational research behavior only. They do not request diagnosis, prognosis, treatment selection, or patient-facing interpretation.
 
 The deterministic mock policy is the CI oracle. At least one replaceable real-model adapter must complete all three experimental conditions before A1 makes a result claim. Provider comparison is not an A1 hypothesis.
 
@@ -48,4 +50,3 @@ Secrets, authorization headers, hidden references, and private evaluator paramet
 ## A1 completion gate
 
 A1 requires versioned contracts, deterministic graders and held-out instances for all seven families, a green offline mock suite, identical-budget execution of all three conditions, complete trajectories and artifact hashes, fail-closed budget/state/path tests, tested container denial controls, one frozen real-model comparison, and a README containing actual paired results, costs, failures, architecture, and exact reproduction commands.
-

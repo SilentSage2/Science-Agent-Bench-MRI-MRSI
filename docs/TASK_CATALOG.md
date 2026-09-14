@@ -4,15 +4,14 @@ All task families require `outputs/result.json`, reject unknown fields, and expo
 
 | Family | Required evidence | Deterministic scientific check |
 |---|---|---|
-| `SAB-FIT-001` | selected model, coefficients, train/test RMSE, residual diagnostics, test predictions | Submitted predictions reproduce coefficients and selected model has lower held-out error |
-| `SAB-DECAY-001` | decay, interval, nuisance parameters, weighted RMSE, method and conclusion | Fit beats constant baseline; interval contains hidden parameter or correctly reports non-identifiability |
-| `SAB-NUM-001` | estimates/errors by step count, observed order, selected estimate | Independent reference confirms error decrease and expected convergence order |
-| `SAB-SPECTRUM-001` | method, baseline, prominence, ordered peak table | One-to-one hidden-peak matching passes precision and recall thresholds |
-| `SAB-SIM-001` | descriptives, effect, interval, p-value, method, seed | Seeded independent recomputation matches and conclusion agrees with declared alternative |
-| `SAB-LEAK-001` | verdict, violation classes, row IDs, earliest timestamps | Exact independently derived violations, including clean-fixture false-positive checks |
-| `SAB-ODE-001` | parameters/errors for both models, status, prediction trajectories | Trajectories reproduce from bounded parameters and selection passes held-out margin |
+| `SAB-MRS-FIT-001` | selected metabolite basis model, coefficients, fit/held-out RMSE, residual diagnostics, predicted spectrum | Submitted spectrum reproduces coefficients and the selected NAA/Cr model has lower held-out error |
+| `SAB-MRSI-NUIS-001` | corrected spectra, water/lipid suppression metrics, retained-metabolite error | Independent masks verify nuisance reduction without unacceptable metabolite loss |
+| `SAB-MRI-RECON-001` | reconstructed phantom, method/config, data-consistency residual, image metrics | Forward model confirms sampled k-space consistency and reference image metrics |
+| `SAB-MRI-QC-001` | artifact labels, affected slices/regions, severity and evidence table | Exact/tolerance matching recovers seeded motion, ghosting, spike, or bias-field artifacts |
+| `SAB-MRSI-QUANT-001` | metabolite maps, uncertainty, residual and failure masks | Hidden concentrations and corrupted-voxel masks verify quantitative error and calibration |
+| `SAB-MRI-LEAK-001` | verdict, violation classes, acquisition IDs, earliest timestamps | Exact independently derived subject overlap, future-feature, target-derived, and duplicate violations |
+| `SAB-DYNMR-001` | parameters/errors for two kinetic models, status, prediction curves | Curves reproduce from bounded parameters and selection passes held-out predictive margin |
 
 Each family starts with two development and three held-out instances, for 35 instances total. Hidden parameters are evaluator-only. Frozen-task corrections create a new suite version rather than silently changing an existing comparison.
 
 Required negative grader fixtures cover malformed records, unknown fields, missing or duplicate rows, wrong units, non-finite or out-of-tolerance values, inconsistent statistics, path traversal, oversized output, and unsupported conclusions. A lucky scalar answer without required evidence cannot pass scientific validity.
-

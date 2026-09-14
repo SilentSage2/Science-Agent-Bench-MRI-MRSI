@@ -1,0 +1,21 @@
+"""Generated scientific task fixtures and deterministic graders."""
+
+from science_agent.tasks.mri_leakage_audit import (
+    create_mri_leakage_fixture,
+    grade_mri_leakage,
+    solve_mri_leakage_reference,
+)
+from science_agent.tasks.mrs_spectral_fit import (
+    create_mrs_fit_fixture,
+    grade_mrs_fit,
+    solve_mrs_fit_reference,
+)
+
+__all__ = [
+    "create_mri_leakage_fixture",
+    "create_mrs_fit_fixture",
+    "grade_mri_leakage",
+    "grade_mrs_fit",
+    "solve_mri_leakage_reference",
+    "solve_mrs_fit_reference",
+]

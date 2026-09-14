@@ -5,12 +5,15 @@ build-backend = "hatchling.build"
 [project]
 name = "science-agent-bench"
 version = "0.1.0"
-description = "A budget-controlled benchmark for scientific agent control loops"
+description = "A budget-controlled benchmark for MRI and MRSI agent workflows"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 license = { text = "MIT" }
 authors = [{ name = "Ziyang Xu" }]
 dependencies = []
+
+[project.scripts]
+sab-smoke = "science_agent.smoke:main"
 
 [project.optional-dependencies]
 dev = [
@@ -38,4 +41,3 @@ python_version = "3.12"
 strict = true
 packages = ["science_agent"]
 mypy_path = "src"
-

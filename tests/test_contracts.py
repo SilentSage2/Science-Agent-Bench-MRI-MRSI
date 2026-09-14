@@ -10,7 +10,7 @@ class ContractTests(unittest.TestCase):
         with self.assertRaises(ContractError):
             TaskSpec.from_dict(
                 {
-                    "task_id": "SAB-FIT-001-dev-1",
+                    "task_id": "SAB-MRS-FIT-001-dev-1",
                     "schema_version": "1",
                     "objective": "Fit the declared models.",
                     "allowed_tools": ["python"],

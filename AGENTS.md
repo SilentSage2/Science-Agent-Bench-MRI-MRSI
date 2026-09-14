@@ -2,13 +2,15 @@
 
 ## Purpose
 
-Science Agent Bench measures which agent control-loop components improve small scientific-computing tasks under fixed model, token, cost, tool, retry, and execution budgets.
+Science Agent Bench measures which agent control-loop components improve reproducible MRI and MRSI computational experiments under fixed model, token, cost, tool, retry, and execution budgets.
 
 ## Scope
 
 - Keep the benchmark agent-neutral and provider adapters replaceable.
 - Preserve explicit typed interfaces for tasks, actions, observations, state, budgets, trajectories, executors, policies, and evaluators.
 - Use generated or public data with recorded provenance and licenses.
+- Keep tasks computational and research-facing; do not make clinical diagnosis or patient-care claims.
+- Prefer synthetic phantoms, spectra, and acquisition metadata before gated clinical datasets.
 - Treat model-authored code as untrusted. Never describe a subprocess wrapper as a secure sandbox.
 - Do not add multi-agent coordination, persistent cross-task memory, a web UI, or unrestricted shell execution before A1 is complete.
 
@@ -29,4 +31,3 @@ Science Agent Bench measures which agent control-loop components improve small s
 - Add tests for schemas, accounting, state transitions, serialization, artifact hashes, grader positive cases, and adversarial negative cases.
 - Run formatting, linting, typing, unit tests, and an offline mock smoke test before merging.
 - Never commit credentials, provider responses containing sensitive data, generated runs, private evaluator fixtures, datasets, or model artifacts.
-
