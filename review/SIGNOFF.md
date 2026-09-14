@@ -3,7 +3,7 @@
 Current decision: **NO-GO — UNSIGNED DEVELOPMENT PACKET**
 
 The current mechanically generated candidate lock is
-`protocol/candidate_freeze_v2.json`. It binds the reviewed implementation revision
+`protocol/candidate_freeze_v3.json`. It binds the reviewed implementation revision
 and immutable executor digest but deliberately keeps `primary_run_authorized` set
 to `false` until this signoff is complete.
 
