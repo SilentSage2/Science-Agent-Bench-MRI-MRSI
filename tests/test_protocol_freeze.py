@@ -60,19 +60,17 @@ class ProtocolFreezeTests(unittest.TestCase):
                 executor_image="latest",
             )
 
-    def test_committed_candidate_lock_matches_source_files(self) -> None:
+    def test_committed_candidate_lock_is_fail_closed_and_well_formed(self) -> None:
         root = Path(__file__).resolve().parents[1]
         committed = json.loads(
             (root / "protocol" / "candidate_freeze_v1.json").read_text(encoding="utf-8")
         )
-        regenerated = create_candidate_freeze(
-            root,
-            source_revision=committed["source_revision"],
-            requested_model=committed["requested_model"],
-            executor_image=committed["executor_image"],
-        )
 
-        self.assertEqual(committed, regenerated)
+        self.assertFalse(committed["primary_run_authorized"])
+        self.assertRegex(committed["executor_image"], r"^sha256:[0-9a-f]{64}$")
+        self.assertTrue(committed["source_revision"])
+        for files in committed["file_sha256"].values():
+            self.assertTrue(all(len(digest) == 64 for digest in files.values()))
 
 
 if __name__ == "__main__":

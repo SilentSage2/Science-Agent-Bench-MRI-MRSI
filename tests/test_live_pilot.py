@@ -9,6 +9,7 @@ from science_agent.agent import ControllerCondition
 from science_agent.contracts import Action, ActionKind
 from science_agent.live_pilot import (
     _action_schema,
+    _analysis_record,
     _canonicalize_action,
     _config,
     _select_balanced_instances,
@@ -91,6 +92,31 @@ class LivePilotConfigurationTests(unittest.TestCase):
                 "validity_assessment": "uncertain",
             },
         )
+
+    def test_analysis_record_retains_denominators_usage_and_missingness(self) -> None:
+        record = _analysis_record(
+            {
+                "family": "mri_multicoil",
+                "instance_id": "MRI-1",
+                "condition": "reactive",
+                "phase": "failed",
+                "usage": {
+                    "input_tokens": 100,
+                    "output_tokens": 20,
+                    "cost_microusd": 440,
+                    "wall_time_ms": 12,
+                    "tool_calls": 0,
+                    "retries": 0,
+                    "artifact_bytes": 0,
+                },
+                "retries": 0,
+                "silent_invalidity": None,
+            }
+        )
+
+        self.assertFalse(record["eligible_denominator"])
+        self.assertEqual(record["exclusion_code"], "failed")
+        self.assertEqual(record["provider_input_tokens"], 100)
 
 
 if __name__ == "__main__":

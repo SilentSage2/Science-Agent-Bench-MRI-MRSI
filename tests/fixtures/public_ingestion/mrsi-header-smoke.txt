@@ -1,0 +1,1 @@
+Synthetic metadata-only MRS ingestion smoke. No spectra or participant data.

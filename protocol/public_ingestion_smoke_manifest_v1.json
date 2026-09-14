@@ -1,0 +1,31 @@
+{
+  "manifest_version": "1",
+  "purpose": "metadata-only ingestion smoke; contains no source imaging, spectra, or participant data",
+  "records": [
+    {
+      "source_id": "nyu-fastmri",
+      "family": "mri_multicoil",
+      "subject_id": "synthetic-subject-mri",
+      "exam_id": "synthetic-exam-mri",
+      "acquisition_id": "synthetic-acq-mri",
+      "split": "development",
+      "relative_path": "mri-header-smoke.txt",
+      "sha256": "f7b71d698f55780242e538b89d82b9007e53f28b920d2f3e8de9c8ddc86af13b",
+      "access_approved": false,
+      "synthetic_metadata_only": true,
+      "metadata": {"anatomy": "synthetic-knee", "coil_count": 8, "matrix_shape": [64, 64], "acquisition": "synthetic-cartesian", "field_strength_t": 3.0}
+    },
+    {
+      "source_id": "ismrm-mrs-fitting-challenge-2016",
+      "family": "mrsi_nuisance",
+      "subject_id": "synthetic-subject-mrsi",
+      "acquisition_id": "synthetic-acq-mrsi",
+      "split": "development",
+      "relative_path": "mrsi-header-smoke.txt",
+      "sha256": "9d7f85c90f48826efe7d329ab3c5ca245f8fd14a5bf5615f6bd5b63fd0998053",
+      "access_approved": false,
+      "synthetic_metadata_only": true,
+      "metadata": {"nucleus": "1H", "field_strength_t": 3.0, "spectral_points": 256, "ppm_min": 0.5, "ppm_max": 5.0, "spectral_width_hz": 574.79596542}
+    }
+  ]
+}

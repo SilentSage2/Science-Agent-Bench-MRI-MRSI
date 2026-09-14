@@ -122,6 +122,7 @@ def run_live_pilot(
                 if result.grade is not None
                 else None
             )
+            identity = _trajectory_identity(agent_directory / "trajectory.jsonl")
             runs.append(
                 {
                     "run_id": result.run_id,
@@ -134,6 +135,7 @@ def run_live_pilot(
                     "retries": result.retries,
                     "grade": result.grade.to_dict() if result.grade else None,
                     "silent_invalidity": asdict(outcome) if outcome else None,
+                    "provider_identity": identity,
                 }
             )
     summary = {
@@ -151,11 +153,52 @@ def run_live_pilot(
         "committed_cost_microusd": committed_cost,
         "run_count": len(runs),
         "runs": runs,
+        "records": [_analysis_record(run) for run in runs],
     }
     (output_root / "summary.json").write_text(
         json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
     return summary
+
+
+def _trajectory_identity(path: Path) -> dict[str, list[str]]:
+    models: list[str] = []
+    response_ids: list[str] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        event = json.loads(line)
+        if event.get("event_type") != "model_action":
+            continue
+        payload = event.get("payload", {})
+        model = payload.get("model")
+        response_id = payload.get("response_id")
+        if isinstance(model, str):
+            models.append(model)
+        if isinstance(response_id, str):
+            response_ids.append(response_id)
+    return {"returned_models": models, "response_ids": response_ids}
+
+
+def _analysis_record(run: dict[str, Any]) -> dict[str, Any]:
+    outcome = run.get("silent_invalidity")
+    usage = run["usage"]
+    technically_completed = bool(outcome and outcome["technically_completed"])
+    return {
+        "family": run["family"],
+        "instance_id": run["instance_id"],
+        "condition": run["condition"],
+        "repetition": 0,
+        "technically_completed": technically_completed,
+        "scientifically_valid": bool(outcome and outcome["scientifically_valid"]),
+        "invalidity_detected": bool(outcome and outcome["invalidity_detected"]),
+        "eligible_denominator": technically_completed,
+        "exclusion_code": None if technically_completed else str(run["phase"]),
+        "provider_input_tokens": usage["input_tokens"],
+        "provider_output_tokens": usage["output_tokens"],
+        "estimated_cost_microusd": usage["cost_microusd"],
+        "wall_time_ms": usage["wall_time_ms"],
+        "tool_calls": usage["tool_calls"],
+        "retries": run["retries"],
+    }
 
 
 def _select_balanced_instances(instances: list[dict[str, Any]], limit: int) -> list[dict[str, Any]]:

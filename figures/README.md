@@ -16,3 +16,9 @@ Planned submission files:
 Each export will have a JSON sidecar recording its source hashes and rendering environment. See [the complete figure specification](../docs/ISMRM_2027_FIGURES.md).
 
 Paper-level acceptance requires SVG, font-embedded PDF, and high-resolution PNG outputs; a standalone caption; exact denominators and uncertainty where applicable; deterministic success/boundary/failure selection; color-vision, grayscale, final-size, and clipping QA; independent numeric verification; and MR-domain signoff. Portfolio/demo-quality graphics do not pass this gate. Complete [the figure QA record](FIGURE_QA_TEMPLATE.md) separately for every candidate figure.
+
+The `sab-analyze-paired` command now creates validated JSON inputs for Figures 3
+and 4. Development checkout exports carry
+`result_figure_eligible=false`; only an explicitly frozen real-model dataset can
+set it true. Rendering remains planned, because a plotting template with
+plausible numbers would be easy to mistake for a result.

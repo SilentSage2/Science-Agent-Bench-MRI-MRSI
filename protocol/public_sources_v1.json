@@ -1,0 +1,23 @@
+{
+  "source_registry_version": "1",
+  "sources": [
+    {
+      "source_id": "nyu-fastmri",
+      "family": "mri_multicoil",
+      "url": "https://fastmri.med.nyu.edu/",
+      "access": "account and current data-use agreement required",
+      "repository_release_policy": "code, metadata schema, split IDs and integrity hashes only; no source or derived imaging data",
+      "split_keys": ["subject_id", "exam_id"],
+      "required_mapping": ["anatomy", "coil_count", "matrix_shape", "acquisition", "field_strength_t"]
+    },
+    {
+      "source_id": "ismrm-mrs-fitting-challenge-2016",
+      "family": "mrsi_nuisance",
+      "url": "https://www.ismrm.org/workshops/Spectroscopy16/mrs_fitting_challenge/",
+      "access": "public page; dataset-specific reuse terms must be documented before data ingestion",
+      "repository_release_policy": "do not redistribute until explicit terms are verified",
+      "split_keys": ["subject_id", "acquisition_id"],
+      "required_mapping": ["nucleus", "field_strength_t", "spectral_points", "ppm_min", "ppm_max", "spectral_width_hz"]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": "1",
   "required_common_fields": ["figure_id", "data_status", "source_revision", "analysis_command"],
-  "allowed_data_status": ["task_calibration", "deterministic_dry_run", "frozen_real_model_result"],
+  "allowed_data_status": ["task_calibration", "deterministic_dry_run", "development_model_checkout", "frozen_real_model_result"],
   "figure_contracts": {
     "figure_2_task_physics": {
       "required_fields": ["family", "instance_id", "difficulty", "naive_metrics", "conventional_metrics", "oracle_metrics", "artifact_hashes"]

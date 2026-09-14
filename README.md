@@ -42,6 +42,9 @@ The primary comparison is designed around five conditions:
 - a separate 20-run agent-pipeline smoke across every controller and development task family;
 - a 10-run scripted research dry-run crossing five conditions with the MRI and MRSI research bindings;
 - an adversarial controller-discrimination replay in which direct, self-debug, reactive, plan-only, and retry/replan have distinct enforced trajectory signatures;
+- a private-keyed, sensitivity-sized primary-manifest generator that enforces 122 unique dependence groups without publishing evaluator seeds;
+- family-stratified paired analysis with instance-cluster bootstrap intervals, exact sign-flip sensitivity, explicit exclusions, and fail-closed Figure 3/4 data status;
+- a metadata-only public-source ingestion smoke with license/access, mapping, integrity, containment, and split-leakage checks;
 - offline standard-library test suite.
 
 ## Planned A1 benchmark

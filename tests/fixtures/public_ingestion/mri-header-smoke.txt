@@ -1,0 +1,1 @@
+Synthetic metadata-only MRI ingestion smoke. No imaging or participant data.

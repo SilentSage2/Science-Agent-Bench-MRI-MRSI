@@ -53,6 +53,22 @@ Before data access, reviewers must approve:
 External validation is **NO-GO** until those fields are frozen. It may refute the
 simulator; such a negative result is retained rather than tuned away.
 
+The metadata-only ingestion boundary is executable without downloading either
+dataset:
+
+```bash
+PYTHONPATH=src python3.12 -m science_agent.public_ingestion \
+  --registry protocol/public_sources_v1.json \
+  --manifest protocol/public_ingestion_smoke_manifest_v1.json \
+  --data-root tests/fixtures/public_ingestion \
+  --smoke-mode
+```
+
+This checks the source registry, required MRI/MRSI mapping fields, file hashes,
+path containment, unique acquisitions, and subject/exam/acquisition split
+leakage. It intentionally fails if used as real ingestion without an explicit
+access/license approval record.
+
 ## Leakage and release boundary
 
 Private or agreement-controlled data remain outside Git and outside provider
@@ -60,4 +76,3 @@ prompts. Model-visible task descriptions contain only approved derived metadata.
 Evaluator references remain isolated. Any release includes code, configuration,
 checksums, and synthetic fixtures only unless the source license explicitly
 permits more.
-

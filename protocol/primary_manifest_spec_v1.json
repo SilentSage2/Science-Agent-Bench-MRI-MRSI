@@ -1,0 +1,23 @@
+{
+  "spec_version": "1",
+  "status": "implemented-generator; private manifest not frozen",
+  "design_source": "protocol/blinded_primary_design_v1.json",
+  "seed_derivation": "HMAC-SHA256(private key, family/index), first 8 bytes mapped to positive 63-bit integer",
+  "private_inputs": ["seed key"],
+  "private_outputs": ["instance seeds", "dependence-group identifiers", "evaluator fixtures"],
+  "public_commitment": "SHA-256 of canonical private manifest",
+  "independence_rules": [
+    "exactly one task instance per dependence group",
+    "unique seed within and across families",
+    "difficulty assigned by fixed 20/21/20 allocation before outcomes",
+    "all controller conditions and repetitions pair on the same instance",
+    "voxels, slices, calls, and repetitions never increment independent n"
+  ],
+  "mri_defaults": {"matrix_size": 64, "coils": 8},
+  "mri_difficulty": {
+    "easy": {"acceleration": 4.0, "relative_noise": 0.01},
+    "moderate": {"acceleration": 6.0, "relative_noise": 0.02},
+    "hard": {"acceleration": 8.0, "relative_noise": 0.04}
+  },
+  "mrsi_defaults": {"grid_size": 4, "spectral_points": 256}
+}
