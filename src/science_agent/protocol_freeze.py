@@ -59,6 +59,7 @@ FREEZE_GROUPS: dict[str, tuple[str, ...]] = {
         "figures/development/artifacts/figure_2_task_calibration_phone.png",
         "docs/NAMING_DECISION.md",
         "review/BUNDLE_INDEX.md",
+        "review/MINIMAL_REVIEW_REQUESTS.md",
     ),
     "executor": (
         "docker/research.Dockerfile",

@@ -16,9 +16,10 @@
     "review/STATISTICAL_REVIEW_FORM.md",
     "review/AGENT_CONTROL_REVIEW_FORM.md",
     "review/ISSUE_LOG.md",
-    "review/SIGNOFF.md"
-    ,"review/BUNDLE_INDEX.md"
-    ,"review/REVIEW_REQUEST_TEMPLATE.md"
+    "review/SIGNOFF.md",
+    "review/BUNDLE_INDEX.md",
+    "review/REVIEW_REQUEST_TEMPLATE.md",
+    "review/MINIMAL_REVIEW_REQUESTS.md"
   ],
   "source_material": [
     "protocol/five_condition_protocol_v1.json",

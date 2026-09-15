@@ -7,6 +7,9 @@ Send reviewers a link to one immutable Git revision and this file. Reviewers
 must record decisions in their role-specific form; email approval without a
 revision and completed form is not sufficient.
 
+The shortest executable route is in
+[`MINIMAL_REVIEW_REQUESTS.md`](MINIMAL_REVIEW_REQUESTS.md).
+
 ## Common core — 15 to 30 minutes
 
 1. Read [`README.md`](README.md), [`PROTOCOL_V1.md`](PROTOCOL_V1.md), and
