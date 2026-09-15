@@ -3,7 +3,7 @@
 Status: **PLANNED / NOT SUBMISSION-READY**. Bracketed text is an evidence dependency, not prose for submission.
 
 <!-- ISMRM:TITLE:START -->
-Failure-aware planning for scientifically valid autonomous MRI/MRSI experiments under fixed budgets
+MR-AgentGuard: Failure-aware evaluation of scientific agents for MRI and MRSI under fixed budgets
 <!-- ISMRM:TITLE:END -->
 
 ## Synopsis
@@ -15,7 +15,7 @@ Failure-aware planning for scientifically valid autonomous MRI/MRSI experiments 
 
 **Approach:** Compare five budget-auditable strategies on evaluator-isolated tasks spanning multi-coil undersampling/noise and spectral drift/template mismatch, using hidden physics/fidelity graders.
 
-**Results:** PLANNED—no frozen primary real-model comparison has run. A 10-cell development checkout is excluded from Results. The frozen analysis will report paired effects, 95% intervals, efficiency, and MR-specific failures.
+**Results:** PLANNED—no frozen primary outcomes exist. Development-only mechanism and calibration evidence is excluded from agent-effect inference.
 <!-- ISMRM:SYNOPSIS:END -->
 
 ## Impact
@@ -33,7 +33,7 @@ Automated tools and language-model agents can complete MRI or MR spectroscopic i
 
 ### Methods
 
-**PLANNED primary study.** Two generated research-core candidates are implemented. Noisy multi-coil Cartesian MRI exposes zero-filled and regularized SENSE-CG reconstruction; hidden grading measures magnitude/gradient NRMSE and acquired-data residual. Complex MRSI exposes fixed or adaptive nuisance projection under frequency/phase drift, baseline and lineshape mismatch, and noise; hidden grading separately measures nuisance residual, metabolite retention, and whole-spectrum error. Naive, conventional, and evaluator-only oracle references calibrate each family. Public/challenge and MR-domain validation remain required. Policies receive versioned public inputs and typed observations, never clean anatomy, spectra, or generator parameters.
+**PLANNED primary study.** Two generated research-core candidates are implemented. Noisy multi-coil Cartesian MRI exposes zero-filled and regularized SENSE-CG reconstruction; hidden grading measures magnitude/gradient NRMSE and acquired-data residual. Complex MRSI exposes fixed or adaptive nuisance projection under frequency/phase drift, baseline and lineshape mismatch, and noise; hidden grading separately measures nuisance residual, metabolite retention, and whole-spectrum error. Naive, conventional, and evaluator-only oracle references calibrate each family. Nine generated development cases per family quantify naive-versus-conventional task separation without estimating agent effects. Public/challenge physics and MR-domain validation remain required. Policies receive versioned public inputs and typed observations, never clean anatomy, spectra, or generator parameters.
 
 One pinned model snapshot will run the primary controller ablation: direct, self-debug, reactive, plan-only, and plan plus one bounded retry/replan. Conventional MR methods, a naive method, and an oracle calibrate each task without being misrepresented as agents. Conditions will share prompts where applicable, allowlisted research tools, token/cost/tool/time ceilings, seeds, and the digest-pinned network-disabled non-root executor. Plan-only versus reactive will isolate initial planning; retry/replan versus plan-only will isolate recovery. A blinded design-stage sensitivity analysis specifies 61 independent instances per family and two repetitions per condition (1,220 runs total); expert signoff, private manifest materialization, model/budget freeze, and spend authorization remain PLANNED.
 
@@ -43,15 +43,15 @@ Runs will record code revision, dirty state, task/model/prompt/tool/container ha
 
 ### Results
 
-**PLANNED—NO REAL-MODEL PRIMARY RESULTS EXIST.** Mechanism checks confirmed that zero-filled MRI and fixed-template MRSI outputs can complete normally with valid reproducible artifacts while failing hidden spatial-fidelity or nuisance/metabolite-retention criteria. Baseline calibration separated conventional from naive methods in 9/9 generated cases per family; these task checks are not controller results or independent-subject evidence. [Insert eligible runs and frozen paired agent effects only from `R-*` fact-map entries.]
+**PLANNED—NO REAL-MODEL PRIMARY RESULTS EXIST.** Development mechanism checks verified that MRI and MRSI outputs can complete normally with reproducible artifacts while failing hidden spatial-fidelity or nuisance/metabolite-retention criteria. These checks and the paid development checkout are excluded from controller-effect inference. [Insert eligible denominators, paired effects, 95% intervals, family-stratified outcomes, cost, missingness, and frozen `R-*` fact IDs only after the signed primary analysis.]
 
 ### Discussion
 
-**PLANNED.** [Interpret effect magnitude and uncertainty rather than pass-count direction alone. Discuss null or adverse effects, task-family heterogeneity, cost/latency tradeoffs, recovery failures, and boundary cases. State limitations from generated tasks, the sensitivity-justified but likely small instance set, one model snapshot, deterministic graders, and lack of clinical validation.]
+**PLANNED.** [Interpret effect magnitude and uncertainty rather than pass-count direction alone. Separate prevention from recognition and MRI from MRSI. Discuss null or adverse effects, cost/latency tradeoffs, recovery failures, and boundary cases. State limitations from generated tasks, one model snapshot, deterministic thresholds, provider alias drift, absent clinical validation, and the extent to which public/challenge validation supports—or refutes—the simulated mechanisms.]
 
 ### Conclusion
 
-**PLANNED.** [Answer whether planning and bounded replan changed scientifically valid MRI/MRSI experiment completion under fixed budgets, using the frozen paired estimate and interval. Do not generalize to patient care or models/tasks not evaluated.]
+**PLANNED.** [Answer whether any controller component changed scientifically valid MRI/MRSI completion or recognition under fixed budgets, using the frozen paired estimate and interval. A null, harmful, or heterogeneous result is a valid conclusion. Do not generalize to patient care or models/tasks not evaluated.]
 <!-- ISMRM:BODY:END -->
 
 ## References

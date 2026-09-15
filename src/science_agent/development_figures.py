@@ -66,6 +66,11 @@ def render_development_figures(
                 "png": f"{filename}.png",
                 "phone_preview": f"{filename}_phone.png",
             },
+            "export_sha256": {
+                "svg": _sha256(output / f"{filename}.svg"),
+                "png": _sha256(output / f"{filename}.png"),
+                "phone_preview": _sha256(output / f"{filename}_phone.png"),
+            },
             "qa": {
                 "canvas_pixels": [WIDTH, HEIGHT],
                 "phone_preview_width_pixels": 480,
