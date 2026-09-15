@@ -1,0 +1,71 @@
+{
+  "executor_image": "sha256:fbb0cde9a40ec156133c67b434a719615f8b2bc3df7744e1087911a0bb950f1c",
+  "file_sha256": {
+    "controller_prompt_schema": {
+      "protocol/controller_adversarial_fixtures_v1.json": "34be759f20e34186435e363f7653a2923a70dd1a299e7a4cced959b014009076",
+      "src/science_agent/agent.py": "b20caec275c441ccf6bd0e8f83ae1e55a25cd8845feb7b40ea5e04341fa48967",
+      "src/science_agent/contracts.py": "4f82841a67bd5fe7c68808a7feb6ea9cfe799496bc410179a3f85725d3ac284a",
+      "src/science_agent/live_pilot.py": "9b3db38f1d03a09f6dc4ea6692f47c0e1b15c55ed8451fa27ce718008f27e26a"
+    },
+    "development_publication_assets": {
+      "abstract/ABSTRACT_CONTRACT.md": "3be5ef855996b3948b9214d0ddd99f73a56954684a0fed04b53dad0bcb69b229",
+      "abstract/CAPTIONS.md": "7fd60aa89a2e9efdd54d8847441a9e3e415eaf6fb165f95f76c1e3f8fcaeb76f",
+      "abstract/DRAFT.md": "9c342e2264ab04433622a04ba58466c77ea205b14509a9ba6d4ded74270c4e7d",
+      "abstract/FACT_MAP.md": "186dde3b809ab1e011849be1ac1a95bdf7e4fd55d54278ac2b8c3ddaebef9664",
+      "docs/NAMING_DECISION.md": "6f62f8738c21832b80c5705eedead76d6ba23ae68c20ca5489121a7eaeae94ad",
+      "experiments/baseline_figure_data_v1.json": "a9948b6a7b6bb578153337463984261dc65737eec3922dc6e911de1882c54dc5",
+      "figures/development/CAPTIONS.md": "6a5f7815af8323cf403d9253a89d065d27bd7aefe26bb080468852d300f72e00",
+      "figures/development/QA.md": "971ad012613c3b633ce9c516c09414873cc680492c3e233e9951f303eefbbd9d",
+      "figures/development/artifacts/figure_1_framework.json": "d80409c08744bfb980ee615d2af302a6e8755432321a0c9d762df8f8fe2b4e92",
+      "figures/development/artifacts/figure_1_framework.png": "b8b1f628c1d60da9f5cb627413c766fa4d773f88d3156131a3ddad1ebf601a9b",
+      "figures/development/artifacts/figure_1_framework.svg": "e6263d267badf86f0a025c620d34eec8b7d32fd7bcba24f85ac4d3e009157983",
+      "figures/development/artifacts/figure_1_framework_phone.png": "67873560b973885742dfc5184b367d7e680263afd08224118096ec6dfc8e844d",
+      "figures/development/artifacts/figure_2_task_calibration.json": "4e96ec2a7ce3adbe70db706cd9762cdc45b40789b7e29f08cff6d09ee4600dd5",
+      "figures/development/artifacts/figure_2_task_calibration.png": "da8630dff30fc9d6b28b6cbc77c54422f6e18c93728039b642ebe5b8b00ddd3f",
+      "figures/development/artifacts/figure_2_task_calibration.svg": "bfe7b717db7510aa42d4426673cfca9ba605dedbf4d1f9fa330c19ea446dd388",
+      "figures/development/artifacts/figure_2_task_calibration_phone.png": "1385a3811c6f5abb481c050d6eecb236cf929d899b30ccb0ab1b82c187ed9ae1",
+      "protocol/figure_data_contract_v1.json": "9c74359b60e071b366b6b2df094960d8931b8bfe3063bd35bf525b9fe7e4c501",
+      "review/BUNDLE_INDEX.md": "6315f2d0ff8f2958b6cd3bb6842d755cf7ca47471676953f11d335094503b0ae",
+      "src/science_agent/development_figures.py": "69ae9a2a1de79f865d89d85fea1c085b1c3c10cef633bde79b5d7e69aa64755e",
+      "src/science_agent/publication_audit.py": "f9a8a4eeb3ea26df67be95b1b88e73b389454d2ae6cb77f6eb46a88a69c9cd60"
+    },
+    "executor": {
+      "docker/research.Dockerfile": "1a319376d55301fbe99817feffa7af3ac3bcdfa797ca2845d9ce3afb533dfe51",
+      "src/science_agent/container_executor.py": "9205f12baeb6eaf59b58bc1c1cbe1b2a3c6dc186a255493774d3b1eec7500703"
+    },
+    "protocol_and_analysis": {
+      "protocol/blinded_primary_design_v1.json": "579178dbc09b3a7f3fdf8ccae12772f5d5b8dae85a8b1e9c6e355fe1e5f77a78",
+      "protocol/figure_data_contract_v1.json": "9c74359b60e071b366b6b2df094960d8931b8bfe3063bd35bf525b9fe7e4c501",
+      "protocol/five_condition_protocol_v1.json": "110c71d625c410d5e0e0b8c06b21e7f4d0cb1bda821bd5445b65e04b2f6f0b20",
+      "protocol/openneuro_ds004068_header_manifest_v1.json": "89283772b96eb1c701f6e7a50981f7b543885d31d046be4be44239fd6257e871",
+      "protocol/public_ingestion_smoke_manifest_v1.json": "f74f49558961aa340a02ec65544467e5a72d3709eef041bb0b49a4bd20f8e21f",
+      "protocol/public_sources_v1.json": "785ae4ebbca87a00ede6b2d548774581b9d5633fa7dfd88cdc91c9426030f446",
+      "src/science_agent/design_sensitivity.py": "4175aa0905a8c6385903772a36fc1c6514d1dbddf26c1e05aefc8815791fe6c8",
+      "src/science_agent/paired_analysis.py": "f37393d999830833b85eb7be82472337c944fc8a6057caec6ea4143487200075",
+      "src/science_agent/public_ingestion.py": "b78e1cd45ee94147d1328eaed5ee85bda7ccdba210a35db7259d9606898d372b",
+      "src/science_agent/silent_invalidity.py": "8179c24fd1c5eec965b910876e7b27bdcd779c2e282089940202463350408be6"
+    },
+    "task_generators_and_graders": {
+      "protocol/primary_manifest_spec_v1.json": "2155aff22d5c215edb50193e419aee00b696a03aa39c9e4c9ad300ae23d80cb6",
+      "src/science_agent/frozen_instances.py": "7212816486333383d21bd60032bf6efdcd4406be06788abe10a197d3d4e509cf",
+      "src/science_agent/primary_manifest.py": "ef812750c2d7ad2edce85f6e0ea01eafa26a7463f6b638fd4b4863bc6c723a1b",
+      "src/science_agent/research/mri_multicoil.py": "e06fb42da991c6936ce95b477ff0d680fdd0d68eee4ecda1e1068bea202f343e",
+      "src/science_agent/research/mrsi_nuisance.py": "c94b000f8c2cd530b6af0e21fc071d31786bbe2924c152732cd5eca8b09bfdfc",
+      "src/science_agent/research_task_tools.py": "ad9cb6dc87831c90af0ddbad6b9a606b67b4a95a86850b1ace0f6c0094ee087d"
+    }
+  },
+  "freeze_schema": "candidate-protocol-lock-v1",
+  "model_identity": {
+    "immutable_snapshot_available": false,
+    "limitation": "The provider exposes the requested model as an alias in this study. Every response-returned model string and response ID must be retained; cross-date reruns may still experience unobservable alias drift.",
+    "required_run_fields": [
+      "requested_model",
+      "returned_model",
+      "response_id"
+    ]
+  },
+  "primary_run_authorized": false,
+  "requested_model": "gpt-5.6-terra",
+  "source_revision": "2672de1ceb2b7fdbed2884bbbda91363f52e82f1",
+  "status": "candidate-no-go-pending-expert-signoff"
+}
