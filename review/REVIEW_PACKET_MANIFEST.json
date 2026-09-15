@@ -1,7 +1,7 @@
 {
   "packet_version": "1",
   "packet_status": "no-go-unreviewed",
-  "prepared_from_revision": "58d3070ee00adf7d7179121c39b4241f65cab85b",
+  "prepared_from_revision": "389a1ad883c12b31e716e8faab85476f0ed82aad",
   "freeze_revision": null,
   "required_roles": [
     "mri_reconstruction_expert",
@@ -29,6 +29,7 @@
     "protocol/candidate_freeze_v4.json",
     "protocol/candidate_freeze_v5.json",
     "protocol/candidate_freeze_v6.json",
+    "protocol/candidate_freeze_v7.json",
     "protocol/blinded_primary_design_v1.json",
     "protocol/primary_manifest_spec_v1.json",
     "protocol/public_sources_v1.json",

@@ -43,7 +43,6 @@ def _copy_audit_fixture(destination: Path) -> None:
         "README.md",
         "abstract/DRAFT.md",
         "review/SIGNOFF.md",
-        "protocol/candidate_freeze_v6.json",
     )
     for relative in paths:
         source = ROOT / relative
@@ -53,3 +52,7 @@ def _copy_audit_fixture(destination: Path) -> None:
             shutil.copytree(source, target)
         else:
             target.write_bytes(source.read_bytes())
+    for source in sorted((ROOT / "protocol").glob("candidate_freeze_v*.json")):
+        target = destination / "protocol" / source.name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(source.read_bytes())

@@ -2,7 +2,7 @@
 
 QA date: 2026-09-14
 
-Source revision: `112466bc8366fb830ae74b20dc6935660479b71d`
+Source revision: `389a1ad883c12b31e716e8faab85476f0ed82aad`
 
 Overall status: **visual/export QA passed; independent MR-domain signoff pending**
 

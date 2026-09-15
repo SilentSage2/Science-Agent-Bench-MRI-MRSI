@@ -1,6 +1,11 @@
 {
   "agent_effect_claim_allowed": false,
   "data_status": "TASK-CALIBRATION",
+  "export_sha256": {
+    "phone_preview": "1385a3811c6f5abb481c050d6eecb236cf929d899b30ccb0ab1b82c187ed9ae1",
+    "png": "da8630dff30fc9d6b28b6cbc77c54422f6e18c93728039b642ebe5b8b00ddd3f",
+    "svg": "bfe7b717db7510aa42d4426673cfca9ba605dedbf4d1f9fa330c19ea446dd388"
+  },
   "exports": {
     "phone_preview": "figure_2_task_calibration_phone.png",
     "png": "figure_2_task_calibration.png",
@@ -32,8 +37,8 @@
     "provenance_present": true,
     "visual_inspection": "PASSED-2026-09-14"
   },
-  "renderer_sha256": "93db4eeb7b2c88958642b9389eb94bfc716c7f706e4905d6ce9c2c64f03807e0",
+  "renderer_sha256": "69ae9a2a1de79f865d89d85fea1c085b1c3c10cef633bde79b5d7e69aa64755e",
   "research_result": false,
   "source_data_sha256": "a9948b6a7b6bb578153337463984261dc65737eec3922dc6e911de1882c54dc5",
-  "source_revision": "112466bc8366fb830ae74b20dc6935660479b71d"
+  "source_revision": "389a1ad883c12b31e716e8faab85476f0ed82aad"
 }

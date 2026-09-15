@@ -88,9 +88,14 @@ def audit_publication_evidence(root: Path) -> dict[str, Any]:
     signoff = (root / "review" / "SIGNOFF.md").read_text(encoding="utf-8")
     if "NO-GO" not in signoff or "UNREVIEWED" not in signoff:
         raise PublicationAuditError("review signoff must remain explicit NO-GO/UNREVIEWED")
-    current_lock = _latest_candidate_lock(root / "protocol")
+    current_lock_path, current_lock = _latest_candidate_lock(root / "protocol")
     if current_lock.get("primary_run_authorized") is not False:
         raise PublicationAuditError("candidate lock unexpectedly authorizes the primary run")
+    if current_lock_path.name not in signoff:
+        raise PublicationAuditError("review signoff does not name the latest candidate lock")
+    source_revision = current_lock.get("source_revision")
+    if not isinstance(source_revision, str) or source_revision not in signoff:
+        raise PublicationAuditError("review signoff does not bind the candidate source revision")
 
     return {
         "audit_schema": "publication-evidence-audit-v1",
@@ -103,14 +108,14 @@ def audit_publication_evidence(root: Path) -> dict[str, Any]:
     }
 
 
-def _latest_candidate_lock(protocol_root: Path) -> dict[str, Any]:
+def _latest_candidate_lock(protocol_root: Path) -> tuple[Path, dict[str, Any]]:
     locks = sorted(
         protocol_root.glob("candidate_freeze_v*.json"),
         key=lambda path: int(path.stem.rsplit("v", 1)[1]),
     )
     if not locks:
         raise PublicationAuditError("candidate lock missing")
-    return _json(locks[-1])
+    return locks[-1], _json(locks[-1])
 
 
 def _json(path: Path) -> dict[str, Any]:
